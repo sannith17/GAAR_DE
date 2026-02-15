@@ -93,4 +93,46 @@ export default function Home() {
               </div>
               <h3 className="text-xl font-semibold mb-3">Optimale Performance</h3>
               <p className="text-gray-600">
-                Perfekt
+                Perfekt abgestimmt auf Ihr Fahrzeug für maximale Fahrsicherheit und Komfort.
+              </p>
+            </div>
+
+            {/* Reason 4 */}
+            <div className="text-center p-6">
+              <div className="w-20 h-20 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
+                <span className="text-3xl font-bold text-primary">4</span>
+              </div>
+              <h3 className="text-xl font-semibold mb-3">100 Tage Rückgabe</h3>
+              <p className="text-gray-600">
+                Testen Sie Ihre neuen Reifen in Ruhe. Bei Nichtgefallen volle Rückgabe innerhalb von 100 Tagen.
+              </p>
+            </div>
+
+            {/* Reason 5 */}
+            <div className="text-center p-6">
+              <div className="w-20 h-20 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
+                <span className="text-3xl font-bold text-primary">5</span>
+              </div>
+              <h3 className="text-xl font-semibold mb-3">Schneller Versand</h3>
+              <p className="text-gray-600">
+                Versand innerhalb 24h mit DHL. Persönliche Beratung und sichere Zahlung inklusive.
+              </p>
+            </div>
+          </div>
+
+          {/* Trust Signals */}
+          <div className="bg-white p-8 rounded-lg shadow-sm">
+            <h3 className="text-2xl font-bold text-center mb-8">Unsere Premium-Marken</h3>
+            <div className="flex flex-wrap justify-center gap-8">
+              {brandLogos.map(brand => (
+                <div key={brand} className="text-gray-700 font-semibold text-lg">
+                  {brand}
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+    </>
+  )
+}
