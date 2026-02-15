@@ -2,7 +2,7 @@
   {
     "id": 1,
     "brand": "Maruti",
-    "model": "Swift",
+    "model": "MERCEDES",
     "submodel": "LDI (Diesel)",
     "tyreBrand": "Continental",
     "serialNo": "CC6-165/80R14",
@@ -17,7 +17,7 @@
   {
     "id": 2,
     "brand": "Maruti",
-    "model": "Swift",
+    "model": "MERCEDES",
     "submodel": "LDI (Diesel)",
     "tyreBrand": "Michelin",
     "serialNo": "PS4-165/80R14",
@@ -32,7 +32,7 @@
   {
     "id": 3,
     "brand": "Maruti",
-    "model": "Baleno",
+    "model": "VOLKSWAGEN",
     "submodel": "Sigma",
     "tyreBrand": "Pirelli",
     "serialNo": "CINT-185/65R15",
@@ -47,7 +47,7 @@
   {
     "id": 4,
     "brand": "Maruti",
-    "model": "Baleno",
+    "model": "VOLKSWAGEN",
     "submodel": "Delta",
     "tyreBrand": "Goodyear",
     "serialNo": "EGP-185/65R15",
@@ -62,7 +62,7 @@
   {
     "id": 5,
     "brand": "Maruti",
-    "model": "Dzire",
+    "model": "VOLVO",
     "submodel": "LDI",
     "tyreBrand": "BridgeStone",
     "serialNo": "B250-165/80R14",
@@ -77,7 +77,7 @@
   {
     "id": 6,
     "brand": "Maruti",
-    "model": "Dzire",
+    "model": "VOLVO",
     "submodel": "VDI",
     "tyreBrand": "Dunlop",
     "serialNo": "SPORT-165/80R14",
@@ -92,7 +92,7 @@
   {
     "id": 7,
     "brand": "Maruti",
-    "model": "Vitara",
+    "model": "PORSCHE",
     "submodel": "Brezza",
     "tyreBrand": "Continental",
     "serialNo": "UC6-215/60R16",
@@ -107,7 +107,7 @@
   {
     "id": 8,
     "brand": "Maruti",
-    "model": "Vitara",
+    "model": "PORSCHE",
     "submodel": "Brezza",
     "tyreBrand": "Michelin",
     "serialNo": "PST-215/60R16",
@@ -122,7 +122,7 @@
   {
     "id": 9,
     "brand": "Maruti",
-    "model": "Ertiga",
+    "model": "BMV",
     "submodel": "VXI",
     "tyreBrand": "JKTyre",
     "serialNo": "TAXI-185/65R15",
@@ -137,7 +137,7 @@
   {
     "id": 10,
     "brand": "Maruti",
-    "model": "Ertiga",
+    "model": "BMV",
     "submodel": "ZXI",
     "tyreBrand": "CEAT",
     "serialNo": "MILAGE-185/65R15",
