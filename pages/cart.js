@@ -1,8 +1,8 @@
-import { useCart } from '@/context/CartContext'
+import { useCart } from '../context/CartContext'
 import Image from 'next/image'
 import Link from 'next/link'
 import { FaTrash } from 'react-icons/fa'
-import { playClickSound } from '@/utils/sound'
+import { playClickSound } from '../utils/sound'
 
 export default function Cart() {
   const { cart, removeFromCart, updateQuantity, clearCart } = useCart()
