@@ -8,21 +8,25 @@ export default function Footer() {
           {/* Company Info */}
           <div>
             <h3 className="text-white text-2xl font-bold mb-4">GAAR</h3>
-            <p className="text-sm">
+            <p className="text-sm text-gray-400">
               Ihr zuverlässiger Partner für hochwertige Reifen und Räder in Deutschland.
               TÜV/ECE zertifiziert für Ihre Sicherheit.
             </p>
+            <div className="mt-4">
+              <p className="text-sm text-gray-400">0800 - GAAR TYRE</p>
+              <p className="text-sm text-gray-400">info@gaar.de</p>
+            </div>
           </div>
 
           {/* Rechtliches */}
           <div>
             <h4 className="text-white font-semibold mb-4">Rechtliches</h4>
             <ul className="space-y-2 text-sm">
-              <li><Link href="#" className="hover:text-white transition-colors">Impressum</Link></li>
-              <li><Link href="#" className="hover:text-white transition-colors">Datenschutz</Link></li>
-              <li><Link href="#" className="hover:text-white transition-colors">AGB</Link></li>
-              <li><Link href="#" className="hover:text-white transition-colors">Widerrufsrecht</Link></li>
-              <li><Link href="#" className="hover:text-white transition-colors">TÜV/ECE Hinweis</Link></li>
+              <li><Link href="#" className="text-gray-400 hover:text-white transition-colors">Impressum</Link></li>
+              <li><Link href="#" className="text-gray-400 hover:text-white transition-colors">Datenschutz</Link></li>
+              <li><Link href="#" className="text-gray-400 hover:text-white transition-colors">AGB</Link></li>
+              <li><Link href="#" className="text-gray-400 hover:text-white transition-colors">Widerrufsrecht</Link></li>
+              <li><Link href="#" className="text-gray-400 hover:text-white transition-colors">TÜV/ECE Hinweis</Link></li>
             </ul>
           </div>
 
@@ -30,22 +34,22 @@ export default function Footer() {
           <div>
             <h4 className="text-white font-semibold mb-4">Service</h4>
             <ul className="space-y-2 text-sm">
-              <li><Link href="#" className="hover:text-white transition-colors">Versandbedingungen</Link></li>
-              <li><Link href="#" className="hover:text-white transition-colors">Zahlungsarten</Link></li>
-              <li><Link href="#" className="hover:text-white transition-colors">100 Tage Rückgabe</Link></li>
-              <li><Link href="#" className="hover:text-white transition-colors">Persönliche Beratung</Link></li>
-              <li><Link href="#" className="hover:text-white transition-colors">Garantie</Link></li>
+              <li><Link href="#" className="text-gray-400 hover:text-white transition-colors">Versandbedingungen</Link></li>
+              <li><Link href="#" className="text-gray-400 hover:text-white transition-colors">Zahlungsarten</Link></li>
+              <li><Link href="#" className="text-gray-400 hover:text-white transition-colors">100 Tage Rückgabe</Link></li>
+              <li><Link href="#" className="text-gray-400 hover:text-white transition-colors">Persönliche Beratung</Link></li>
+              <li><Link href="#" className="text-gray-400 hover:text-white transition-colors">Garantie</Link></li>
             </ul>
           </div>
 
-          {/* Kontakt */}
+          {/* Öffnungszeiten */}
           <div>
             <h4 className="text-white font-semibold mb-4">Kontakt</h4>
-            <ul className="space-y-2 text-sm">
-              <li>Tel: 0800 - GAAR TYRE</li>
-              <li>Email: info@gaar.de</li>
+            <ul className="space-y-2 text-sm text-gray-400">
               <li>Mo-Fr: 9:00 - 18:00</li>
               <li>Sa: 10:00 - 14:00</li>
+              <li className="pt-2">Sichere Zahlung mit:</li>
+              <li>VISA, Mastercard, PayPal</li>
             </ul>
           </div>
         </div>
