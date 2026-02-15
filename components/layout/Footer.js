@@ -12,21 +12,18 @@ export default function Footer() {
               Ihr zuverlässiger Partner für hochwertige Reifen und Räder in Deutschland.
               TÜV/ECE zertifiziert für Ihre Sicherheit.
             </p>
-            <div className="mt-4">
-              <p className="text-sm text-gray-400">0800 - GAAR TYRE</p>
-              <p className="text-sm text-gray-400">info@gaar.de</p>
-            </div>
           </div>
 
           {/* Rechtliches */}
           <div>
             <h4 className="text-white font-semibold mb-4">Rechtliches</h4>
             <ul className="space-y-2 text-sm">
-              <li><Link href="#" className="text-gray-400 hover:text-white transition-colors">Impressum</Link></li>
-              <li><Link href="#" className="text-gray-400 hover:text-white transition-colors">Datenschutz</Link></li>
-              <li><Link href="#" className="text-gray-400 hover:text-white transition-colors">AGB</Link></li>
-              <li><Link href="#" className="text-gray-400 hover:text-white transition-colors">Widerrufsrecht</Link></li>
-              <li><Link href="#" className="text-gray-400 hover:text-white transition-colors">TÜV/ECE Hinweis</Link></li>
+              <li><Link href="/impressum" className="text-gray-400 hover:text-white transition-colors">Impressum</Link></li>
+              <li><Link href="/datenschutz" className="text-gray-400 hover:text-white transition-colors">Datenschutz</Link></li>
+              <li><Link href="/agb" className="text-gray-400 hover:text-white transition-colors">AGB</Link></li>
+              <li><Link href="/widerruf" className="text-gray-400 hover:text-white transition-colors">Widerrufsrecht</Link></li>
+              <li><Link href="/rechtliches/tuev-hinweis" className="text-gray-400 hover:text-white transition-colors">TÜV/ECE Hinweis</Link></li>
+              <li><Link href="/rechtliches/haftungsausschluss" className="text-gray-400 hover:text-white transition-colors">Haftungsausschluss</Link></li>
             </ul>
           </div>
 
@@ -34,22 +31,22 @@ export default function Footer() {
           <div>
             <h4 className="text-white font-semibold mb-4">Service</h4>
             <ul className="space-y-2 text-sm">
-              <li><Link href="#" className="text-gray-400 hover:text-white transition-colors">Versandbedingungen</Link></li>
-              <li><Link href="#" className="text-gray-400 hover:text-white transition-colors">Zahlungsarten</Link></li>
-              <li><Link href="#" className="text-gray-400 hover:text-white transition-colors">100 Tage Rückgabe</Link></li>
-              <li><Link href="#" className="text-gray-400 hover:text-white transition-colors">Persönliche Beratung</Link></li>
-              <li><Link href="#" className="text-gray-400 hover:text-white transition-colors">Garantie</Link></li>
+              <li><Link href="/versand" className="text-gray-400 hover:text-white transition-colors">Versandbedingungen</Link></li>
+              <li><Link href="/zahlung" className="text-gray-400 hover:text-white transition-colors">Zahlungsarten</Link></li>
+              <li><Link href="/widerruf" className="text-gray-400 hover:text-white transition-colors">100 Tage Rückgabe</Link></li>
+              <li><Link href="/kontakt" className="text-gray-400 hover:text-white transition-colors">Persönliche Beratung</Link></li>
+              <li><Link href="/garantie" className="text-gray-400 hover:text-white transition-colors">Garantie</Link></li>
             </ul>
           </div>
 
-          {/* Öffnungszeiten */}
+          {/* Kontakt */}
           <div>
             <h4 className="text-white font-semibold mb-4">Kontakt</h4>
             <ul className="space-y-2 text-sm text-gray-400">
+              <li>Tel: 0800 - GAAR TYRE</li>
+              <li>Email: info@gaar.de</li>
               <li>Mo-Fr: 9:00 - 18:00</li>
               <li>Sa: 10:00 - 14:00</li>
-              <li className="pt-2">Sichere Zahlung mit:</li>
-              <li>VISA, Mastercard, PayPal</li>
             </ul>
           </div>
         </div>
@@ -57,12 +54,12 @@ export default function Footer() {
         {/* Legal Notes */}
         <div className="border-t border-gray-800 mt-8 pt-8 text-xs text-gray-500">
           <p className="mb-2">
-            * Alle Preise verstehen sich inkl. gesetzlicher Mehrwertsteuer und zzgl. Versandkosten.
-            TÜV/ECE-geprüfte Qualität für deutsche Straßen.
+            * Alle Preise verstehen sich inkl. gesetzlicher Mehrwertsteuer und zzgl. Versandkosten. 
+            TÜV/ECE-geprüfte Qualität für deutsche Straßen. Es gelten unsere <Link href="/agb" className="hover:text-white underline">AGB</Link>.
           </p>
           <p>
-            § 312g BGB Widerrufsrecht: Sie haben das Recht, binnen vierzehn Tagen ohne Angabe von Gründen diesen Vertrag zu widerrufen.
-            Haftungsausschluss: Für die Richtigkeit der technischen Daten übernehmen wir keine Haftung.
+            <Link href="/widerruf" className="hover:text-white underline">§ 312g BGB Widerrufsrecht</Link>: Sie haben das Recht, binnen vierzehn Tagen ohne Angabe von Gründen diesen Vertrag zu widerrufen. 
+            <Link href="/rechtliches/haftungsausschluss" className="hover:text-white underline"> Haftungsausschluss</Link>: Für die Richtigkeit der technischen Daten übernehmen wir keine Haftung.
           </p>
         </div>
       </div>
