@@ -1,8 +1,8 @@
 import { useRouter } from 'next/router'
 import { useState, useMemo } from 'react'
-import tyresData from '@/data/tyres.json'
-import ProductCard from '@/components/ui/ProductCard'
-import FilterBar from '@/components/ui/FilterBar'
+import tyresData from '../../data/tyres.json'
+import ProductCard from '../../components/ui/ProductCard'
+import FilterBar from '../../components/ui/FilterBar'
 
 export default function ModelPage() {
   const router = useRouter()
@@ -10,6 +10,8 @@ export default function ModelPage() {
   const [filters, setFilters] = useState({ sort: '', size: '', brand: '' })
 
   const filteredProducts = useMemo(() => {
+    if (!model) return []
+    
     let products = tyresData.filter(tyre => 
       tyre.model.toLowerCase() === model?.toLowerCase()
     )
