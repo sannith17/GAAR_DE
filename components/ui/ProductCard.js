@@ -1,9 +1,9 @@
 import Image from 'next/image'
 import { useState } from 'react'
 import { FaStar, FaRegStar, FaStarHalfAlt } from 'react-icons/fa'
-import { useCart } from '@/context/CartContext'
+import { useCart } from '../../context/CartContext'
 import Toast from './Toast'
-import { playClickSound } from '@/utils/sound'
+import { playClickSound } from '../../utils/sound'
 
 export default function ProductCard({ product }) {
   const { addToCart } = useCart()
