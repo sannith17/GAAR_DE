@@ -18,14 +18,30 @@
   }
   
   .tyre-button {
-    @apply w-32 h-32 rounded-full bg-white border-4 border-primary shadow-lg 
+    @apply w-32 h-32 rounded-full bg-white border-4 border-[#004aad] shadow-lg 
            hover:shadow-xl hover:border-gray-400 transition-all duration-300 
            hover:-translate-y-1 cursor-pointer flex items-center justify-center
-           font-bold text-primary text-xl;
+           font-bold text-[#004aad] text-xl;
   }
   
   .product-card {
     @apply bg-white rounded-lg shadow-md overflow-hidden 
            hover:shadow-xl transition-all duration-300 hover:-translate-y-1;
   }
+}
+
+/* Custom animations */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fadeIn {
+  animation: fadeIn 0.5s ease-out;
 }
