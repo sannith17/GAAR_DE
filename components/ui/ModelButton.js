@@ -1,5 +1,5 @@
 import { useRouter } from 'next/router'
-import { playClickSound } from '@/utils/sound'
+import { playClickSound } from '../../utils/sound'
 
 export default function ModelButton({ model }) {
   const router = useRouter()
