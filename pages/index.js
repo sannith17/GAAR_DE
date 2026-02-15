@@ -1,6 +1,6 @@
 import Head from 'next/head'
 import Image from 'next/image'
-import ModelButton from '@/components/ui/ModelButton'
+import ModelButton from '../components/ui/ModelButton'
 
 const models = ['Swift', 'Baleno', 'Dzire', 'Vitara', 'Ertiga']
 
@@ -130,6 +130,14 @@ export default function Home() {
                 </div>
               ))}
             </div>
+          </div>
+          
+          <div className="grid grid-cols-2 md:grid-cols-5 gap-4 mt-12 text-center text-sm text-gray-600">
+            <div>✓ 100 Tage Rückgabe</div>
+            <div>✓ Schneller Versand</div>
+            <div>✓ Persönliche Beratung</div>
+            <div>✓ Sichere Zahlung</div>
+            <div>✓ 5 Jahre Garantie</div>
           </div>
         </div>
       </section>
