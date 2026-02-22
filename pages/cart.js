@@ -1,7 +1,7 @@
 import { useCart } from '../context/CartContext'
 import Image from 'next/image'
 import Link from 'next/link'
-import { FaTrash, FaArrowLeft, FaShieldAlt, FaTruck, FaMoneyBillWave, FaShoppingCart } from 'react-icons/fa'
+import { FaTrash, FaArrowLeft, FaShieldAlt, FaTruck, FaMoneyBillWave, FaShoppingCart, FaImage } from 'react-icons/fa'
 import { playClickSound } from '../utils/sound'
 import { useState } from 'react'
 
@@ -9,6 +9,7 @@ export default function Cart() {
   const { cart, removeFromCart, updateQuantity, clearCart } = useCart()
   const [promoCode, setPromoCode] = useState('')
   const [promoApplied, setPromoApplied] = useState(false)
+  const [imageErrors, setImageErrors] = useState({})
 
   const handleQuantityChange = (id, newQuantity) => {
     playClickSound()
@@ -27,11 +28,35 @@ export default function Cart() {
     }
   }
 
+  const handleImageError = (id) => {
+    setImageErrors(prev => ({ ...prev, [id]: true }))
+  }
+
   // Calculate totals
   const subtotal = cart.total
   const shipping = 4.90
   const discount = promoApplied ? subtotal * 0.1 : 0
   const total = subtotal + shipping - discount
+
+  // Get fallback image based on tyre brand
+  const getFallbackImage = (tyreBrand) => {
+    const brand = tyreBrand?.toLowerCase() || ''
+    if (brand.includes('michelin')) {
+      return 'https://www.michelin.de/static/images/michelin-logo.svg'
+    } else if (brand.includes('pirelli')) {
+      return 'https://www.pirelli.com/static/images/logo-pirelli.svg'
+    } else if (brand.includes('continental')) {
+      return 'https://www.continental.com/static/images/logo-continental.svg'
+    } else if (brand.includes('goodyear')) {
+      return 'https://www.goodyear.com/static/images/logo-goodyear.svg'
+    } else if (brand.includes('bridgestone')) {
+      return 'https://www.bridgestone.com/static/images/logo-bridgestone.svg'
+    } else if (brand.includes('hankook')) {
+      return 'https://www.hankooktire.com/static/images/logo-hankook.svg'
+    } else {
+      return 'https://via.placeholder.com/400x300?text=Reifen'
+    }
+  }
 
   if (cart.items.length === 0) {
     return (
@@ -105,14 +130,31 @@ export default function Cart() {
                 style={{ animationDelay: `${index * 0.1}s` }}
               >
                 <div className="flex flex-col sm:flex-row gap-6">
-                  {/* Product Image */}
-                  <div className="relative w-full sm:w-32 h-32 bg-gray-100 rounded-xl overflow-hidden shadow-inner">
-                    <Image
-                      src={item.image || 'https://via.placeholder.com/400x300?text=Reifen'}
-                      alt={item.tyreBrand}
-                      fill
-                      className="object-cover hover:scale-110 transition-transform duration-500"
-                    />
+                  {/* Product Image with Fallback */}
+                  <div className="relative w-full sm:w-32 h-32 bg-gradient-to-br from-gray-100 to-gray-200 
+                                rounded-xl overflow-hidden shadow-inner flex items-center justify-center">
+                    {!imageErrors[item.id] ? (
+                      <Image
+                        src={item.image || getFallbackImage(item.tyreBrand)}
+                        alt={item.tyreBrand}
+                        fill
+                        className="object-contain p-2 hover:scale-110 transition-transform duration-500"
+                        onError={() => handleImageError(item.id)}
+                        unoptimized={true}
+                      />
+                    ) : (
+                      <div className="w-full h-full flex flex-col items-center justify-center text-gray-400">
+                        <FaImage size={32} className="opacity-50" />
+                        <span className="text-xs mt-1">{item.tyreBrand}</span>
+                      </div>
+                    )}
+                    
+                    {/* Year Badge if available */}
+                    {item.year && (
+                      <div className="absolute top-1 left-1 bg-[#004aad] text-white text-[10px] px-1.5 py-0.5 rounded-full">
+                        {item.year}
+                      </div>
+                    )}
                   </div>
 
                   {/* Product Details */}
@@ -120,8 +162,13 @@ export default function Cart() {
                     <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
                       <div>
                         <h3 className="text-xl font-bold text-gray-800">{item.tyreBrand}</h3>
-                        <p className="text-gray-600 text-sm mt-1">{item.brand} {item.model} ({item.year})</p>
+                        <p className="text-gray-600 text-sm mt-1">
+                          {item.brand} {item.model} {item.year ? `(${item.year})` : ''}
+                        </p>
                         <p className="text-gray-500 text-sm">{item.size}</p>
+                        {item.serialNo && (
+                          <p className="text-gray-400 text-xs mt-1">Serie: {item.serialNo}</p>
+                        )}
                       </div>
                       
                       {/* Price with Gold Accent */}
