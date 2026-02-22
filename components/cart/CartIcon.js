@@ -2,7 +2,7 @@ import Link from 'next/link'
 import { FaShoppingCart } from 'react-icons/fa'
 import { useCart } from '../../context/CartContext'
 import { useEffect, useState, useContext } from 'react'
-import { EdgeLightContext } from '../../pages/_app'
+import { EdgeLightContext } from '../../context/EdgeLightContext'
 
 export default function CartIcon() {
   const { cart } = useCart()
