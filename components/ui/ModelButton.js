@@ -1,7 +1,7 @@
 import { useRouter } from 'next/router'
 import { playClickSound } from '../../utils/sound'
 import { useContext } from 'react'
-import { EdgeLightContext } from '../../pages/_app'
+import { EdgeLightContext } from '../../context/EdgeLightContext'
 
 export default function ModelButton({ model }) {
   const router = useRouter()
@@ -11,7 +11,9 @@ export default function ModelButton({ model }) {
     playClickSound()
     setEdgeLightColor('#004aad') // Blue for models
     setEdgeLightTrigger(prev => !prev)
-    router.push(`/models/${model}`)
+    setTimeout(() => {
+      router.push(`/models/${model}`)
+    }, 300)
   }
 
   return (
