@@ -41,24 +41,30 @@ export default function Home() {
           <div className="flex gap-4 justify-center">
             <Link 
               href="/models/Swift" 
-              className="px-8 py-3 rounded-lg font-semibold text-white transition-colors"
+              className="px-8 py-3 rounded-lg font-semibold text-white transition-colors relative overflow-hidden group"
               style={{ backgroundColor: '#004aad' }}
             >
-              Reifen finden
+              <div className="absolute inset-0 translate-x-[-100%] group-hover:translate-x-[100%] 
+                            bg-gradient-to-r from-transparent via-white/30 to-transparent 
+                            transition-transform duration-1000"></div>
+              <span className="relative z-10">Reifen finden</span>
             </Link>
             <Link 
               href="/#models" 
-              className="px-8 py-3 rounded-lg font-semibold bg-white transition-colors"
+              className="px-8 py-3 rounded-lg font-semibold bg-white transition-colors relative overflow-hidden group"
               style={{ color: '#004aad' }}
             >
-              Modelle entdecken
+              <div className="absolute inset-0 translate-x-[-100%] group-hover:translate-x-[100%] 
+                            bg-gradient-to-r from-transparent via-[#004aad]/10 to-transparent 
+                            transition-transform duration-1000"></div>
+              <span className="relative z-10">Modelle entdecken</span>
             </Link>
           </div>
         </div>
 
         <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 z-10">
           <div className="w-6 h-10 border-2 border-white rounded-full flex justify-center">
-            <div className="w-1 h-3 bg-white rounded-full mt-2"></div>
+            <div className="w-1 h-3 bg-white rounded-full mt-2 animate-pulse"></div>
           </div>
         </div>
       </div>
@@ -92,91 +98,104 @@ export default function Home() {
           </p>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
-            {/* Reason 1 */}
-            <div className="p-8 rounded-xl" style={{ backgroundColor: '#f9fafb' }}>
-              <div className="w-16 h-16 rounded-full flex items-center justify-center mb-6" style={{ backgroundColor: 'rgba(0, 74, 173, 0.1)' }}>
-                <span className="text-2xl font-bold" style={{ color: '#004aad' }}>1</span>
+            {/* Reason Cards with Glassy Effect */}
+            {[1,2,3,4,5].map((num) => (
+              <div key={num} className="relative overflow-hidden bg-gradient-to-br from-white/80 to-white/40 
+                                      backdrop-blur-xl p-8 rounded-xl border border-white/50 shadow-xl
+                                      hover:shadow-2xl transition-all duration-500 group">
+                {/* Glass reflection */}
+                <div className="absolute inset-0 bg-gradient-to-tr from-white/40 via-transparent to-transparent 
+                              pointer-events-none"></div>
+                
+                <div className="relative z-10">
+                  <div className="w-16 h-16 rounded-full flex items-center justify-center mb-6"
+                       style={{ backgroundColor: 'rgba(0, 74, 173, 0.1)' }}>
+                    <span className="text-2xl font-bold" style={{ color: '#004aad' }}>{num}</span>
+                  </div>
+                  <h3 className="text-xl font-semibold mb-3">
+                    {num === 1 && "TÜV/ECE Zertifiziert"}
+                    {num === 2 && "Premium-Marken"}
+                    {num === 3 && "Optimale Performance"}
+                    {num === 4 && "100 Tage Rückgabe"}
+                    {num === 5 && "Schneller Versand"}
+                  </h3>
+                  <p className="text-gray-600 leading-relaxed">
+                    {num === 1 && "Alle unsere Reifen sind TÜV/ECE geprüft und garantieren höchste Sicherheit."}
+                    {num === 2 && "Pirelli, Michelin, Continental, Dunlop, Goodyear und Bridgestone."}
+                    {num === 3 && "Perfekt abgestimmt auf Ihr Fahrzeug für maximale Fahrsicherheit."}
+                    {num === 4 && "Testen Sie Ihre neuen Reifen in Ruhe. 100 Tage Rückgaberecht."}
+                    {num === 5 && "Versand innerhalb 24h mit DHL. Persönliche Beratung inklusive."}
+                  </p>
+                </div>
               </div>
-              <h3 className="text-xl font-semibold mb-3">TÜV/ECE Zertifiziert</h3>
-              <p className="text-gray-600 leading-relaxed">
-                Alle unsere Reifen sind TÜV/ECE geprüft und garantieren höchste Sicherheit.
-              </p>
-            </div>
-
-            {/* Reason 2 */}
-            <div className="p-8 rounded-xl" style={{ backgroundColor: '#f9fafb' }}>
-              <div className="w-16 h-16 rounded-full flex items-center justify-center mb-6" style={{ backgroundColor: 'rgba(0, 74, 173, 0.1)' }}>
-                <span className="text-2xl font-bold" style={{ color: '#004aad' }}>2</span>
-              </div>
-              <h3 className="text-xl font-semibold mb-3">Premium-Marken</h3>
-              <p className="text-gray-600 leading-relaxed">
-                Pirelli, Michelin, Continental, Dunlop, Goodyear und Bridgestone.
-              </p>
-            </div>
-
-            {/* Reason 3 */}
-            <div className="p-8 rounded-xl" style={{ backgroundColor: '#f9fafb' }}>
-              <div className="w-16 h-16 rounded-full flex items-center justify-center mb-6" style={{ backgroundColor: 'rgba(0, 74, 173, 0.1)' }}>
-                <span className="text-2xl font-bold" style={{ color: '#004aad' }}>3</span>
-              </div>
-              <h3 className="text-xl font-semibold mb-3">Optimale Performance</h3>
-              <p className="text-gray-600 leading-relaxed">
-                Perfekt abgestimmt auf Ihr Fahrzeug für maximale Fahrsicherheit.
-              </p>
-            </div>
-
-            {/* Reason 4 */}
-            <div className="p-8 rounded-xl" style={{ backgroundColor: '#f9fafb' }}>
-              <div className="w-16 h-16 rounded-full flex items-center justify-center mb-6" style={{ backgroundColor: 'rgba(0, 74, 173, 0.1)' }}>
-                <span className="text-2xl font-bold" style={{ color: '#004aad' }}>4</span>
-              </div>
-              <h3 className="text-xl font-semibold mb-3">100 Tage Rückgabe</h3>
-              <p className="text-gray-600 leading-relaxed">
-                Testen Sie Ihre neuen Reifen in Ruhe. 100 Tage Rückgaberecht.
-              </p>
-            </div>
-
-            {/* Reason 5 */}
-            <div className="p-8 rounded-xl" style={{ backgroundColor: '#f9fafb' }}>
-              <div className="w-16 h-16 rounded-full flex items-center justify-center mb-6" style={{ backgroundColor: 'rgba(0, 74, 173, 0.1)' }}>
-                <span className="text-2xl font-bold" style={{ color: '#004aad' }}>5</span>
-              </div>
-              <h3 className="text-xl font-semibold mb-3">Schneller Versand</h3>
-              <p className="text-gray-600 leading-relaxed">
-                Versand innerhalb 24h mit DHL. Persönliche Beratung inklusive.
-              </p>
-            </div>
+            ))}
 
             {/* Trust Center */}
-            <div className="p-8 rounded-xl text-white" style={{ backgroundColor: '#004aad' }}>
-              <h3 className="text-xl font-semibold mb-4">Ihr Vertrauen ist uns wichtig</h3>
-              <ul className="space-y-3">
-                <li className="flex items-center gap-2">
-                  <span style={{ color: '#86efac' }}>✓</span> 5 Jahre Garantie
-                </li>
-                <li className="flex items-center gap-2">
-                  <span style={{ color: '#86efac' }}>✓</span> Persönliche Beratung
-                </li>
-                <li className="flex items-center gap-2">
-                  <span style={{ color: '#86efac' }}>✓</span> Sichere Zahlung
-                </li>
-                <li className="flex items-center gap-2">
-                  <span style={{ color: '#86efac' }}>✓</span> Kostenloser Rückversand
-                </li>
-              </ul>
+            <div className="relative overflow-hidden p-8 rounded-xl text-white group"
+                 style={{ backgroundColor: '#004aad' }}>
+              <div className="absolute inset-0 bg-gradient-to-tr from-white/20 via-transparent to-transparent 
+                            pointer-events-none"></div>
+              <div className="relative z-10">
+                <h3 className="text-xl font-semibold mb-4">Ihr Vertrauen ist uns wichtig</h3>
+                <ul className="space-y-3">
+                  <li className="flex items-center gap-2">
+                    <span style={{ color: '#86efac' }}>✓</span> 5 Jahre Garantie
+                  </li>
+                  <li className="flex items-center gap-2">
+                    <span style={{ color: '#86efac' }}>✓</span> Persönliche Beratung
+                  </li>
+                  <li className="flex items-center gap-2">
+                    <span style={{ color: '#86efac' }}>✓</span> Sichere Zahlung
+                  </li>
+                  <li className="flex items-center gap-2">
+                    <span style={{ color: '#86efac' }}>✓</span> Kostenloser Rückversand
+                  </li>
+                </ul>
+              </div>
             </div>
           </div>
 
-          {/* Brand Showcase */}
-          <div className="p-12 rounded-2xl" style={{ backgroundColor: '#f9fafb' }}>
-            <h3 className="text-2xl font-bold text-center mb-8" style={{ color: '#004aad' }}>
+          {/* Brand Showcase - Glassy Effect & Larger Icons */}
+          <div className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-white/80 to-white/40 
+                        backdrop-blur-xl p-12 shadow-2xl border border-white/50">
+            {/* Glass reflection */}
+            <div className="absolute inset-0 bg-gradient-to-tr from-white/40 via-transparent to-transparent 
+                          pointer-events-none"></div>
+            
+            <h3 className="text-3xl font-bold text-center mb-10 relative z-10" style={{ color: '#004aad' }}>
               Unsere Premium-Marken
             </h3>
-            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6">
-              {brandLogos.map(brand => (
-                <div key={brand} className="text-center">
-                  <div className="bg-white p-4 rounded-lg shadow-sm">
-                    <span className="font-semibold text-gray-800">{brand}</span>
+            
+            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-8 relative z-10">
+              {brandLogos.map((brand, index) => (
+                <div 
+                  key={brand} 
+                  className="group relative transform hover:scale-110 transition-all duration-500
+                           hover:-translate-y-2"
+                  style={{ animationDelay: `${index * 0.1}s` }}
+                >
+                  {/* Glass card background */}
+                  <div className="absolute inset-0 bg-gradient-to-br from-white/40 to-white/5 
+                                backdrop-blur-md rounded-2xl shadow-2xl border border-white/50
+                                group-hover:border-white/70 transition-all"></div>
+                  
+                  {/* Inner glow effect */}
+                  <div className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100
+                                transition-opacity duration-500 bg-gradient-to-r 
+                                from-[#004aad]/20 via-transparent to-[#004aad]/20"></div>
+                  
+                  {/* Content - Larger Text */}
+                  <div className="relative p-8 text-center">
+                    <span className="text-2xl font-bold bg-gradient-to-r from-gray-800 to-gray-600 
+                                   bg-clip-text text-transparent group-hover:from-[#004aad] 
+                                   group-hover:to-gray-600 transition-all duration-300">
+                      {brand}
+                    </span>
+                    
+                    {/* Bottom shine line */}
+                    <div className="absolute bottom-2 left-1/2 transform -translate-x-1/2 
+                                  w-0 group-hover:w-12 h-0.5 bg-gradient-to-r from-transparent 
+                                  via-[#004aad] to-transparent transition-all duration-500"></div>
                   </div>
                 </div>
               ))}
