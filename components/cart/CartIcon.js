@@ -1,26 +1,22 @@
 import Link from 'next/link'
 import { FaShoppingCart } from 'react-icons/fa'
 import { useCart } from '../../context/CartContext'
-import { useEffect, useState, useContext } from 'react'
-import { EdgeLightContext } from '../../context/EdgeLightContext'
+import { useEffect, useState } from 'react'
 
 export default function CartIcon() {
   const { cart } = useCart()
   const itemCount = cart.items.reduce((sum, item) => sum + item.quantity, 0)
   const [blast, setBlast] = useState(false)
   const [prevCount, setPrevCount] = useState(itemCount)
-  const { setEdgeLightTrigger, setEdgeLightColor } = useContext(EdgeLightContext)
 
   // Trigger blast animation when item count increases
   useEffect(() => {
     if (itemCount > prevCount) {
       setBlast(true)
-      setEdgeLightColor('#FFD700') // Gold for cart
-      setEdgeLightTrigger(prev => !prev)
       setTimeout(() => setBlast(false), 800)
     }
     setPrevCount(itemCount)
-  }, [itemCount, prevCount, setEdgeLightTrigger, setEdgeLightColor])
+  }, [itemCount, prevCount])
 
   return (
     <Link href="/cart" className="relative group block">
