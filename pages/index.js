@@ -2,11 +2,13 @@ import Head from 'next/head'
 import Image from 'next/image'
 import Link from 'next/link'
 import ModelButton from '../components/ui/ModelButton'
+import tyresData from '../data/tyres.json'
 
-const models = ['Swift', 'Baleno', 'Dzire', 'Vitara', 'Ertiga']
+// Extract unique car brands from the dataset
+const uniqueBrands = [...new Set(tyresData.map(item => item.brand))].sort()
 
 const brandLogos = [
-  'Pirelli', 'Michelin', 'Continental', 'Dunlop', 'Goodyear', 'Bridgestone'
+  'Pirelli', 'Michelin', 'Continental', 'Dunlop', 'Goodyear', 'Bridgestone', 'Hankook'
 ]
 
 export default function Home() {
@@ -46,7 +48,7 @@ export default function Home() {
           </p>
           <div className="flex gap-4 justify-center">
             <Link 
-              href="/models/Swift" 
+              href="/models/BMW" 
               className="px-8 py-3 rounded-lg font-semibold text-white transition-all hover:scale-105 hover:shadow-xl"
               style={{ backgroundColor: '#004aad' }}
             >
@@ -69,20 +71,20 @@ export default function Home() {
         </div>
       </div>
 
-      {/* Model Selection */}
+      {/* Brand Selection */}
       <div id="models" className="py-20 bg-gradient-to-b from-white to-gray-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <h2 className="text-3xl md:text-4xl font-bold text-center mb-4">
-            Wählen Sie Ihr Fahrzeugmodell
+            Wählen Sie Ihre Automarke
           </h2>
           <p className="text-gray-600 text-center mb-12 max-w-2xl mx-auto">
-            Finden Sie die perfekten Reifen für Ihr Fahrzeug. Alle Modelle TÜV/ECE geprüft.
+            Finden Sie die perfekten Reifen für Ihr Fahrzeug. Alle Marken TÜV/ECE geprüft.
           </p>
           
           <div className="flex flex-wrap justify-center gap-8">
-            {models.map((model, index) => (
-              <div key={model} className="animate-fadeInUp" style={{ animationDelay: `${index * 0.1}s` }}>
-                <ModelButton model={model} />
+            {uniqueBrands.map((brand, index) => (
+              <div key={brand} className="animate-fadeInUp" style={{ animationDelay: `${index * 0.1}s` }}>
+                <ModelButton model={brand} />
               </div>
             ))}
           </div>
@@ -118,7 +120,7 @@ export default function Home() {
               </div>
               <h3 className="text-xl font-semibold mb-3">Premium-Marken</h3>
               <p className="text-gray-600 leading-relaxed">
-                Pirelli, Michelin, Continental, Dunlop, Goodyear und Bridgestone – nur die besten Marken.
+                Pirelli, Michelin, Continental, Dunlop, Goodyear, Bridgestone und Hankook – nur die besten Marken.
               </p>
             </div>
 
@@ -180,7 +182,7 @@ export default function Home() {
             <h3 className="text-3xl font-bold text-center mb-10" style={{ color: '#004aad' }}>
               Unsere Premium-Marken
             </h3>
-            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-8">
+            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
               {brandLogos.map((brand, index) => (
                 <div 
                   key={brand} 
