@@ -1,7 +1,5 @@
 import Head from 'next/head'
 import Image from 'next/image'
-import Link from 'next/link'
-import ModelButton from '../components/ui/ModelButton'
 import tyresData from '../data/tyres.json'
 
 // Extract unique car brands for model buttons
@@ -46,20 +44,25 @@ export default function Home() {
             Leidenschaft für jedes Kilometer-Erlebnis.
           </p>
           <div className="flex gap-4 justify-center">
-            <Link 
-              href={`/models/${uniqueCarBrands[0]}`} 
+            <button 
+              onClick={() => window.location.href = `/models/${uniqueCarBrands[0]}`}
               className="px-8 py-3 rounded-lg font-semibold text-white transition-all hover:scale-105 hover:shadow-xl"
               style={{ backgroundColor: '#004aad' }}
             >
               Reifen finden
-            </Link>
-            <Link 
-              href="/#models" 
+            </button>
+            <button 
+              onClick={() => {
+                const element = document.getElementById('models')
+                if (element) {
+                  element.scrollIntoView({ behavior: 'smooth' })
+                }
+              }}
               className="px-8 py-3 rounded-lg font-semibold bg-white transition-all hover:scale-105 hover:shadow-xl"
               style={{ color: '#004aad' }}
             >
               Modelle entdecken
-            </Link>
+            </button>
           </div>
         </div>
 
@@ -83,7 +86,27 @@ export default function Home() {
           <div className="flex flex-wrap justify-center gap-8">
             {uniqueCarBrands.map((brand, index) => (
               <div key={brand} className="animate-fadeInUp" style={{ animationDelay: `${index * 0.1}s` }}>
-                <ModelButton model={brand} />
+                <button
+                  onClick={() => window.location.href = `/models/${encodeURIComponent(brand)}`}
+                  className="group outline-none"
+                >
+                  <div className="relative w-32 h-32 rounded-full bg-gradient-to-br from-white to-gray-50 
+                                border-4 border-[#004aad] shadow-lg 
+                                transition-all duration-300 
+                                group-hover:-translate-y-2 group-hover:shadow-2xl
+                                group-hover:border-orange-500
+                                flex items-center justify-center
+                                overflow-hidden">
+                    
+                    <div className="absolute inset-0 opacity-0 group-hover:opacity-100 
+                                  bg-gradient-to-tr from-white/60 via-transparent to-transparent 
+                                  transition-opacity duration-500"></div>
+                    
+                    <span className="text-xl font-bold text-[#004aad] group-hover:text-orange-500 transition-colors duration-300">
+                      {brand}
+                    </span>
+                  </div>
+                </button>
               </div>
             ))}
           </div>
@@ -260,8 +283,8 @@ export default function Home() {
                   Ab 6 Jahren steigt das Risiko für Risse und Materialermüdung exponentiell. 
                   <span className="font-semibold"> Schützen Sie sich und Ihre Familie.</span>
                 </p>
-                <Link 
-                  href="/models" 
+                <button 
+                  onClick={() => window.location.href = '/models'}
                   className="inline-block bg-gradient-to-r from-[#004aad] to-orange-500 
                            text-white px-8 py-3 rounded-lg font-semibold
                            hover:from-[#003a8a] hover:to-orange-600 
@@ -269,7 +292,7 @@ export default function Home() {
                            shadow-lg hover:shadow-xl"
                 >
                   Jetzt Sicherheit sichern →
-                </Link>
+                </button>
               </div>
             </div>
           </div>
@@ -283,10 +306,10 @@ export default function Home() {
               {uniqueTyreBrands.map((brand, index) => {
                 const productCount = tyresData.filter(t => t.tyreBrand === brand).length
                 return (
-                  <Link 
+                  <button
                     key={brand}
-                    href={`/models?tyreBrand=${brand}`}
-                    className="group relative transform hover:scale-105 transition-all duration-300 hover:-translate-y-1"
+                    onClick={() => window.location.href = `/models?tyreBrand=${encodeURIComponent(brand)}`}
+                    className="group relative transform hover:scale-105 transition-all duration-300 hover:-translate-y-1 cursor-pointer w-full"
                   >
                     <div className="bg-white rounded-lg shadow-md hover:shadow-xl transition-all p-4 text-center border-2 border-transparent hover:border-[#004aad]/20">
                       {/* Brand Icon/Initial */}
@@ -306,7 +329,7 @@ export default function Home() {
                         {productCount} Produkte
                       </p>
                     </div>
-                  </Link>
+                  </button>
                 )
               })}
             </div>
