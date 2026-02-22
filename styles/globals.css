@@ -38,31 +38,64 @@
   }
 }
 
-/* Edge Lighting Screen Animations */
-@keyframes edgeLightFlow {
-  0% {
+/* Fade Animations */
+@keyframes fadeInUp {
+  from {
     opacity: 0;
-    transform: scaleX(0) scaleY(0);
+    transform: translateY(20px);
   }
-  10% {
+  to {
     opacity: 1;
-    transform: scaleX(1) scaleY(1);
-  }
-  90% {
-    opacity: 1;
-    transform: scaleX(1) scaleY(1);
-  }
-  100% {
-    opacity: 0;
-    transform: scaleX(1.5) scaleY(1.5);
+    transform: translateY(0);
   }
 }
 
-.animate-edgeLightFlow {
-  animation: edgeLightFlow 1.5s ease-out forwards;
+.animate-fadeInUp {
+  animation: fadeInUp 0.5s ease-out forwards;
 }
 
-/* Blast Animation */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fadeIn {
+  animation: fadeIn 0.3s ease-out forwards;
+}
+
+/* Pulse Animation */
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
+
+.animate-pulse {
+  animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+/* Ping Animation */
+@keyframes ping {
+  75%, 100% {
+    transform: scale(2);
+    opacity: 0;
+  }
+}
+
+.animate-ping {
+  animation: ping 1s cubic-bezier(0, 0, 0.2, 1) infinite;
+}
+
+/* Blast Animation for Cart */
 @keyframes blast {
   0% {
     transform: scale(0) rotate(0deg);
@@ -104,35 +137,4 @@
 
 .animate-pulse-slow {
   animation: pulse-slow 3s ease-in-out infinite;
-}
-
-/* Fade Animations */
-@keyframes fadeInUp {
-  from {
-    opacity: 0;
-    transform: translateY(20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-.animate-fadeInUp {
-  animation: fadeInUp 0.5s ease-out forwards;
-}
-
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-    transform: translateY(-10px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-.animate-fadeIn {
-  animation: fadeIn 0.3s ease-out forwards;
 }
