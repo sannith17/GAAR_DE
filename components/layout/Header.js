@@ -4,6 +4,7 @@ import { FaShoppingCart, FaUser, FaSearch } from 'react-icons/fa'
 import CartIcon from '../cart/CartIcon'
 import tyresData from '../../data/tyres.json'
 import { useState } from 'react'
+import NavLink from '../ui/NavLink'
 
 // Extract unique brands for dropdown
 const uniqueBrands = [...new Set(tyresData.map(item => item.brand))].sort().slice(0, 5)
@@ -15,8 +16,16 @@ export default function Header() {
   const handleSearch = (e) => {
     e.preventDefault()
     if (searchQuery.trim()) {
-      router.push(`/models?search=${encodeURIComponent(searchQuery)}`)
+      window.location.href = `/models?search=${encodeURIComponent(searchQuery)}`
     }
+  }
+
+  const handleBrandClick = (brand) => {
+    window.location.href = `/models/${encodeURIComponent(brand)}`
+  }
+
+  const handleNavigation = (path) => {
+    window.location.href = path
   }
 
   return (
@@ -24,11 +33,10 @@ export default function Header() {
       {/* Main Header - Blue Background */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-20">
-          {/* Logo with Racing Sans One Font */}
-          <Link 
-            href="/" 
+          {/* Logo */}
+          <button 
+            onClick={() => window.location.href = '/'}
             className="flex flex-col leading-none group"
-            prefetch={false}
           >
             <span className="text-4xl font-black text-white tracking-tighter font-['Racing_Sans_One'] group-hover:opacity-90 transition-opacity">
               GAAR
@@ -36,9 +44,9 @@ export default function Header() {
             <span className="text-xs text-white/80 tracking-widest font-['Racing_Sans_One'] group-hover:text-white/90 transition-colors">
               RÄDER UND REIFEN
             </span>
-          </Link>
+          </button>
 
-          {/* Search Bar - Radium Green */}
+          {/* Search Bar */}
           <form onSubmit={handleSearch} className="hidden md:flex items-center bg-white/10 rounded-full px-4 py-1.5 border border-white/20 w-64">
             <input
               type="text"
@@ -54,50 +62,44 @@ export default function Header() {
 
           {/* Navigation */}
           <nav className="hidden md:flex space-x-8">
-            <Link 
-              href="/" 
+            <button 
+              onClick={() => window.location.href = '/'}
               className={`text-white hover:text-gray-200 transition-colors ${
                 router.pathname === '/' ? 'font-semibold border-b-2 border-white' : ''
               }`}
-              prefetch={false}
             >
               Startpage
-            </Link>
-            <Link 
-              href="/models/BMW" 
+            </button>
+            <button 
+              onClick={() => window.location.href = '/models/BMW'}
               className={`text-white hover:text-gray-200 transition-colors ${
                 router.pathname.includes('models') ? 'font-semibold border-b-2 border-white' : ''
               }`}
-              prefetch={false}
             >
               Reifen
-            </Link>
-            <Link 
-              href="/models/BMW" 
+            </button>
+            <button 
+              onClick={() => window.location.href = '/models/BMW'}
               className="text-white hover:text-gray-200 transition-colors"
-              prefetch={false}
             >
               Räder
-            </Link>
-            <Link 
-              href="/" 
+            </button>
+            <button 
+              onClick={() => window.location.href = '/'}
               className="text-white hover:text-gray-200 transition-colors"
-              prefetch={false}
             >
               Angebote
-            </Link>
-            <Link 
-              href="/" 
+            </button>
+            <button 
+              onClick={() => window.location.href = '/'}
               className="text-white hover:text-gray-200 transition-colors"
-              prefetch={false}
             >
               Kontakt
-            </Link>
+            </button>
           </nav>
 
           {/* Icons */}
           <div className="flex items-center space-x-6">
-            {/* Mobile Search Icon - Radium Green */}
             <button className="md:hidden text-[#00FF00] hover:text-[#00DD00] transition-colors drop-shadow-[0_0_8px_rgba(0,255,0,0.5)]">
               <FaSearch size={20} />
             </button>
@@ -114,22 +116,20 @@ export default function Header() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex space-x-8 py-3 text-sm">
             {uniqueBrands.map(brand => (
-              <Link 
+              <button
                 key={brand}
-                href={`/models/${encodeURIComponent(brand)}`} 
+                onClick={() => handleBrandClick(brand)}
                 className="text-gray-200 hover:text-white transition-colors"
-                prefetch={false}
               >
                 {brand}
-              </Link>
+              </button>
             ))}
-            <Link 
-              href="/models" 
+            <button
+              onClick={() => window.location.href = '/models'}
               className="text-gray-200 hover:text-white transition-colors font-semibold"
-              prefetch={false}
             >
               Alle Marken →
-            </Link>
+            </button>
           </div>
         </div>
       </div>
