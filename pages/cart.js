@@ -184,34 +184,42 @@ export default function Cart() {
                 Bestellübersicht
               </h2>
 
-              {/* Promo Code */}
-              <div className="mb-6">
-                <div className="flex gap-2">
-                  <input
-                    type="text"
-                    placeholder="Gutscheincode"
-                    value={promoCode}
-                    onChange={(e) => setPromoCode(e.target.value)}
-                    className="flex-grow bg-gray-50 border border-gray-300 rounded-lg px-4 py-2 
-                             focus:outline-none focus:ring-2 focus:ring-[#004aad] 
-                             focus:border-transparent"
-                  />
-                  <button
-                    onClick={handleApplyPromo}
-                    className="bg-gradient-to-r from-[#004aad] to-gray-600 text-white px-4 py-2 
-                             rounded-lg hover:from-[#003a8a] hover:to-gray-700 
-                             transition-all transform hover:scale-105 shadow-md
-                             hover:shadow-lg font-semibold"
-                  >
-                    Anwenden
-                  </button>
-                </div>
-                {promoApplied && (
-                  <p className="text-green-600 text-sm mt-2 animate-fadeIn">
-                    ✓ 10% Rabatt wurde angewendet!
-                  </p>
-                )}
-              </div>
+{/* Promo Code - Fixed button inside */}
+<div className="mb-6">
+  <label className="block text-sm font-medium text-gray-700 mb-2">
+    Gutscheincode
+  </label>
+  <div className="flex gap-2">
+    <input
+      type="text"
+      placeholder="z.B. GAAR10"
+      value={promoCode}
+      onChange={(e) => setPromoCode(e.target.value)}
+      className="flex-1 bg-white/80 backdrop-blur-sm border border-gray-300 rounded-lg px-4 py-3 
+               focus:outline-none focus:ring-2 focus:ring-[#004aad] focus:border-transparent
+               shadow-sm hover:shadow-md transition-shadow"
+    />
+    <button
+      onClick={handleApplyPromo}
+      className="px-6 py-3 bg-gradient-to-r from-[#004aad] to-gray-600 
+               text-white font-semibold rounded-lg whitespace-nowrap
+               hover:from-[#003a8a] hover:to-gray-700 
+               transition-all transform hover:scale-105 
+               shadow-md hover:shadow-xl relative overflow-hidden group"
+    >
+      {/* Shine effect */}
+      <div className="absolute inset-0 translate-x-[-100%] group-hover:translate-x-[100%] 
+                    bg-gradient-to-r from-transparent via-white/30 to-transparent 
+                    transition-transform duration-1000"></div>
+      <span className="relative z-10">Anwenden</span>
+    </button>
+  </div>
+  {promoApplied && (
+    <p className="text-green-600 text-sm mt-2 animate-fadeIn flex items-center gap-1">
+      <span>✓</span> 10% Rabatt wurde angewendet!
+    </p>
+  )}
+</div>
 
               {/* Price Breakdown */}
               <div className="space-y-3 mb-6">
