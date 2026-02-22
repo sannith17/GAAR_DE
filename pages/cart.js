@@ -37,7 +37,10 @@ export default function Cart() {
     return (
       <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100 py-20">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="bg-white/80 backdrop-blur-lg rounded-3xl shadow-2xl p-12 text-center border border-gray-200">
+          <div className="relative overflow-hidden bg-gradient-to-br from-white/80 to-white/40 backdrop-blur-xl rounded-3xl shadow-2xl p-12 text-center border border-white/50">
+            {/* Glass reflection */}
+            <div className="absolute inset-0 bg-gradient-to-tr from-white/40 via-transparent to-transparent pointer-events-none"></div>
+            
             {/* Empty Cart Animation */}
             <div className="relative w-32 h-32 mx-auto mb-8">
               <div className="absolute inset-0 bg-gradient-to-r from-[#004aad]/20 to-gray-400/20 rounded-full animate-ping"></div>
@@ -46,17 +49,20 @@ export default function Cart() {
               </div>
             </div>
             
-            <h1 className="text-4xl font-bold text-gray-800 mb-4">Ihr Warenkorb ist leer</h1>
-            <p className="text-gray-600 mb-8">Entdecken Sie unsere hochwertigen Reifen und Räder.</p>
+            <h1 className="text-4xl font-bold text-gray-800 mb-4 relative z-10">Ihr Warenkorb ist leer</h1>
+            <p className="text-gray-600 mb-8 relative z-10">Entdecken Sie unsere hochwertigen Reifen und Räder.</p>
             <Link 
               href="/" 
-              className="inline-flex items-center gap-2 bg-gradient-to-r from-[#004aad] to-gray-600 
+              className="relative inline-flex items-center gap-2 bg-gradient-to-r from-[#004aad] to-gray-600 
                        text-white px-8 py-4 rounded-xl hover:from-[#003a8a] hover:to-gray-700 
                        transition-all transform hover:-translate-y-1 shadow-lg hover:shadow-xl
-                       font-semibold text-lg group"
+                       font-semibold text-lg group overflow-hidden z-10"
             >
-              <FaArrowLeft className="group-hover:-translate-x-1 transition-transform" />
-              Weiter einkaufen
+              <div className="absolute inset-0 translate-x-[-100%] group-hover:translate-x-[100%] 
+                            bg-gradient-to-r from-transparent via-white/30 to-transparent 
+                            transition-transform duration-1000"></div>
+              <FaArrowLeft className="relative z-10 group-hover:-translate-x-1 transition-transform" />
+              <span className="relative z-10">Weiter einkaufen</span>
             </Link>
           </div>
         </div>
@@ -99,12 +105,17 @@ export default function Cart() {
             {cart.items.map((item, index) => (
               <div 
                 key={item.id} 
-                className="group bg-white/90 backdrop-blur-sm rounded-2xl shadow-lg hover:shadow-2xl 
-                         transition-all duration-500 p-6 border border-gray-200/50
+                className="group relative overflow-hidden bg-gradient-to-br from-white/80 to-white/40 
+                         backdrop-blur-xl rounded-2xl shadow-lg hover:shadow-2xl 
+                         transition-all duration-500 p-6 border border-white/50
                          hover:border-[#004aad]/20 animate-fadeInUp"
                 style={{ animationDelay: `${index * 0.1}s` }}
               >
-                <div className="flex flex-col sm:flex-row gap-6">
+                {/* Glass reflection */}
+                <div className="absolute inset-0 bg-gradient-to-tr from-white/40 via-transparent to-transparent 
+                              pointer-events-none"></div>
+                
+                <div className="relative z-10 flex flex-col sm:flex-row gap-6">
                   {/* Product Image with Silver Frame */}
                   <div className="relative w-full sm:w-32 h-32 bg-gradient-to-br from-gray-100 to-gray-200 
                                 rounded-xl overflow-hidden shadow-inner">
@@ -142,7 +153,7 @@ export default function Cart() {
                         <select 
                           value={item.quantity}
                           onChange={(e) => handleQuantityChange(item.id, e.target.value)}
-                          className="bg-gradient-to-br from-gray-50 to-gray-100 border border-gray-300 
+                          className="bg-white/60 backdrop-blur-sm border border-gray-300 
                                    rounded-lg px-3 py-2 focus:outline-none focus:ring-2 
                                    focus:ring-[#004aad] focus:border-transparent
                                    hover:border-[#004aad] transition-colors"
@@ -157,7 +168,7 @@ export default function Cart() {
                         onClick={() => handleRemove(item.id)}
                         className="text-gray-400 hover:text-red-500 transition-all 
                                  hover:scale-110 transform flex items-center gap-1
-                                 bg-white px-3 py-1 rounded-lg shadow-sm hover:shadow-md"
+                                 bg-white/60 backdrop-blur-sm px-3 py-1 rounded-lg shadow-sm hover:shadow-md"
                       >
                         <FaTrash size={14} />
                         <span className="text-sm">Entfernen</span>
@@ -174,55 +185,60 @@ export default function Cart() {
             ))}
           </div>
 
-          {/* Order Summary - Right Column */}
+          {/* Order Summary - Right Column with Glassy Effect */}
           <div className="lg:col-span-1">
-            <div className="bg-white/90 backdrop-blur-sm rounded-2xl shadow-xl p-6 sticky top-24
-                          border border-gray-200/50 hover:shadow-2xl transition-shadow">
+            <div className="relative overflow-hidden bg-gradient-to-br from-white/80 to-white/40 
+                          backdrop-blur-xl rounded-2xl p-6 sticky top-24 border border-white/50 
+                          shadow-2xl hover:shadow-3xl transition-all duration-500">
               
-              <h2 className="text-2xl font-bold mb-6 bg-gradient-to-r from-[#004aad] to-gray-600 
+              {/* Glass reflection */}
+              <div className="absolute inset-0 bg-gradient-to-tr from-white/40 via-transparent to-transparent 
+                            pointer-events-none"></div>
+              
+              <h2 className="relative z-10 text-2xl font-bold mb-6 bg-gradient-to-r from-[#004aad] to-gray-600 
                            bg-clip-text text-transparent">
                 Bestellübersicht
               </h2>
 
-{/* Promo Code - Fixed button inside */}
-<div className="mb-6">
-  <label className="block text-sm font-medium text-gray-700 mb-2">
-    Gutscheincode
-  </label>
-  <div className="flex gap-2">
-    <input
-      type="text"
-      placeholder="z.B. GAAR10"
-      value={promoCode}
-      onChange={(e) => setPromoCode(e.target.value)}
-      className="flex-1 bg-white/80 backdrop-blur-sm border border-gray-300 rounded-lg px-4 py-3 
-               focus:outline-none focus:ring-2 focus:ring-[#004aad] focus:border-transparent
-               shadow-sm hover:shadow-md transition-shadow"
-    />
-    <button
-      onClick={handleApplyPromo}
-      className="px-6 py-3 bg-gradient-to-r from-[#004aad] to-gray-600 
-               text-white font-semibold rounded-lg whitespace-nowrap
-               hover:from-[#003a8a] hover:to-gray-700 
-               transition-all transform hover:scale-105 
-               shadow-md hover:shadow-xl relative overflow-hidden group"
-    >
-      {/* Shine effect */}
-      <div className="absolute inset-0 translate-x-[-100%] group-hover:translate-x-[100%] 
-                    bg-gradient-to-r from-transparent via-white/30 to-transparent 
-                    transition-transform duration-1000"></div>
-      <span className="relative z-10">PROMO</span>
-    </button>
-  </div>
-  {promoApplied && (
-    <p className="text-green-600 text-sm mt-2 animate-fadeIn flex items-center gap-1">
-      <span>✓</span> 10% Rabatt wurde angewendet!
-    </p>
-  )}
-</div>
+              {/* Promo Code - Fixed inside */}
+              <div className="relative z-10 mb-6">
+                <label className="block text-sm font-medium text-gray-700 mb-2">
+                  Gutscheincode
+                </label>
+                <div className="flex gap-2">
+                  <input
+                    type="text"
+                    placeholder="z.B. GAAR10"
+                    value={promoCode}
+                    onChange={(e) => setPromoCode(e.target.value)}
+                    className="flex-1 bg-white/60 backdrop-blur-sm border border-white/50 rounded-lg px-4 py-3 
+                             focus:outline-none focus:ring-2 focus:ring-[#004aad] focus:border-transparent
+                             shadow-sm hover:shadow-md transition-all"
+                  />
+                  <button
+                    onClick={handleApplyPromo}
+                    className="relative px-6 py-3 bg-gradient-to-r from-[#004aad] to-gray-600 
+                             text-white font-semibold rounded-lg whitespace-nowrap
+                             hover:from-[#003a8a] hover:to-gray-700 
+                             transition-all transform hover:scale-105 
+                             shadow-md hover:shadow-xl overflow-hidden group"
+                  >
+                    {/* Shine effect */}
+                    <div className="absolute inset-0 translate-x-[-100%] group-hover:translate-x-[100%] 
+                                  bg-gradient-to-r from-transparent via-white/30 to-transparent 
+                                  transition-transform duration-1000"></div>
+                    <span className="relative z-10">Anwenden</span>
+                  </button>
+                </div>
+                {promoApplied && (
+                  <p className="text-green-600 text-sm mt-2 animate-fadeIn flex items-center gap-1">
+                    <span>✓</span> 10% Rabatt wurde angewendet!
+                  </p>
+                )}
+              </div>
 
               {/* Price Breakdown */}
-              <div className="space-y-3 mb-6">
+              <div className="relative z-10 space-y-3 mb-6">
                 <div className="flex justify-between text-gray-600">
                   <span>Zwischensumme:</span>
                   <span className="font-semibold">€{subtotal.toLocaleString('de-DE')}</span>
@@ -254,13 +270,13 @@ export default function Cart() {
               </div>
 
               {/* Checkout Button - Premium Gold */}
-              <button className="w-full bg-gradient-to-r from-yellow-400 via-yellow-500 to-yellow-600
+              <button className="relative z-10 w-full bg-gradient-to-r from-yellow-400 via-yellow-500 to-yellow-600
                                text-white py-4 rounded-xl font-bold text-lg
                                hover:from-yellow-500 hover:via-yellow-600 hover:to-yellow-700
                                transition-all transform hover:-translate-y-1 
                                shadow-[0_10px_20px_rgba(255,215,0,0.3)] 
                                hover:shadow-[0_15px_30px_rgba(255,215,0,0.5)]
-                               mb-4 relative overflow-hidden group">
+                               mb-4 overflow-hidden group">
                 {/* Shine effect */}
                 <div className="absolute inset-0 translate-x-[-100%] group-hover:translate-x-[100%] 
                               bg-gradient-to-r from-transparent via-white/30 to-transparent 
@@ -269,16 +285,16 @@ export default function Cart() {
               </button>
 
               {/* Trust Badges - Blue and Silver */}
-              <div className="grid grid-cols-3 gap-2 text-center text-xs">
-                <div className="p-2 bg-gradient-to-br from-[#004aad]/5 to-gray-100 rounded-lg">
+              <div className="relative z-10 grid grid-cols-3 gap-2 text-center text-xs">
+                <div className="p-2 bg-gradient-to-br from-[#004aad]/5 to-gray-100 rounded-lg backdrop-blur-sm">
                   <FaShieldAlt className="mx-auto mb-1 text-[#004aad] text-lg" />
                   <span className="text-gray-600">Sichere Zahlung</span>
                 </div>
-                <div className="p-2 bg-gradient-to-br from-[#004aad]/5 to-gray-100 rounded-lg">
+                <div className="p-2 bg-gradient-to-br from-[#004aad]/5 to-gray-100 rounded-lg backdrop-blur-sm">
                   <FaTruck className="mx-auto mb-1 text-gray-500 text-lg" />
                   <span className="text-gray-600">Schneller Versand</span>
                 </div>
-                <div className="p-2 bg-gradient-to-br from-[#004aad]/5 to-gray-100 rounded-lg">
+                <div className="p-2 bg-gradient-to-br from-[#004aad]/5 to-gray-100 rounded-lg backdrop-blur-sm">
                   <FaMoneyBillWave className="mx-auto mb-1 text-yellow-500 text-lg" />
                   <span className="text-gray-600">100 Tage Rückgabe</span>
                 </div>
