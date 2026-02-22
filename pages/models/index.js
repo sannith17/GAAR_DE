@@ -1,5 +1,5 @@
 import { useRouter } from 'next/router'
-import { useState, useMemo } from 'react'
+import { useState, useMemo, useEffect } from 'react'
 import tyresData from '../../data/tyres.json'
 import ProductCard from '../../components/ui/ProductCard'
 import FilterBar from '../../components/ui/FilterBar'
@@ -8,7 +8,7 @@ import { FaArrowLeft } from 'react-icons/fa'
 
 export default function ModelsPage() {
   const router = useRouter()
-  const { tyreBrand } = router.query
+  const { tyreBrand, search } = router.query
   const [filters, setFilters] = useState({ sort: '', size: '', brand: '' })
 
   const filteredProducts = useMemo(() => {
@@ -18,6 +18,17 @@ export default function ModelsPage() {
     if (tyreBrand) {
       products = products.filter(p => 
         p.tyreBrand.toLowerCase() === tyreBrand.toLowerCase()
+      )
+    }
+
+    // Filter by search query
+    if (search) {
+      const query = search.toLowerCase()
+      products = products.filter(p => 
+        p.tyreBrand.toLowerCase().includes(query) ||
+        p.brand.toLowerCase().includes(query) ||
+        p.model.toLowerCase().includes(query) ||
+        p.size.toLowerCase().includes(query)
       )
     }
 
@@ -39,9 +50,13 @@ export default function ModelsPage() {
     }
 
     return products
-  }, [tyreBrand, filters])
+  }, [tyreBrand, search, filters])
 
-  const tyreBrandName = tyreBrand || 'Alle Marken'
+  const getPageTitle = () => {
+    if (tyreBrand) return `${tyreBrand} Reifen`
+    if (search) return `Suchergebnisse für "${search}"`
+    return 'Alle Reifen'
+  }
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-50 via-white to-gray-50 py-20">
@@ -58,7 +73,7 @@ export default function ModelsPage() {
         </Link>
 
         <h1 className="text-4xl font-bold mb-2 bg-gradient-to-r from-[#004aad] to-gray-600 bg-clip-text text-transparent">
-          {tyreBrand ? `${tyreBrand} Reifen` : 'Alle Reifen'}
+          {getPageTitle()}
         </h1>
         <p className="text-gray-600 mb-8">
           {filteredProducts.length} Produkte verfügbar
@@ -74,6 +89,12 @@ export default function ModelsPage() {
             <p className="text-gray-600 text-lg">
               Keine Reifen gefunden.
             </p>
+            <Link 
+              href="/models" 
+              className="inline-block mt-4 text-[#004aad] hover:underline"
+            >
+              Alle Produkte anzeigen
+            </Link>
           </div>
         ) : (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
