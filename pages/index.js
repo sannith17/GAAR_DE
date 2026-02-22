@@ -4,12 +4,11 @@ import Link from 'next/link'
 import ModelButton from '../components/ui/ModelButton'
 import tyresData from '../data/tyres.json'
 
-// Extract unique car brands from the dataset
-const uniqueBrands = [...new Set(tyresData.map(item => item.brand))].sort()
+// Extract unique car brands for model buttons
+const uniqueCarBrands = [...new Set(tyresData.map(item => item.brand))].sort()
 
-const brandLogos = [
-  'Pirelli', 'Michelin', 'Continental', 'Dunlop', 'Goodyear', 'Bridgestone', 'Hankook'
-]
+// Extract unique tyre brands for showcase
+const uniqueTyreBrands = [...new Set(tyresData.map(item => item.tyreBrand))].sort()
 
 export default function Home() {
   return (
@@ -48,7 +47,7 @@ export default function Home() {
           </p>
           <div className="flex gap-4 justify-center">
             <Link 
-              href="/models/BMW" 
+              href={`/models/${uniqueCarBrands[0]}`} 
               className="px-8 py-3 rounded-lg font-semibold text-white transition-all hover:scale-105 hover:shadow-xl"
               style={{ backgroundColor: '#004aad' }}
             >
@@ -71,7 +70,7 @@ export default function Home() {
         </div>
       </div>
 
-      {/* Brand Selection */}
+      {/* Car Brand Selection */}
       <div id="models" className="py-20 bg-gradient-to-b from-white to-gray-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <h2 className="text-3xl md:text-4xl font-bold text-center mb-4">
@@ -82,7 +81,7 @@ export default function Home() {
           </p>
           
           <div className="flex flex-wrap justify-center gap-8">
-            {uniqueBrands.map((brand, index) => (
+            {uniqueCarBrands.map((brand, index) => (
               <div key={brand} className="animate-fadeInUp" style={{ animationDelay: `${index * 0.1}s` }}>
                 <ModelButton model={brand} />
               </div>
@@ -120,7 +119,7 @@ export default function Home() {
               </div>
               <h3 className="text-xl font-semibold mb-3">Premium-Marken</h3>
               <p className="text-gray-600 leading-relaxed">
-                Pirelli, Michelin, Continental, Dunlop, Goodyear, Bridgestone und Hankook – nur die besten Marken.
+                {uniqueTyreBrands.join(', ')} – nur die besten Marken für Ihr Fahrzeug.
               </p>
             </div>
 
@@ -177,19 +176,35 @@ export default function Home() {
             </div>
           </div>
 
-          {/* Brand Showcase */}
+          {/* Tyre Brand Showcase - Updated from Dataset */}
           <div className="bg-gradient-to-br from-gray-50 to-white p-12 rounded-2xl shadow-lg">
             <h3 className="text-3xl font-bold text-center mb-10" style={{ color: '#004aad' }}>
               Unsere Premium-Marken
             </h3>
-            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
-              {brandLogos.map((brand, index) => (
+            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+              {uniqueTyreBrands.map((brand, index) => (
                 <div 
                   key={brand} 
-                  className="text-center transform hover:scale-110 transition-all duration-300 hover:-translate-y-1"
+                  className="group relative transform hover:scale-105 transition-all duration-300 hover:-translate-y-1"
                 >
-                  <div className="bg-white p-6 rounded-xl shadow-md hover:shadow-xl transition-shadow">
-                    <span className="text-xl font-semibold text-gray-800">{brand}</span>
+                  {/* Brand Card */}
+                  <div className="bg-white rounded-xl shadow-md hover:shadow-xl transition-all p-6 text-center border-2 border-transparent hover:border-[#004aad]/20">
+                    {/* Brand Icon/Initial */}
+                    <div className="w-16 h-16 mx-auto mb-3 rounded-full bg-gradient-to-br from-[#004aad]/10 to-gray-100 flex items-center justify-center">
+                      <span className="text-2xl font-bold text-[#004aad]">
+                        {brand.charAt(0)}
+                      </span>
+                    </div>
+                    
+                    {/* Brand Name */}
+                    <span className="text-lg font-semibold text-gray-800 group-hover:text-[#004aad] transition-colors">
+                      {brand}
+                    </span>
+                    
+                    {/* Product Count */}
+                    <p className="text-xs text-gray-500 mt-1">
+                      {tyresData.filter(t => t.tyreBrand === brand).length} Produkte
+                    </p>
                   </div>
                 </div>
               ))}
