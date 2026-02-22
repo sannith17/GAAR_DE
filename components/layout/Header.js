@@ -2,24 +2,57 @@ import Link from 'next/link'
 import { useRouter } from 'next/router'
 import { FaShoppingCart, FaUser, FaSearch } from 'react-icons/fa'
 import CartIcon from '../cart/CartIcon'
+import { useState } from 'react'
+import { playClickSound } from '../../utils/sound'
 
 export default function Header() {
   const router = useRouter()
+  const [logoClicked, setLogoClicked] = useState(false)
+
+  const handleLogoClick = (e) => {
+    e.preventDefault()
+    playClickSound()
+    setLogoClicked(true)
+    setTimeout(() => {
+      setLogoClicked(false)
+      router.push('/')
+    }, 300)
+  }
 
   return (
     <header className="bg-[#004aad] shadow-lg sticky top-0 z-50">
       {/* Main Header - Blue Background */}
-      <div className="container-custom">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-20">
-          {/* Logo - White */}
-          <Link 
-            href="/" 
-            className="text-4xl font-black text-white tracking-tighter hover:opacity-80 transition-opacity"
-          >
-            GAAR
-          </Link>
+          {/* Logo with Green Edge Lighting */}
+          <div className="relative group">
+            {/* Edge lighting container */}
+            <div className="absolute -inset-3 opacity-0 group-hover:opacity-100
+                          transition-opacity duration-300">
+              <div className={`absolute inset-0 
+                            ${logoClicked ? 'animate-edgeLight' : 'group-hover:animate-edgeLightSlow'}`}>
+                <div className="absolute inset-0 bg-gradient-to-r 
+                              from-transparent via-green-400 to-transparent 
+                              blur-xl"></div>
+              </div>
+            </div>
 
-          {/* Navigation - White/Gray text */}
+            {/* Logo */}
+            <button 
+              onClick={handleLogoClick}
+              className={`relative text-4xl font-black text-white tracking-tighter 
+                       transition-all duration-300
+                       ${logoClicked ? 'scale-95' : 'hover:scale-105'}`}
+            >
+              GAAR
+              
+              {/* Glass overlay */}
+              <div className="absolute inset-0 bg-gradient-to-br from-white/20 to-transparent 
+                            rounded-lg pointer-events-none"></div>
+            </button>
+          </div>
+
+          {/* Navigation */}
           <nav className="hidden md:flex space-x-8">
             <Link 
               href="/" 
@@ -57,7 +90,7 @@ export default function Header() {
             </Link>
           </nav>
 
-          {/* Icons - White */}
+          {/* Icons */}
           <div className="flex items-center space-x-6">
             <button className="text-white hover:text-gray-200 transition-colors">
               <FaSearch size={20} />
@@ -70,38 +103,23 @@ export default function Header() {
         </div>
       </div>
 
-      {/* Dropdown Menu - Gray Background with White Text */}
+      {/* Dropdown Menu */}
       <div className="bg-gray-600 text-white">
-        <div className="container-custom">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex space-x-8 py-3 text-sm">
-            <Link 
-              href="/models/Swift" 
-              className="text-gray-200 hover:text-white transition-colors"
-            >
+            <Link href="/models/Swift" className="text-gray-200 hover:text-white transition-colors">
               Summer tires
             </Link>
-            <Link 
-              href="/models/Swift" 
-              className="text-gray-200 hover:text-white transition-colors"
-            >
+            <Link href="/models/Swift" className="text-gray-200 hover:text-white transition-colors">
               Winter tires
             </Link>
-            <Link 
-              href="/models/Swift" 
-              className="text-gray-200 hover:text-white transition-colors"
-            >
+            <Link href="/models/Swift" className="text-gray-200 hover:text-white transition-colors">
               All-season tires
             </Link>
-            <Link 
-              href="/models/Swift" 
-              className="text-gray-200 hover:text-white transition-colors"
-            >
+            <Link href="/models/Swift" className="text-gray-200 hover:text-white transition-colors">
               Complete wheels
             </Link>
-            <Link 
-              href="/models/Swift" 
-              className="text-gray-200 hover:text-white transition-colors"
-            >
+            <Link href="/models/Swift" className="text-gray-200 hover:text-white transition-colors">
               Rims
             </Link>
           </div>
