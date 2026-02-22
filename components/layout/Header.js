@@ -2,48 +2,27 @@ import Link from 'next/link'
 import { useRouter } from 'next/router'
 import { FaShoppingCart, FaUser, FaSearch } from 'react-icons/fa'
 import CartIcon from '../cart/CartIcon'
-import { useContext } from 'react'
-import { playClickSound } from '../../utils/sound'
-import { EdgeLightContext } from '../../context/EdgeLightContext'
 
 export default function Header() {
   const router = useRouter()
-  const { setEdgeLightTrigger, setEdgeLightColor } = useContext(EdgeLightContext)
-
-  const handleLogoClick = (e) => {
-    e.preventDefault()
-    playClickSound()
-    setEdgeLightColor('#00ff00') // Green for logo
-    setEdgeLightTrigger(prev => !prev)
-    setTimeout(() => {
-      router.push('/')
-    }, 300)
-  }
-
-  const handleCartClick = () => {
-    setEdgeLightColor('#FFD700') // Gold for cart
-    setEdgeLightTrigger(prev => !prev)
-  }
 
   return (
     <header className="bg-[#004aad] shadow-lg sticky top-0 z-50">
       {/* Main Header - Blue Background */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-20">
-          {/* Logo with Green Edge Lighting */}
-          <div className="relative group">
-            <button 
-              onClick={handleLogoClick}
-              className="relative text-4xl font-black text-white tracking-tighter 
-                       transition-all duration-300 hover:scale-105"
-            >
+          {/* Logo with Racing Sans One Font */}
+          <Link 
+            href="/" 
+            className="flex flex-col leading-none"
+          >
+            <span className="text-4xl font-black text-white tracking-tighter font-['Racing_Sans_One']">
               GAAR
-              
-              {/* Glass overlay */}
-              <div className="absolute inset-0 bg-gradient-to-br from-white/20 to-transparent 
-                            rounded-lg pointer-events-none"></div>
-            </button>
-          </div>
+            </span>
+            <span className="text-xs text-white/80 tracking-widest font-['Racing_Sans_One']">
+              RÄDER UND REIFEN
+            </span>
+          </Link>
 
           {/* Navigation */}
           <nav className="hidden md:flex space-x-8">
@@ -91,9 +70,7 @@ export default function Header() {
             <button className="text-white hover:text-gray-200 transition-colors">
               <FaUser size={20} />
             </button>
-            <div onClick={handleCartClick}>
-              <CartIcon />
-            </div>
+            <CartIcon />
           </div>
         </div>
       </div>
