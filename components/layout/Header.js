@@ -14,12 +14,12 @@ export default function Header() {
           {/* Logo with Racing Sans One Font */}
           <Link 
             href="/" 
-            className="flex flex-col leading-none"
+            className="flex flex-col leading-none group"
           >
-            <span className="text-4xl font-black text-white tracking-tighter font-['Racing_Sans_One']">
+            <span className="text-4xl font-black text-white tracking-tighter font-['Racing_Sans_One'] group-hover:opacity-90 transition-opacity">
               GAAR
             </span>
-            <span className="text-xs text-white/80 tracking-widest font-['Racing_Sans_One']">
+            <span className="text-xs text-white/80 tracking-widest font-['Racing_Sans_One'] group-hover:text-white/90 transition-colors">
               RÄDER UND REIFEN
             </span>
           </Link>
