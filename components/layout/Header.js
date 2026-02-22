@@ -3,12 +3,21 @@ import { useRouter } from 'next/router'
 import { FaShoppingCart, FaUser, FaSearch } from 'react-icons/fa'
 import CartIcon from '../cart/CartIcon'
 import tyresData from '../../data/tyres.json'
+import { useState } from 'react'
 
 // Extract unique brands for dropdown
 const uniqueBrands = [...new Set(tyresData.map(item => item.brand))].sort().slice(0, 5)
 
 export default function Header() {
   const router = useRouter()
+  const [searchQuery, setSearchQuery] = useState('')
+
+  const handleSearch = (e) => {
+    e.preventDefault()
+    if (searchQuery.trim()) {
+      router.push(`/models?search=${searchQuery}`)
+    }
+  }
 
   return (
     <header className="bg-[#004aad] shadow-lg sticky top-0 z-50">
@@ -27,6 +36,20 @@ export default function Header() {
               RÄDER UND REIFEN
             </span>
           </Link>
+
+          {/* Search Bar - Radium Green */}
+          <form onSubmit={handleSearch} className="hidden md:flex items-center bg-white/10 rounded-full px-4 py-1.5 border border-white/20 w-64">
+            <input
+              type="text"
+              placeholder="Reifen suchen..."
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+              className="bg-transparent text-white placeholder-white/60 text-sm focus:outline-none w-full"
+            />
+            <button type="submit">
+              <FaSearch className="text-[#00FF00] hover:text-[#00DD00] transition-colors drop-shadow-[0_0_8px_rgba(0,255,0,0.5)]" />
+            </button>
+          </form>
 
           {/* Navigation */}
           <nav className="hidden md:flex space-x-8">
@@ -68,7 +91,8 @@ export default function Header() {
 
           {/* Icons */}
           <div className="flex items-center space-x-6">
-            <button className="text-white hover:text-gray-200 transition-colors">
+            {/* Mobile Search Icon - Radium Green */}
+            <button className="md:hidden text-[#00FF00] hover:text-[#00DD00] transition-colors drop-shadow-[0_0_8px_rgba(0,255,0,0.5)]">
               <FaSearch size={20} />
             </button>
             <button className="text-white hover:text-gray-200 transition-colors">
