@@ -7,39 +7,62 @@ export default function Header() {
   const router = useRouter()
 
   return (
-    <header className="bg-white shadow-sm sticky top-0 z-50">
+    <header className="bg-[#004aad] shadow-lg sticky top-0 z-50">
+      {/* Main Header - Blue Background */}
       <div className="container-custom">
         <div className="flex items-center justify-between h-20">
-          {/* Logo */}
-          <Link href="/" className="text-4xl font-black text-[#004aad] tracking-tighter hover:opacity-90 transition-opacity">
+          {/* Logo - White */}
+          <Link 
+            href="/" 
+            className="text-4xl font-black text-white tracking-tighter hover:opacity-80 transition-opacity"
+          >
             GAAR
           </Link>
 
-          {/* Navigation */}
+          {/* Navigation - White/Gray text */}
           <nav className="hidden md:flex space-x-8">
-            <Link href="/" className={`text-gray-600 hover:text-[#004aad] transition-colors ${router.pathname === '/' ? 'text-[#004aad] font-semibold' : ''}`}>
-              Startseite
+            <Link 
+              href="/" 
+              className={`text-white hover:text-gray-200 transition-colors ${
+                router.pathname === '/' ? 'font-semibold border-b-2 border-white' : ''
+              }`}
+            >
+              Startpage
             </Link>
-            <Link href="/models/Swift" className="text-gray-600 hover:text-[#004aad] transition-colors">
-              Reifen
+            <Link 
+              href="/models/Swift" 
+              className={`text-white hover:text-gray-200 transition-colors ${
+                router.pathname.includes('models') ? 'font-semibold border-b-2 border-white' : ''
+              }`}
+            >
+              Tires
             </Link>
-            <Link href="/models/Swift" className="text-gray-600 hover:text-[#004aad] transition-colors">
-              Räder
+            <Link 
+              href="/models/Swift" 
+              className="text-white hover:text-gray-200 transition-colors"
+            >
+              Wheels
             </Link>
-            <Link href="/" className="text-gray-600 hover:text-[#004aad] transition-colors">
-              Angebote
+            <Link 
+              href="/" 
+              className="text-white hover:text-gray-200 transition-colors"
+            >
+              Special offers
             </Link>
-            <Link href="/" className="text-gray-600 hover:text-[#004aad] transition-colors">
-              Kontakt
+            <Link 
+              href="/" 
+              className="text-white hover:text-gray-200 transition-colors"
+            >
+              Contact
             </Link>
           </nav>
 
-          {/* Icons */}
+          {/* Icons - White */}
           <div className="flex items-center space-x-6">
-            <button className="text-gray-600 hover:text-[#004aad] transition-colors">
+            <button className="text-white hover:text-gray-200 transition-colors">
               <FaSearch size={20} />
             </button>
-            <button className="text-gray-600 hover:text-[#004aad] transition-colors">
+            <button className="text-white hover:text-gray-200 transition-colors">
               <FaUser size={20} />
             </button>
             <CartIcon />
@@ -47,24 +70,39 @@ export default function Header() {
         </div>
       </div>
 
-      {/* Dropdown Menu */}
-      <div className="bg-gray-700 text-white">
+      {/* Dropdown Menu - Gray Background with White Text */}
+      <div className="bg-gray-600 text-white">
         <div className="container-custom">
           <div className="flex space-x-8 py-3 text-sm">
-            <Link href="/models/Swift" className="hover:text-gray-300 transition-colors">
-              Sommerreifen
+            <Link 
+              href="/models/Swift" 
+              className="text-gray-200 hover:text-white transition-colors"
+            >
+              Summer tires
             </Link>
-            <Link href="/models/Swift" className="hover:text-gray-300 transition-colors">
-              Winterreifen
+            <Link 
+              href="/models/Swift" 
+              className="text-gray-200 hover:text-white transition-colors"
+            >
+              Winter tires
             </Link>
-            <Link href="/models/Swift" className="hover:text-gray-300 transition-colors">
-              Ganzjahresreifen
+            <Link 
+              href="/models/Swift" 
+              className="text-gray-200 hover:text-white transition-colors"
+            >
+              All-season tires
             </Link>
-            <Link href="/models/Swift" className="hover:text-gray-300 transition-colors">
-              Kompletträder
+            <Link 
+              href="/models/Swift" 
+              className="text-gray-200 hover:text-white transition-colors"
+            >
+              Complete wheels
             </Link>
-            <Link href="/models/Swift" className="hover:text-gray-300 transition-colors">
-              Felgen
+            <Link 
+              href="/models/Swift" 
+              className="text-gray-200 hover:text-white transition-colors"
+            >
+              Rims
             </Link>
           </div>
         </div>
