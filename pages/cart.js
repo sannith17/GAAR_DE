@@ -4,7 +4,7 @@ import Link from 'next/link'
 import { FaTrash, FaArrowLeft, FaShieldAlt, FaTruck, FaMoneyBillWave, FaShoppingCart } from 'react-icons/fa'
 import { playClickSound } from '../utils/sound'
 import { useState } from 'react'
-
+import { FaTrash, FaArrowLeft, FaShieldAlt, FaTruck, FaMoneyBillWave, FaShoppingCart } from 'react-icons/fa'
 export default function Cart() {
   const { cart, removeFromCart, updateQuantity, clearCart } = useCart()
   const [promoCode, setPromoCode] = useState('')
