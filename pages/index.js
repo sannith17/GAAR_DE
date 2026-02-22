@@ -176,32 +176,139 @@ export default function Home() {
             </div>
           </div>
 
-          {/* Tyre Brand Showcase */}
-          <div className="bg-gradient-to-br from-gray-50 to-white p-12 rounded-2xl shadow-lg">
-            <h3 className="text-3xl font-bold text-center mb-10" style={{ color: '#004aad' }}>
-              Unsere Premium-Marken
-            </h3>
-            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-              {uniqueTyreBrands.map((brand, index) => (
-                <div 
-                  key={brand} 
-                  className="group relative transform hover:scale-105 transition-all duration-300 hover:-translate-y-1"
-                >
-                  <div className="bg-white rounded-xl shadow-md hover:shadow-xl transition-all p-6 text-center border-2 border-transparent hover:border-[#004aad]/20">
-                    <div className="w-16 h-16 mx-auto mb-3 rounded-full bg-gradient-to-br from-[#004aad]/10 to-gray-100 flex items-center justify-center">
-                      <span className="text-2xl font-bold text-[#004aad] group-hover:text-orange-500 transition-colors duration-300">
-                        {brand.charAt(0)}
-                      </span>
+          {/* Psychological Sales Section - Why New Tyres Matter */}
+          <div className="mb-20 bg-gradient-to-r from-[#004aad]/5 via-white to-[#004aad]/5 rounded-3xl p-10">
+            <div className="max-w-4xl mx-auto">
+              <h2 className="text-3xl md:text-4xl font-bold text-center mb-6" style={{ color: '#004aad' }}>
+                Ihre Sicherheit beginnt mit dem richtigen Reifen
+              </h2>
+              
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
+                {/* Left Column - Emotional Triggers */}
+                <div className="space-y-4">
+                  <div className="flex items-start gap-4">
+                    <div className="w-12 h-12 rounded-full bg-red-100 flex items-center justify-center flex-shrink-0">
+                      <span className="text-2xl">⚠️</span>
                     </div>
-                    <span className="text-lg font-semibold text-gray-800 group-hover:text-[#004aad] transition-colors">
-                      {brand}
-                    </span>
-                    <p className="text-xs text-gray-500 mt-1">
-                      {tyresData.filter(t => t.tyreBrand === brand).length} Produkte
-                    </p>
+                    <div>
+                      <h3 className="text-lg font-semibold text-gray-800">Bei Nässe doppelt so langer Bremsweg</h3>
+                      <p className="text-gray-600 text-sm">Abgefahrene Reifen verlieren bis zu 80% ihrer Haftung. Bei 100 km/h bedeutet das lebensentscheidende Meter.</p>
+                    </div>
+                  </div>
+                  
+                  <div className="flex items-start gap-4">
+                    <div className="w-12 h-12 rounded-full bg-orange-100 flex items-center justify-center flex-shrink-0">
+                      <span className="text-2xl">🛑</span>
+                    </div>
+                    <div>
+                      <h3 className="text-lg font-semibold text-gray-800">Aquaplaning-Risiko steigt dramatisch</h3>
+                      <p className="text-gray-600 text-sm">Bereits ab 3 mm Profiltiefe verdoppelt sich die Aquaplaning-Gefahr. Neue Reifen retten Sie in kritischen Situationen.</p>
+                    </div>
+                  </div>
+                  
+                  <div className="flex items-start gap-4">
+                    <div className="w-12 h-12 rounded-full bg-yellow-100 flex items-center justify-center flex-shrink-0">
+                      <span className="text-2xl">💰</span>
+                    </div>
+                    <div>
+                      <h3 className="text-lg font-semibold text-gray-800">Bis zu 15% Spritersparnis</h3>
+                      <p className="text-gray-600 text-sm">Moderne Reifen reduzieren den Rollwiderstand. Sie sparen nicht nur Geld, sondern schonen auch die Umwelt.</p>
+                    </div>
                   </div>
                 </div>
-              ))}
+
+                {/* Right Column - Trust Building */}
+                <div className="space-y-4">
+                  <div className="flex items-start gap-4">
+                    <div className="w-12 h-12 rounded-full bg-green-100 flex items-center justify-center flex-shrink-0">
+                      <span className="text-2xl">🇩🇪</span>
+                    </div>
+                    <div>
+                      <h3 className="text-lg font-semibold text-gray-800">Made für deutsche Straßen</h3>
+                      <p className="text-gray-600 text-sm">TÜV/ECE geprüft. Entwickelt für Autobahnen, Landstraßen und das wechselhafte deutsche Wetter.</p>
+                    </div>
+                  </div>
+                  
+                  <div className="flex items-start gap-4">
+                    <div className="w-12 h-12 rounded-full bg-blue-100 flex items-center justify-center flex-shrink-0">
+                      <span className="text-2xl">🔇</span>
+                    </div>
+                    <div>
+                      <h3 className="text-lg font-semibold text-gray-800">Bis zu 30% leiser</h3>
+                      <p className="text-gray-600 text-sm">Genießen Sie die Ruhe im Innenraum. Neue Reifen reduzieren das Abrollgeräusch deutlich.</p>
+                    </div>
+                  </div>
+                  
+                  <div className="flex items-start gap-4">
+                    <div className="w-12 h-12 rounded-full bg-purple-100 flex items-center justify-center flex-shrink-0">
+                      <span className="text-2xl">🛡️</span>
+                    </div>
+                    <div>
+                      <h3 className="text-lg font-semibold text-gray-800">Ihre Familie verdient das Beste</h3>
+                      <p className="text-gray-600 text-sm">Investieren Sie in Sicherheit. 80% aller Pannen durch Reifenschäden wären mit neuen Reifen vermeidbar gewesen.</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {/* Call to Action - Psychological Prime */}
+              <div className="text-center bg-white/80 backdrop-blur-sm rounded-xl p-6 shadow-lg">
+                <p className="text-lg text-gray-700 mb-3">
+                  <span className="font-bold">Handeln Sie jetzt:</span> Ihre aktuellen Reifen sind im Durchschnitt <span className="text-[#004aad] font-bold">3,2 Jahre</span> alt.
+                </p>
+                <p className="text-md text-gray-600 mb-4">
+                  Ab 6 Jahren steigt das Risiko für Risse und Materialermüdung exponentiell. 
+                  <span className="font-semibold"> Schützen Sie sich und Ihre Familie.</span>
+                </p>
+                <Link 
+                  href="/models" 
+                  className="inline-block bg-gradient-to-r from-[#004aad] to-orange-500 
+                           text-white px-8 py-3 rounded-lg font-semibold
+                           hover:from-[#003a8a] hover:to-orange-600 
+                           transition-all transform hover:scale-105 
+                           shadow-lg hover:shadow-xl"
+                >
+                  Jetzt Sicherheit sichern →
+                </Link>
+              </div>
+            </div>
+          </div>
+
+          {/* Tyre Brand Showcase - Clickable Cards */}
+          <div className="bg-gradient-to-br from-gray-50 to-white p-8 rounded-2xl shadow-lg">
+            <h3 className="text-2xl font-bold text-center mb-8" style={{ color: '#004aad' }}>
+              Unsere Premium-Marken
+            </h3>
+            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
+              {uniqueTyreBrands.map((brand, index) => {
+                const productCount = tyresData.filter(t => t.tyreBrand === brand).length
+                return (
+                  <Link 
+                    key={brand}
+                    href={`/models?tyreBrand=${brand}`}
+                    className="group relative transform hover:scale-105 transition-all duration-300 hover:-translate-y-1"
+                  >
+                    <div className="bg-white rounded-lg shadow-md hover:shadow-xl transition-all p-4 text-center border-2 border-transparent hover:border-[#004aad]/20">
+                      {/* Brand Icon/Initial */}
+                      <div className="w-12 h-12 mx-auto mb-2 rounded-full bg-gradient-to-br from-[#004aad]/10 to-gray-100 flex items-center justify-center">
+                        <span className="text-lg font-bold text-[#004aad] group-hover:text-orange-500 transition-colors duration-300">
+                          {brand.charAt(0)}
+                        </span>
+                      </div>
+                      
+                      {/* Brand Name */}
+                      <span className="text-sm font-semibold text-gray-800 group-hover:text-[#004aad] transition-colors">
+                        {brand}
+                      </span>
+                      
+                      {/* Product Count */}
+                      <p className="text-xs text-gray-500 mt-1">
+                        {productCount} Produkte
+                      </p>
+                    </div>
+                  </Link>
+                )
+              })}
             </div>
           </div>
           
