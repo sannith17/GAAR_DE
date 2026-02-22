@@ -36,139 +36,58 @@
       padding-right: 2rem;
     }
   }
-  
-  .tyre-button {
-    width: 8rem;
-    height: 8rem;
-    border-radius: 9999px;
-    background-color: white;
-    border-width: 4px;
-    border-color: #004aad;
-    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
-    transition-property: all;
-    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-    transition-duration: 300ms;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-weight: 700;
-    color: #004aad;
-    font-size: 1.25rem;
-    line-height: 1.75rem;
-    position: relative;
-    overflow: hidden;
-  }
-  
-  .tyre-button:hover {
-    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
-    border-color: #9ca3af;
-    transform: translateY(-0.25rem);
-  }
-  
-  .product-card {
-    background-color: white;
-    border-radius: 0.5rem;
-    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
-    overflow: hidden;
-    transition-property: all;
-    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-    transition-duration: 300ms;
-  }
-  
-  .product-card:hover {
-    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
-    transform: translateY(-0.25rem);
-  }
 }
 
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-    transform: translateY(10px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-.animate-fadeIn {
-  animation: fadeIn 0.5s ease-out forwards;
-}
-
-@keyframes bounce {
-  0%, 100% {
-    transform: translateY(-25%);
-    animation-timing-function: cubic-bezier(0.8, 0, 1, 1);
-  }
-  50% {
-    transform: translateY(0);
-    animation-timing-function: cubic-bezier(0, 0, 0.2, 1);
-  }
-}
-
-.animate-bounce {
-  animation: bounce 1s infinite;
-}
-
-@keyframes pulse {
-  0%, 100% {
-    opacity: 1;
-  }
-  50% {
-    opacity: .5;
-  }
-}
-
-.animate-pulse {
-  animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
-}
-
-
-@keyframes blast {
+/* Edge Lighting Animations */
+@keyframes edgeLight {
   0% {
-    transform: scale(0) rotate(0deg);
+    transform: rotate(0deg) scale(1);
+    opacity: 0;
+  }
+  25% {
     opacity: 1;
   }
   50% {
-    transform: scale(1.5) rotate(180deg);
+    opacity: 0.8;
+  }
+  75% {
+    opacity: 1;
+  }
+  100% {
+    transform: rotate(360deg) scale(1.2);
+    opacity: 0;
+  }
+}
+
+.animate-edgeLight {
+  animation: edgeLight 0.5s ease-out forwards;
+}
+
+@keyframes edgeLightSlow {
+  0% {
+    transform: rotate(0deg);
+    opacity: 0.3;
+  }
+  25% {
+    opacity: 0.8;
+  }
+  50% {
+    opacity: 0.5;
+  }
+  75% {
     opacity: 0.8;
   }
   100% {
-    transform: scale(2) rotate(360deg);
-    opacity: 0;
-  }
-}
-
-.animate-blast {
-  animation: blast 0.8s ease-out forwards;
-}
-
-@keyframes ping-slow {
-  75%, 100% {
-    transform: scale(1.5);
-    opacity: 0;
-  }
-}
-
-.animate-ping-slow {
-  animation: ping-slow 2s cubic-bezier(0, 0, 0.2, 1) infinite;
-}
-
-@keyframes pulse-slow {
-  0%, 100% {
+    transform: rotate(360deg);
     opacity: 0.3;
   }
-  50% {
-    opacity: 0.6;
-  }
 }
 
-.animate-pulse-slow {
-  animation: pulse-slow 3s ease-in-out infinite;
+.animate-edgeLightSlow {
+  animation: edgeLightSlow 3s linear infinite;
 }
 
+/* Fade Animations */
 @keyframes fadeInUp {
   from {
     opacity: 0;
@@ -181,33 +100,4 @@
 }
 
 .animate-fadeInUp {
-  animation: fadeInUp 0.5s ease-out forwards;
-}
-
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-    transform: translateY(-10px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-.animate-fadeIn {
-  animation: fadeIn 0.3s ease-out forwards;
-}
-
-@keyframes shine {
-  from {
-    transform: translateX(-100%);
-  }
-  to {
-    transform: translateX(100%);
-  }
-}
-
-.animate-shine {
-  animation: shine 1.5s ease-in-out infinite;
-}
+  animation: fadeInUp 
