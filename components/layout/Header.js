@@ -2,12 +2,9 @@ import Link from 'next/link'
 import { useRouter } from 'next/router'
 import { FaShoppingCart, FaUser, FaSearch } from 'react-icons/fa'
 import CartIcon from '../cart/CartIcon'
-import { useState, useContext } from 'react'
+import { useContext } from 'react'
 import { playClickSound } from '../../utils/sound'
-
-// Create a context for edge lighting
-import { createContext } from 'react'
-export const EdgeLightContext = createContext()
+import { EdgeLightContext } from '../../context/EdgeLightContext'
 
 export default function Header() {
   const router = useRouter()
@@ -18,7 +15,14 @@ export default function Header() {
     playClickSound()
     setEdgeLightColor('#00ff00') // Green for logo
     setEdgeLightTrigger(prev => !prev)
-    router.push('/')
+    setTimeout(() => {
+      router.push('/')
+    }, 300)
+  }
+
+  const handleCartClick = () => {
+    setEdgeLightColor('#FFD700') // Gold for cart
+    setEdgeLightTrigger(prev => !prev)
   }
 
   return (
@@ -87,10 +91,7 @@ export default function Header() {
             <button className="text-white hover:text-gray-200 transition-colors">
               <FaUser size={20} />
             </button>
-            <div onClick={() => {
-              setEdgeLightColor('#FFD700') // Gold for cart
-              setEdgeLightTrigger(prev => !prev)
-            }}>
+            <div onClick={handleCartClick}>
               <CartIcon />
             </div>
           </div>
