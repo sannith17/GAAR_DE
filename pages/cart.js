@@ -1,7 +1,7 @@
 import { useCart } from '../context/CartContext'
 import Image from 'next/image'
 import Link from 'next/link'
-import { FaTrash, FaArrowLeft, FaShieldAlt, FaTruck, FaMoneyBillWave } from 'react-icons/fa'
+import { FaTrash, FaArrowLeft, FaShieldAlt, FaTruck, FaMoneyBillWave, FaShoppingCart } from 'react-icons/fa'
 import { playClickSound } from '../utils/sound'
 import { useState } from 'react'
 
@@ -291,39 +291,6 @@ export default function Cart() {
           </Link>
         </div>
       </div>
-
-      {/* Add animations to globals.css */}
-      <style jsx>{`
-        @keyframes fadeInUp {
-          from {
-            opacity: 0;
-            transform: translateY(20px);
-          }
-          to {
-            opacity: 1;
-            transform: translateY(0);
-          }
-        }
-        
-        .animate-fadeInUp {
-          animation: fadeInUp 0.5s ease-out forwards;
-        }
-        
-        @keyframes fadeIn {
-          from {
-            opacity: 0;
-            transform: translateY(-10px);
-          }
-          to {
-            opacity: 1;
-            transform: translateY(0);
-          }
-        }
-        
-        .animate-fadeIn {
-          animation: fadeIn 0.3s ease-out forwards;
-        }
-      `}</style>
     </div>
   )
 }
