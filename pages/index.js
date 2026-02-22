@@ -2,6 +2,8 @@ import Head from 'next/head'
 import Image from 'next/image'
 import Link from 'next/link'
 import ModelButton from '../components/ui/ModelButton'
+import EdgeLighting from '../components/ui/EdgeLighting'
+import { useState } from 'react'
 
 const models = ['Swift', 'Baleno', 'Dzire', 'Vitara', 'Ertiga']
 
@@ -10,12 +12,33 @@ const brandLogos = [
 ]
 
 export default function Home() {
+  const [edgeLightTrigger, setEdgeLightTrigger] = useState(false)
+  const [edgeLightColor, setEdgeLightColor] = useState('#004aad')
+
+  const handleModelClick = (model) => {
+    setEdgeLightColor('#004aad') // Blue for models
+    setEdgeLightTrigger(prev => !prev) // Toggle to trigger effect
+  }
+
+  const handleLogoClick = () => {
+    setEdgeLightColor('#00ff00') // Green for logo
+    setEdgeLightTrigger(prev => !prev)
+  }
+
+  const handleCartClick = () => {
+    setEdgeLightColor('#FFD700') // Gold for cart
+    setEdgeLightTrigger(prev => !prev)
+  }
+
   return (
     <>
       <Head>
         <title>GAAR - Offizielle Reifen & Räder für Ihr Auto</title>
         <meta name="description" content="TÜV/ECE zertifizierte Reifen und Räder für deutsche Straßen." />
       </Head>
+
+      {/* Edge Lighting Effect */}
+      <EdgeLighting trigger={edgeLightTrigger} color={edgeLightColor} />
 
       {/* Hero Section */}
       <div className="relative h-[600px] md:h-screen flex items-center justify-center overflow-hidden bg-black">
@@ -81,7 +104,9 @@ export default function Home() {
           
           <div className="flex flex-wrap justify-center gap-8">
             {models.map(model => (
-              <ModelButton key={model} model={model} />
+              <div key={model} onClick={() => handleModelClick(model)}>
+                <ModelButton model={model} />
+              </div>
             ))}
           </div>
         </div>
