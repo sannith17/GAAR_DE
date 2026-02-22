@@ -211,7 +211,7 @@ export default function Cart() {
       <div className="absolute inset-0 translate-x-[-100%] group-hover:translate-x-[100%] 
                     bg-gradient-to-r from-transparent via-white/30 to-transparent 
                     transition-transform duration-1000"></div>
-      <span className="relative z-10">Anwenden</span>
+      <span className="relative z-10">PROMO</span>
     </button>
   </div>
   {promoApplied && (
