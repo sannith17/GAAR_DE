@@ -15,7 +15,7 @@ export default function Header() {
   const handleSearch = (e) => {
     e.preventDefault()
     if (searchQuery.trim()) {
-      router.push(`/models?search=${searchQuery}`)
+      router.push(`/models?search=${encodeURIComponent(searchQuery)}`)
     }
   }
 
@@ -28,6 +28,7 @@ export default function Header() {
           <Link 
             href="/" 
             className="flex flex-col leading-none group"
+            prefetch={false}
           >
             <span className="text-4xl font-black text-white tracking-tighter font-['Racing_Sans_One'] group-hover:opacity-90 transition-opacity">
               GAAR
@@ -58,6 +59,7 @@ export default function Header() {
               className={`text-white hover:text-gray-200 transition-colors ${
                 router.pathname === '/' ? 'font-semibold border-b-2 border-white' : ''
               }`}
+              prefetch={false}
             >
               Startpage
             </Link>
@@ -66,24 +68,28 @@ export default function Header() {
               className={`text-white hover:text-gray-200 transition-colors ${
                 router.pathname.includes('models') ? 'font-semibold border-b-2 border-white' : ''
               }`}
+              prefetch={false}
             >
               Reifen
             </Link>
             <Link 
               href="/models/BMW" 
               className="text-white hover:text-gray-200 transition-colors"
+              prefetch={false}
             >
               Räder
             </Link>
             <Link 
               href="/" 
               className="text-white hover:text-gray-200 transition-colors"
+              prefetch={false}
             >
               Angebote
             </Link>
             <Link 
               href="/" 
               className="text-white hover:text-gray-200 transition-colors"
+              prefetch={false}
             >
               Kontakt
             </Link>
@@ -110,13 +116,18 @@ export default function Header() {
             {uniqueBrands.map(brand => (
               <Link 
                 key={brand}
-                href={`/models/${brand}`} 
+                href={`/models/${encodeURIComponent(brand)}`} 
                 className="text-gray-200 hover:text-white transition-colors"
+                prefetch={false}
               >
                 {brand}
               </Link>
             ))}
-            <Link href="/models" className="text-gray-200 hover:text-white transition-colors font-semibold">
+            <Link 
+              href="/models" 
+              className="text-gray-200 hover:text-white transition-colors font-semibold"
+              prefetch={false}
+            >
               Alle Marken →
             </Link>
           </div>
