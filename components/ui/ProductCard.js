@@ -4,6 +4,7 @@ import { FaStar, FaRegStar, FaStarHalfAlt, FaImage } from 'react-icons/fa'
 import { useCart } from '../../context/CartContext'
 import Toast from './Toast'
 import { playClickSound } from '../../utils/sound'
+import { getProductImage } from '../../utils/images'
 
 export default function ProductCard({ product }) {
   const { addToCart } = useCart()
@@ -34,46 +35,21 @@ export default function ProductCard({ product }) {
     return stars
   }
 
-  // Fallback image based on tyre brand
-  const getFallbackImage = () => {
-    const brand = product.tyreBrand.toLowerCase()
-    if (brand.includes('michelin')) {
-      return 'https://www.michelin.de/static/images/michelin-logo.svg'
-    } else if (brand.includes('pirelli')) {
-      return 'https://www.pirelli.com/static/images/logo-pirelli.svg'
-    } else if (brand.includes('continental')) {
-      return 'https://www.continental.com/static/images/logo-continental.svg'
-    } else if (brand.includes('goodyear')) {
-      return 'https://www.goodyear.com/static/images/logo-goodyear.svg'
-    } else if (brand.includes('bridgestone')) {
-      return 'https://www.bridgestone.com/static/images/logo-bridgestone.svg'
-    } else if (brand.includes('hankook')) {
-      return 'https://www.hankooktire.com/static/images/logo-hankook.svg'
-    } else {
-      return 'https://via.placeholder.com/400x300?text=Reifen'
-    }
-  }
+  const imageUrl = imgError ? getProductImage(product.tyreBrand) : product.image
 
   return (
     <>
       <div className="bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-1 overflow-hidden group">
-        {/* Product Image with Fallback */}
+        {/* Product Image */}
         <div className="relative h-48 bg-gradient-to-br from-gray-100 to-gray-200 overflow-hidden flex items-center justify-center">
-          {!imgError ? (
-            <Image
-              src={product.image}
-              alt={`${product.tyreBrand} Reifen`}
-              fill
-              className="object-contain p-4 group-hover:scale-110 transition-transform duration-500"
-              onError={() => setImgError(true)}
-              unoptimized={true}
-            />
-          ) : (
-            <div className="w-full h-full flex flex-col items-center justify-center text-gray-400">
-              <FaImage size={48} className="mb-2 opacity-50" />
-              <span className="text-sm font-medium">{product.tyreBrand}</span>
-            </div>
-          )}
+          <Image
+            src={imageUrl}
+            alt={`${product.tyreBrand} Reifen`}
+            fill
+            className="object-contain p-4 group-hover:scale-110 transition-transform duration-500"
+            onError={() => setImgError(true)}
+            unoptimized={true}
+          />
           
           {/* Year Badge */}
           {product.year && (
