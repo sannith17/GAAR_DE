@@ -70,7 +70,7 @@ export default function Home() {
         </div>
       </div>
 
-      {/* Car Brand Selection */}
+      {/* Car Brand Selection with Logos */}
       <div id="models" className="py-20 bg-gradient-to-b from-white to-gray-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <h2 className="text-3xl md:text-4xl font-bold text-center mb-4">
@@ -176,7 +176,7 @@ export default function Home() {
             </div>
           </div>
 
-          {/* Tyre Brand Showcase - Updated from Dataset */}
+          {/* Tyre Brand Showcase */}
           <div className="bg-gradient-to-br from-gray-50 to-white p-12 rounded-2xl shadow-lg">
             <h3 className="text-3xl font-bold text-center mb-10" style={{ color: '#004aad' }}>
               Unsere Premium-Marken
@@ -187,21 +187,15 @@ export default function Home() {
                   key={brand} 
                   className="group relative transform hover:scale-105 transition-all duration-300 hover:-translate-y-1"
                 >
-                  {/* Brand Card */}
                   <div className="bg-white rounded-xl shadow-md hover:shadow-xl transition-all p-6 text-center border-2 border-transparent hover:border-[#004aad]/20">
-                    {/* Brand Icon/Initial */}
                     <div className="w-16 h-16 mx-auto mb-3 rounded-full bg-gradient-to-br from-[#004aad]/10 to-gray-100 flex items-center justify-center">
-                      <span className="text-2xl font-bold text-[#004aad]">
+                      <span className="text-2xl font-bold text-[#004aad] group-hover:text-orange-500 transition-colors duration-300">
                         {brand.charAt(0)}
                       </span>
                     </div>
-                    
-                    {/* Brand Name */}
                     <span className="text-lg font-semibold text-gray-800 group-hover:text-[#004aad] transition-colors">
                       {brand}
                     </span>
-                    
-                    {/* Product Count */}
                     <p className="text-xs text-gray-500 mt-1">
                       {tyresData.filter(t => t.tyreBrand === brand).length} Produkte
                     </p>
