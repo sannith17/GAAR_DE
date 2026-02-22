@@ -185,14 +185,14 @@ export default function Cart() {
                     placeholder="z.B. GAAR10"
                     value={promoCode}
                     onChange={(e) => setPromoCode(e.target.value)}
-                    className="flex-1 bg-gray-50 border border-gray-300 rounded-lg px-4 py-3 
-                             focus:outline-none focus:ring-2 focus:ring-[#004aad] 
+                    className="flex-1 min-w-0 bg-gray-50 border border-gray-300 rounded-lg px-3 py-2.5 
+                             text-sm focus:outline-none focus:ring-2 focus:ring-[#004aad] 
                              focus:border-transparent"
                   />
                   <button
                     onClick={handleApplyPromo}
-                    className="px-6 py-3 bg-gradient-to-r from-[#004aad] to-gray-600 
-                             text-white font-semibold rounded-lg whitespace-nowrap
+                    className="px-4 py-2.5 bg-gradient-to-r from-[#004aad] to-gray-600 
+                             text-white text-sm font-semibold rounded-lg whitespace-nowrap
                              hover:from-[#003a8a] hover:to-gray-700 
                              transition-all transform hover:scale-105 
                              shadow-md hover:shadow-xl"
@@ -201,7 +201,7 @@ export default function Cart() {
                   </button>
                 </div>
                 {promoApplied && (
-                  <p className="text-green-600 text-sm mt-2 animate-fadeIn">
+                  <p className="text-green-600 text-xs mt-2 animate-fadeIn">
                     ✓ 10% Rabatt wurde angewendet!
                   </p>
                 )}
@@ -241,7 +241,7 @@ export default function Cart() {
 
               {/* Checkout Button - Premium Gold */}
               <button className="w-full bg-gradient-to-r from-yellow-400 via-yellow-500 to-yellow-600
-                               text-white py-4 rounded-xl font-bold text-lg
+                               text-white py-3.5 rounded-xl font-bold text-base
                                hover:from-yellow-500 hover:via-yellow-600 hover:to-yellow-700
                                transition-all transform hover:-translate-y-1 
                                shadow-[0_10px_20px_rgba(255,215,0,0.3)] 
@@ -253,15 +253,15 @@ export default function Cart() {
               {/* Trust Badges */}
               <div className="grid grid-cols-3 gap-2 text-center text-xs">
                 <div className="p-2 bg-gradient-to-br from-[#004aad]/5 to-gray-100 rounded-lg">
-                  <FaShieldAlt className="mx-auto mb-1 text-[#004aad] text-lg" />
+                  <FaShieldAlt className="mx-auto mb-1 text-[#004aad] text-base" />
                   <span className="text-gray-600">Sichere Zahlung</span>
                 </div>
                 <div className="p-2 bg-gradient-to-br from-[#004aad]/5 to-gray-100 rounded-lg">
-                  <FaTruck className="mx-auto mb-1 text-gray-500 text-lg" />
+                  <FaTruck className="mx-auto mb-1 text-gray-500 text-base" />
                   <span className="text-gray-600">Schneller Versand</span>
                 </div>
                 <div className="p-2 bg-gradient-to-br from-[#004aad]/5 to-gray-100 rounded-lg">
-                  <FaMoneyBillWave className="mx-auto mb-1 text-yellow-500 text-lg" />
+                  <FaMoneyBillWave className="mx-auto mb-1 text-yellow-500 text-base" />
                   <span className="text-gray-600">100 Tage Rückgabe</span>
                 </div>
               </div>
