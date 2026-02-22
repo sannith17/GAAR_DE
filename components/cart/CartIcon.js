@@ -1,22 +1,26 @@
 import Link from 'next/link'
 import { FaShoppingCart } from 'react-icons/fa'
 import { useCart } from '../../context/CartContext'
-import { useEffect, useState } from 'react'
+import { useEffect, useState, useContext } from 'react'
+import { EdgeLightContext } from '../../pages/_app'
 
 export default function CartIcon() {
   const { cart } = useCart()
   const itemCount = cart.items.reduce((sum, item) => sum + item.quantity, 0)
   const [blast, setBlast] = useState(false)
   const [prevCount, setPrevCount] = useState(itemCount)
+  const { setEdgeLightTrigger, setEdgeLightColor } = useContext(EdgeLightContext)
 
   // Trigger blast animation when item count increases
   useEffect(() => {
     if (itemCount > prevCount) {
       setBlast(true)
+      setEdgeLightColor('#FFD700') // Gold for cart
+      setEdgeLightTrigger(prev => !prev)
       setTimeout(() => setBlast(false), 800)
     }
     setPrevCount(itemCount)
-  }, [itemCount, prevCount])
+  }, [itemCount, prevCount, setEdgeLightTrigger, setEdgeLightColor])
 
   return (
     <Link href="/cart" className="relative group block">
@@ -100,52 +104,6 @@ export default function CartIcon() {
           </div>
         )}
       </div>
-
-      {/* Add keyframe animations to globals.css */}
-      <style jsx>{`
-        @keyframes blast {
-          0% {
-            transform: scale(0) rotate(0deg);
-            opacity: 1;
-          }
-          50% {
-            transform: scale(1.5) rotate(180deg);
-            opacity: 0.8;
-          }
-          100% {
-            transform: scale(2) rotate(360deg);
-            opacity: 0;
-          }
-        }
-        
-        .animate-blast {
-          animation: blast 0.8s ease-out forwards;
-        }
-        
-        @keyframes ping-slow {
-          75%, 100% {
-            transform: scale(1.5);
-            opacity: 0;
-          }
-        }
-        
-        .animate-ping-slow {
-          animation: ping-slow 2s cubic-bezier(0, 0, 0.2, 1) infinite;
-        }
-        
-        @keyframes pulse-slow {
-          0%, 100% {
-            opacity: 0.3;
-          }
-          50% {
-            opacity: 0.6;
-          }
-        }
-        
-        .animate-pulse-slow {
-          animation: pulse-slow 3s ease-in-out infinite;
-        }
-      `}</style>
     </Link>
   )
 }
