@@ -9,6 +9,15 @@ const uniqueCarBrands = [...new Set(tyresData.map(item => item.brand))].sort()
 const uniqueTyreBrands = [...new Set(tyresData.map(item => item.tyreBrand))].sort()
 
 export default function Home() {
+  // Brand logo mapping
+  const brandLogos = {
+    'Audi': 'https://1000logos.net/wp-content/uploads/2018/05/Audi-logo.png',
+    'BMW': 'https://1000logos.net/wp-content/uploads/2018/02/BMW-Logo.png',
+    'Mercedes': 'https://i.pinimg.com/originals/7a/7c/32/7a7c32a32c0d68f63168dcfa2e45ad60.png',
+    'Porsche': 'https://1000logos.net/wp-content/uploads/2018/02/Porsche-Logo.png',
+    'Volvo': 'https://logos-world.net/wp-content/uploads/2020/04/Volvo-Logo-1971-present.png'
+  }
+
   return (
     <>
       <Head>
@@ -98,11 +107,24 @@ export default function Home() {
                                 flex items-center justify-center
                                 overflow-hidden">
                     
+                    {/* Hover shine effect */}
                     <div className="absolute inset-0 opacity-0 group-hover:opacity-100 
                                   bg-gradient-to-tr from-white/60 via-transparent to-transparent 
                                   transition-opacity duration-500"></div>
                     
-                    <span className="text-xl font-bold text-[#004aad] group-hover:text-orange-500 transition-colors duration-300">
+                    {/* Brand Logo */}
+                    <img 
+                      src={brandLogos[brand]} 
+                      alt={brand}
+                      className="w-20 h-20 object-contain group-hover:scale-110 transition-transform duration-300"
+                      onError={(e) => {
+                        e.target.style.display = 'none'
+                        e.target.nextSibling.style.display = 'block'
+                      }}
+                    />
+                    
+                    {/* Fallback text if logo fails to load */}
+                    <span className="hidden text-xl font-bold text-[#004aad] group-hover:text-orange-500 transition-colors duration-300">
                       {brand}
                     </span>
                   </div>
@@ -199,7 +221,7 @@ export default function Home() {
             </div>
           </div>
 
-          {/* Psychological Sales Section - Why New Tyres Matter */}
+          {/* Psychological Sales Section */}
           <div className="mb-20 bg-gradient-to-r from-[#004aad]/5 via-white to-[#004aad]/5 rounded-3xl p-10">
             <div className="max-w-4xl mx-auto">
               <h2 className="text-3xl md:text-4xl font-bold text-center mb-6" style={{ color: '#004aad' }}>
@@ -274,7 +296,7 @@ export default function Home() {
                 </div>
               </div>
 
-              {/* Call to Action - Psychological Prime */}
+              {/* Call to Action */}
               <div className="text-center bg-white/80 backdrop-blur-sm rounded-xl p-6 shadow-lg">
                 <p className="text-lg text-gray-700 mb-3">
                   <span className="font-bold">Handeln Sie jetzt:</span> Ihre aktuellen Reifen sind im Durchschnitt <span className="text-[#004aad] font-bold">3,2 Jahre</span> alt.
@@ -297,7 +319,7 @@ export default function Home() {
             </div>
           </div>
 
-          {/* Tyre Brand Showcase - Clickable Cards */}
+          {/* Tyre Brand Showcase */}
           <div className="bg-gradient-to-br from-gray-50 to-white p-8 rounded-2xl shadow-lg">
             <h3 className="text-2xl font-bold text-center mb-8" style={{ color: '#004aad' }}>
               Unsere Premium-Marken
