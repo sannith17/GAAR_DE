@@ -5,9 +5,9 @@ export default function FilterBar({ products, onFilterChange }) {
   const [sizeFilter, setSizeFilter] = useState('')
   const [brandFilter, setBrandFilter] = useState('')
 
-  // Extract unique sizes and brands
-  const sizes = [...new Set(products.map(p => p.size))]
-  const brands = [...new Set(products.map(p => p.tyreBrand))]
+  // Extract unique sizes and tyre brands
+  const sizes = [...new Set(products.map(p => p.size))].sort()
+  const tyreBrands = [...new Set(products.map(p => p.tyreBrand))].sort()
 
   const handleSortChange = (e) => {
     setSortBy(e.target.value)
@@ -25,8 +25,8 @@ export default function FilterBar({ products, onFilterChange }) {
   }
 
   return (
-    <div className="bg-white p-4 rounded-lg shadow-sm mb-8">
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+    <div className="bg-white rounded-2xl shadow-lg p-6 mb-8">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
         {/* Sort by Price */}
         <div>
           <label className="block text-sm font-medium text-gray-700 mb-2">
@@ -35,7 +35,9 @@ export default function FilterBar({ products, onFilterChange }) {
           <select
             value={sortBy}
             onChange={handleSortChange}
-            className="w-full border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-primary"
+            className="w-full bg-gray-50 border border-gray-300 rounded-lg px-4 py-2.5 
+                     focus:outline-none focus:ring-2 focus:ring-[#004aad] focus:border-transparent
+                     hover:border-[#004aad] transition-colors"
           >
             <option value="">Bitte auswählen</option>
             <option value="low-high">Niedrigster zuerst</option>
@@ -51,7 +53,9 @@ export default function FilterBar({ products, onFilterChange }) {
           <select
             value={sizeFilter}
             onChange={handleSizeChange}
-            className="w-full border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-primary"
+            className="w-full bg-gray-50 border border-gray-300 rounded-lg px-4 py-2.5 
+                     focus:outline-none focus:ring-2 focus:ring-[#004aad] focus:border-transparent
+                     hover:border-[#004aad] transition-colors"
           >
             <option value="">Alle Größen</option>
             {sizes.map(size => (
@@ -60,18 +64,20 @@ export default function FilterBar({ products, onFilterChange }) {
           </select>
         </div>
 
-        {/* Filter by Brand */}
+        {/* Filter by Tyre Brand */}
         <div>
           <label className="block text-sm font-medium text-gray-700 mb-2">
-            Marke
+            Reifenmarke
           </label>
           <select
             value={brandFilter}
             onChange={handleBrandChange}
-            className="w-full border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-primary"
+            className="w-full bg-gray-50 border border-gray-300 rounded-lg px-4 py-2.5 
+                     focus:outline-none focus:ring-2 focus:ring-[#004aad] focus:border-transparent
+                     hover:border-[#004aad] transition-colors"
           >
             <option value="">Alle Marken</option>
-            {brands.map(brand => (
+            {tyreBrands.map(brand => (
               <option key={brand} value={brand}>{brand}</option>
             ))}
           </select>
