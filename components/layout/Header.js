@@ -2,6 +2,10 @@ import Link from 'next/link'
 import { useRouter } from 'next/router'
 import { FaShoppingCart, FaUser, FaSearch } from 'react-icons/fa'
 import CartIcon from '../cart/CartIcon'
+import tyresData from '../../data/tyres.json'
+
+// Extract unique brands for dropdown
+const uniqueBrands = [...new Set(tyresData.map(item => item.brand))].sort().slice(0, 5)
 
 export default function Header() {
   const router = useRouter()
@@ -35,30 +39,30 @@ export default function Header() {
               Startpage
             </Link>
             <Link 
-              href="/models/Swift" 
+              href="/models/BMW" 
               className={`text-white hover:text-gray-200 transition-colors ${
                 router.pathname.includes('models') ? 'font-semibold border-b-2 border-white' : ''
               }`}
             >
-              Tires
+              Reifen
             </Link>
             <Link 
-              href="/models/Swift" 
+              href="/models/BMW" 
               className="text-white hover:text-gray-200 transition-colors"
             >
-              Wheels
-            </Link>
-            <Link 
-              href="/" 
-              className="text-white hover:text-gray-200 transition-colors"
-            >
-              Special offers
+              Räder
             </Link>
             <Link 
               href="/" 
               className="text-white hover:text-gray-200 transition-colors"
             >
-              Contact
+              Angebote
+            </Link>
+            <Link 
+              href="/" 
+              className="text-white hover:text-gray-200 transition-colors"
+            >
+              Kontakt
             </Link>
           </nav>
 
@@ -75,24 +79,21 @@ export default function Header() {
         </div>
       </div>
 
-      {/* Dropdown Menu */}
+      {/* Dropdown Menu - Popular Brands */}
       <div className="bg-gray-600 text-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex space-x-8 py-3 text-sm">
-            <Link href="/models/Swift" className="text-gray-200 hover:text-white transition-colors">
-              Summer tires
-            </Link>
-            <Link href="/models/Swift" className="text-gray-200 hover:text-white transition-colors">
-              Winter tires
-            </Link>
-            <Link href="/models/Swift" className="text-gray-200 hover:text-white transition-colors">
-              All-season tires
-            </Link>
-            <Link href="/models/Swift" className="text-gray-200 hover:text-white transition-colors">
-              Complete wheels
-            </Link>
-            <Link href="/models/Swift" className="text-gray-200 hover:text-white transition-colors">
-              Rims
+            {uniqueBrands.map(brand => (
+              <Link 
+                key={brand}
+                href={`/models/${brand}`} 
+                className="text-gray-200 hover:text-white transition-colors"
+              >
+                {brand}
+              </Link>
+            ))}
+            <Link href="/models" className="text-gray-200 hover:text-white transition-colors font-semibold">
+              Alle Marken →
             </Link>
           </div>
         </div>
