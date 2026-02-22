@@ -1,31 +1,63 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 
 export default function FilterBar({ products, onFilterChange }) {
   const [sortBy, setSortBy] = useState('')
   const [sizeFilter, setSizeFilter] = useState('')
   const [brandFilter, setBrandFilter] = useState('')
 
-  // Extract unique sizes and tyre brands
+  // Extract unique sizes and car brands
   const sizes = [...new Set(products.map(p => p.size))].sort()
-  const tyreBrands = [...new Set(products.map(p => p.tyreBrand))].sort()
+  const carBrands = [...new Set(products.map(p => p.brand))].sort()
+
+  // Reset filters when products change (e.g., when tyre brand changes)
+  useEffect(() => {
+    setSortBy('')
+    setSizeFilter('')
+    setBrandFilter('')
+    onFilterChange({ sort: '', size: '', brand: '' })
+  }, [products, onFilterChange])
 
   const handleSortChange = (e) => {
-    setSortBy(e.target.value)
-    onFilterChange({ sort: e.target.value, size: sizeFilter, brand: brandFilter })
+    const value = e.target.value
+    setSortBy(value)
+    onFilterChange({ sort: value, size: sizeFilter, brand: brandFilter })
   }
 
   const handleSizeChange = (e) => {
-    setSizeFilter(e.target.value)
-    onFilterChange({ sort: sortBy, size: e.target.value, brand: brandFilter })
+    const value = e.target.value
+    setSizeFilter(value)
+    onFilterChange({ sort: sortBy, size: value, brand: brandFilter })
   }
 
   const handleBrandChange = (e) => {
-    setBrandFilter(e.target.value)
-    onFilterChange({ sort: sortBy, size: sizeFilter, brand: e.target.value })
+    const value = e.target.value
+    setBrandFilter(value)
+    onFilterChange({ sort: sortBy, size: sizeFilter, brand: value })
   }
+
+  const handleReset = () => {
+    setSortBy('')
+    setSizeFilter('')
+    setBrandFilter('')
+    onFilterChange({ sort: '', size: '', brand: '' })
+  }
+
+  const isFilterActive = sortBy || sizeFilter || brandFilter
 
   return (
     <div className="bg-white rounded-2xl shadow-lg p-6 mb-8">
+      <div className="flex items-center justify-between mb-4">
+        <h3 className="text-lg font-semibold text-gray-700">Filter</h3>
+        {isFilterActive && (
+          <button
+            onClick={handleReset}
+            className="text-sm text-[#004aad] hover:text-orange-500 transition-colors"
+          >
+            Filter zurücksetzen
+          </button>
+        )}
+      </div>
+
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
         {/* Sort by Price */}
         <div>
@@ -64,10 +96,10 @@ export default function FilterBar({ products, onFilterChange }) {
           </select>
         </div>
 
-        {/* Filter by Tyre Brand */}
+        {/* Filter by Car Brand */}
         <div>
           <label className="block text-sm font-medium text-gray-700 mb-2">
-            Reifenmarke
+            Automarke
           </label>
           <select
             value={brandFilter}
@@ -77,12 +109,35 @@ export default function FilterBar({ products, onFilterChange }) {
                      hover:border-[#004aad] transition-colors"
           >
             <option value="">Alle Marken</option>
-            {tyreBrands.map(brand => (
+            {carBrands.map(brand => (
               <option key={brand} value={brand}>{brand}</option>
             ))}
           </select>
         </div>
       </div>
+
+      {/* Active Filters Display */}
+      {isFilterActive && (
+        <div className="mt-4 pt-4 border-t border-gray-200">
+          <div className="flex flex-wrap gap-2">
+            {sortBy && (
+              <span className="inline-flex items-center gap-1 bg-blue-50 text-[#004aad] px-3 py-1 rounded-full text-sm">
+                Sortierung: {sortBy === 'low-high' ? 'Niedrigster Preis' : 'Höchster Preis'}
+              </span>
+            )}
+            {sizeFilter && (
+              <span className="inline-flex items-center gap-1 bg-blue-50 text-[#004aad] px-3 py-1 rounded-full text-sm">
+                Größe: {sizeFilter}
+              </span>
+            )}
+            {brandFilter && (
+              <span className="inline-flex items-center gap-1 bg-blue-50 text-[#004aad] px-3 py-1 rounded-full text-sm">
+                Marke: {brandFilter}
+              </span>
+            )}
+          </div>
+        </div>
+      )}
     </div>
   )
 }
