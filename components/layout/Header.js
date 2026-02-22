@@ -2,21 +2,23 @@ import Link from 'next/link'
 import { useRouter } from 'next/router'
 import { FaShoppingCart, FaUser, FaSearch } from 'react-icons/fa'
 import CartIcon from '../cart/CartIcon'
-import { useState } from 'react'
+import { useState, useContext } from 'react'
 import { playClickSound } from '../../utils/sound'
+
+// Create a context for edge lighting
+import { createContext } from 'react'
+export const EdgeLightContext = createContext()
 
 export default function Header() {
   const router = useRouter()
-  const [logoClicked, setLogoClicked] = useState(false)
+  const { setEdgeLightTrigger, setEdgeLightColor } = useContext(EdgeLightContext)
 
   const handleLogoClick = (e) => {
     e.preventDefault()
     playClickSound()
-    setLogoClicked(true)
-    setTimeout(() => {
-      setLogoClicked(false)
-      router.push('/')
-    }, 300)
+    setEdgeLightColor('#00ff00') // Green for logo
+    setEdgeLightTrigger(prev => !prev)
+    router.push('/')
   }
 
   return (
@@ -26,23 +28,10 @@ export default function Header() {
         <div className="flex items-center justify-between h-20">
           {/* Logo with Green Edge Lighting */}
           <div className="relative group">
-            {/* Edge lighting container */}
-            <div className="absolute -inset-3 opacity-0 group-hover:opacity-100
-                          transition-opacity duration-300">
-              <div className={`absolute inset-0 
-                            ${logoClicked ? 'animate-edgeLight' : 'group-hover:animate-edgeLightSlow'}`}>
-                <div className="absolute inset-0 bg-gradient-to-r 
-                              from-transparent via-green-400 to-transparent 
-                              blur-xl"></div>
-              </div>
-            </div>
-
-            {/* Logo */}
             <button 
               onClick={handleLogoClick}
-              className={`relative text-4xl font-black text-white tracking-tighter 
-                       transition-all duration-300
-                       ${logoClicked ? 'scale-95' : 'hover:scale-105'}`}
+              className="relative text-4xl font-black text-white tracking-tighter 
+                       transition-all duration-300 hover:scale-105"
             >
               GAAR
               
@@ -98,7 +87,12 @@ export default function Header() {
             <button className="text-white hover:text-gray-200 transition-colors">
               <FaUser size={20} />
             </button>
-            <CartIcon />
+            <div onClick={() => {
+              setEdgeLightColor('#FFD700') // Gold for cart
+              setEdgeLightTrigger(prev => !prev)
+            }}>
+              <CartIcon />
+            </div>
           </div>
         </div>
       </div>
