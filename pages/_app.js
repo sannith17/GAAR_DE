@@ -1,28 +1,18 @@
 import '../styles/globals.css'
 import { CartProvider } from '../context/CartContext'
+import { EdgeLightProvider } from '../context/EdgeLightContext'
 import Layout from '../components/layout/Layout'
-import { useState, createContext } from 'react'
 import EdgeLighting from '../components/ui/EdgeLighting'
 
-export const EdgeLightContext = createContext()
-
 export default function App({ Component, pageProps }) {
-  const [edgeLightTrigger, setEdgeLightTrigger] = useState(false)
-  const [edgeLightColor, setEdgeLightColor] = useState('#004aad')
-
   return (
-    <EdgeLightContext.Provider value={{ 
-      edgeLightTrigger, 
-      setEdgeLightTrigger, 
-      edgeLightColor, 
-      setEdgeLightColor 
-    }}>
+    <EdgeLightProvider>
       <CartProvider>
         <Layout>
-          <EdgeLighting trigger={edgeLightTrigger} color={edgeLightColor} />
+          <EdgeLighting />
           <Component {...pageProps} />
         </Layout>
       </CartProvider>
-    </EdgeLightContext.Provider>
+    </EdgeLightProvider>
   )
 }
