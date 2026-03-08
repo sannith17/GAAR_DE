@@ -51,45 +51,28 @@ export default function Header() {
       {/* Main Header - Blue Background */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-20">
-          {/* Logo with Zebra Stripes Inside Text */}
+          {/* Logo with Simple Letter Color Change */}
           <button 
             onClick={() => window.location.href = '/'}
             onMouseEnter={() => setLogoHover(true)}
             onMouseLeave={() => setLogoHover(false)}
-            className="flex flex-col leading-none group relative"
+            className="flex flex-col leading-none group"
           >
-            {/* GAAR Text with Zebra Stripes */}
-            <span className="relative text-4xl font-black tracking-tighter font-['Racing_Sans_One']">
-              {/* White text background */}
-              <span className={`absolute inset-0 text-white transition-opacity duration-300 ${
-                logoHover ? 'opacity-0' : 'opacity-100'
-              }`}>
-                GAAR
-              </span>
-              
-              {/* Zebra striped text (appears on hover) */}
-              <span className={`relative transition-opacity duration-300 ${
-                logoHover ? 'opacity-100' : 'opacity-0'
-              }`}>
-                {/* Create striped pattern by using individual letters with alternating colors */}
-                <span className="text-red-600">G</span>
-                <span className="text-black">A</span>
-                <span className="text-red-600">A</span>
-                <span className="text-black">R</span>
-                
-                {/* Additional stripe effect in background */}
-                <span className="absolute inset-0 flex pointer-events-none">
-                  <span className="w-1/4 h-full bg-red-600/20"></span>
-                  <span className="w-1/4 h-full bg-black/20"></span>
-                  <span className="w-1/4 h-full bg-red-600/20"></span>
-                  <span className="w-1/4 h-full bg-black/20"></span>
-                </span>
-              </span>
-            </span>
-
-            {/* Subtitle - changes color on hover to match */}
-            <span className={`relative z-10 text-xs tracking-widest font-['Racing_Sans_One'] 
-                           transition-all duration-300 ${
+            <div className="flex">
+              <span className={`text-4xl font-black tracking-tighter font-['Racing_Sans_One'] transition-colors duration-300 ${
+                logoHover ? 'text-red-600' : 'text-white'
+              }`}>G</span>
+              <span className={`text-4xl font-black tracking-tighter font-['Racing_Sans_One'] transition-colors duration-300 ${
+                logoHover ? 'text-black' : 'text-white'
+              }`}>A</span>
+              <span className={`text-4xl font-black tracking-tighter font-['Racing_Sans_One'] transition-colors duration-300 ${
+                logoHover ? 'text-red-600' : 'text-white'
+              }`}>A</span>
+              <span className={`text-4xl font-black tracking-tighter font-['Racing_Sans_One'] transition-colors duration-300 ${
+                logoHover ? 'text-black' : 'text-white'
+              }`}>R</span>
+            </div>
+            <span className={`text-xs tracking-widest font-['Racing_Sans_One'] transition-colors duration-300 ${
               logoHover ? 'text-red-600' : 'text-white/80'
             }`}>
               RÄDER UND REIFEN
