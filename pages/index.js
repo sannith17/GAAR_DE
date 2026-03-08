@@ -11,7 +11,7 @@ const uniqueTyreBrands = [...new Set(tyresData.map(item => item.tyreBrand))].sor
 export default function Home() {
   // Brand logo mapping with most reliable working URLs (Wikimedia Commons)
   const brandLogos = {
-    'Audi': 'https://upload.wikimedia.org/wikipedia/commons/9/92/Audi-Logo_2016.svg',
+    'Audi': 'group-hover:border-silver-500 group-hover:shadow-silver-500/50',
     'BMW': 'https://upload.wikimedia.org/wikipedia/commons/4/44/BMW.svg',
     'Mercedes': 'https://upload.wikimedia.org/wikipedia/commons/3/32/Mercedes-Benz_Star_2022.svg',
     'Porsche': 'https://upload.wikimedia.org/wikipedia/commons/3/3f/Porsche_logo.svg',
