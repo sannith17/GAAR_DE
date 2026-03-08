@@ -9,15 +9,14 @@ const uniqueCarBrands = [...new Set(tyresData.map(item => item.brand))].sort()
 const uniqueTyreBrands = [...new Set(tyresData.map(item => item.tyreBrand))].sort()
 
 export default function Home() {
-  // Brand logo mapping
-const hoverColors = {
-          'Audi': 'group-hover:border-silver-500 group-hover:shadow-silver-500/50',
-          'BMW': 'group-hover:border-blue-600 group-hover:shadow-blue-600/50',
-          'Mercedes': 'group-hover:border-gray-900 group-hover:shadow-gray-900/50',
-          'Porsche': 'group-hover:border-red-600 group-hover:shadow-red-600/50',
-          'Volvo': 'group-hover:border-green-600 group-hover:shadow-green-600/50'
-        }
-
+  // Brand logo mapping with reliable working URLs
+  const brandLogos = {
+    'Audi': 'https://cdn.freebiesupply.com/logos/large/2x/audi-11-logo-black-and-white.png',
+    'BMW': 'https://cdn.freebiesupply.com/logos/large/2x/bmw-11-logo-black-and-white.png',
+    'Mercedes': 'https://cdn.freebiesupply.com/logos/large/2x/mercedes-benz-6-logo-black-and-white.png',
+    'Porsche': 'https://cdn.freebiesupply.com/logos/large/2x/porsche-9-logo-black-and-white.png',
+    'Volvo': 'https://cdn.freebiesupply.com/logos/large/2x/volvo-8-logo-black-and-white.png'
+  }
 
   return (
     <>
@@ -83,55 +82,85 @@ const hoverColors = {
         </div>
       </div>
 
-      {/* Car Brand Selection with Logos */}
+      {/* Car Brand Selection with Logos - Bigger Buttons & Brand Colors */}
       <div id="models" className="py-20 bg-gradient-to-b from-white to-gray-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <h2 className="text-3xl md:text-4xl font-bold text-center mb-4">
-            Wählen Sie Ihre Automarke
+            Choose your car brand
           </h2>
           <p className="text-gray-600 text-center mb-12 max-w-2xl mx-auto">
-            Finden Sie die perfekten Reifen für Ihr Fahrzeug. Alle Marken TÜV/ECE geprüft.
+            Find the perfect tires for your vehicle. All brands TÜV/ECE tested.
           </p>
           
-          <div className="flex flex-wrap justify-center gap-8">
-            {uniqueCarBrands.map((brand, index) => (
-              <div key={brand} className="animate-fadeInUp" style={{ animationDelay: `${index * 0.1}s` }}>
-                <button
-                  onClick={() => window.location.href = `/models/${encodeURIComponent(brand)}`}
-                  className="group outline-none"
-                >
-                  <div className="relative w-32 h-32 rounded-full bg-gradient-to-br from-white to-gray-50 
-                                border-4 border-[#004aad] shadow-lg 
-                                transition-all duration-300 
-                                group-hover:-translate-y-2 group-hover:shadow-2xl
-                                group-hover:border-orange-500
-                                flex items-center justify-center
-                                overflow-hidden">
+          <div className="flex flex-wrap justify-center gap-10">
+            {uniqueCarBrands.map((brand, index) => {
+              // Brand-specific hover colors
+              const getHoverColor = () => {
+                switch(brand) {
+                  case 'Audi': return 'group-hover:border-[#C0C0C0] group-hover:shadow-[#C0C0C0]/50'
+                  case 'BMW': return 'group-hover:border-blue-600 group-hover:shadow-blue-600/50'
+                  case 'Mercedes': return 'group-hover:border-gray-900 group-hover:shadow-gray-900/50'
+                  case 'Porsche': return 'group-hover:border-red-600 group-hover:shadow-red-600/50'
+                  case 'Volvo': return 'group-hover:border-green-600 group-hover:shadow-green-600/50'
+                  default: return 'group-hover:border-orange-500 group-hover:shadow-orange-500/50'
+                }
+              }
+
+              const getTextColor = () => {
+                switch(brand) {
+                  case 'Audi': return 'group-hover:text-[#C0C0C0]'
+                  case 'BMW': return 'group-hover:text-blue-600'
+                  case 'Mercedes': return 'group-hover:text-gray-900'
+                  case 'Porsche': return 'group-hover:text-red-600'
+                  case 'Volvo': return 'group-hover:text-green-600'
+                  default: return 'group-hover:text-orange-500'
+                }
+              }
+              
+              return (
+                <div key={brand} className="animate-fadeInUp" style={{ animationDelay: `${index * 0.1}s` }}>
+                  <button
+                    onClick={() => window.location.href = `/models/${encodeURIComponent(brand)}`}
+                    className="group outline-none"
+                  >
+                    <div className={`relative w-36 h-36 md:w-40 md:h-40 rounded-full bg-gradient-to-br from-white to-gray-50 
+                                  border-4 border-[#004aad] shadow-lg 
+                                  transition-all duration-300 
+                                  group-hover:-translate-y-2 group-hover:shadow-2xl
+                                  ${getHoverColor()}
+                                  flex items-center justify-center
+                                  overflow-hidden p-4`}>
+                      
+                      {/* Hover shine effect */}
+                      <div className="absolute inset-0 opacity-0 group-hover:opacity-100 
+                                    bg-gradient-to-tr from-white/60 via-transparent to-transparent 
+                                    transition-opacity duration-500"></div>
+                      
+                      {/* Brand Logo */}
+                      <img 
+                        src={brandLogos[brand]} 
+                        alt={brand}
+                        className="w-full h-full object-contain group-hover:scale-110 transition-transform duration-300"
+                        onError={(e) => {
+                          e.target.style.display = 'none';
+                          // Show fallback text
+                          const parent = e.target.parentElement;
+                          const fallback = document.createElement('span');
+                          fallback.className = `text-xl font-bold text-[#004aad] ${getTextColor()} transition-colors duration-300`;
+                          fallback.textContent = brand;
+                          parent.appendChild(fallback);
+                        }}
+                      />
+                    </div>
                     
-                    {/* Hover shine effect */}
-                    <div className="absolute inset-0 opacity-0 group-hover:opacity-100 
-                                  bg-gradient-to-tr from-white/60 via-transparent to-transparent 
-                                  transition-opacity duration-500"></div>
-                    
-                    {/* Brand Logo */}
-                    <img 
-                      src={brandLogos[brand]} 
-                      alt={brand}
-                      className="w-20 h-20 object-contain group-hover:scale-110 transition-transform duration-300"
-                      onError={(e) => {
-                        e.target.style.display = 'none'
-                        e.target.nextSibling.style.display = 'block'
-                      }}
-                    />
-                    
-                    {/* Fallback text if logo fails to load */}
-                    <span className="hidden text-xl font-bold text-[#004aad] group-hover:text-orange-500 transition-colors duration-300">
+                    {/* Brand name below button */}
+                    <p className={`text-center mt-3 font-semibold text-gray-700 ${getTextColor()} transition-colors duration-300`}>
                       {brand}
-                    </span>
-                  </div>
-                </button>
-              </div>
-            ))}
+                    </p>
+                  </button>
+                </div>
+              )
+            })}
           </div>
         </div>
       </div>
