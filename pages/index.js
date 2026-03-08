@@ -9,16 +9,13 @@ const uniqueCarBrands = [...new Set(tyresData.map(item => item.brand))].sort()
 const uniqueTyreBrands = [...new Set(tyresData.map(item => item.tyreBrand))].sort()
 
 export default function Home() {
-  // Brand logo mapping with reliable working URLs
+  // Brand logo mapping with most reliable working URLs (Wikimedia Commons)
   const brandLogos = {
-// Most reliable - using Wikimedia Commons
-const brandLogos = {
-  'Audi': 'https://upload.wikimedia.org/wikipedia/commons/9/92/Audi-Logo_2016.svg',
-  'BMW': 'https://upload.wikimedia.org/wikipedia/commons/4/44/BMW.svg',
-  'Mercedes': 'https://upload.wikimedia.org/wikipedia/commons/3/32/Mercedes-Benz_Star_2022.svg',
-  'Porsche': 'https://upload.wikimedia.org/wikipedia/commons/3/3f/Porsche_logo.svg',
-  'Volvo': 'https://upload.wikimedia.org/wikipedia/commons/e/ed/Volvo_iron_mark.svg'
-
+    'Audi': 'https://upload.wikimedia.org/wikipedia/commons/9/92/Audi-Logo_2016.svg',
+    'BMW': 'https://upload.wikimedia.org/wikipedia/commons/4/44/BMW.svg',
+    'Mercedes': 'https://upload.wikimedia.org/wikipedia/commons/3/32/Mercedes-Benz_Star_2022.svg',
+    'Porsche': 'https://upload.wikimedia.org/wikipedia/commons/3/3f/Porsche_logo.svg',
+    'Volvo': 'https://upload.wikimedia.org/wikipedia/commons/e/ed/Volvo_iron_mark.svg'
   }
 
   return (
@@ -148,7 +145,7 @@ const brandLogos = {
                           // Show fallback text if logo fails to load
                           const parent = e.target.parentElement;
                           const fallback = document.createElement('span');
-                          fallback.className = 'text-2xl md:text-3xl font-bold text-[#004aad]';
+                          fallback.className = 'text-4xl md:text-5xl font-bold text-[#004aad]';
                           fallback.textContent = brand.charAt(0);
                           parent.appendChild(fallback);
                         }}
