@@ -12,7 +12,7 @@ export default function Home() {
   // Brand logo mapping with most reliable working URLs (Wikimedia Commons)
   const brandLogos = {
   'Audi': 'https://1000logos.net/wp-content/uploads/2018/05/Audi-logo.png',
-  'BMW': 'https://logos-world.net/wp-content/uploads/2020/04/BMW-Logo.png',
+  'BMW': 'https://upload.wikimedia.org/wikipedia/commons/4/44/BMW.svg',
   'Mercedes': 'https://upload.wikimedia.org/wikipedia/commons/3/32/Mercedes-Benz_Star_2022.svg',
   'Porsche': 'https://1000logos.net/wp-content/uploads/2018/02/Porsche-Logo.png',
   'Volvo': 'https://upload.wikimedia.org/wikipedia/commons/e/ed/Volvo_iron_mark.svg'
