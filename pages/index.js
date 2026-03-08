@@ -87,13 +87,13 @@ export default function Home() {
           <div className="flex flex-wrap justify-center gap-8 md:gap-12">
             {uniqueCarBrands.map((brand, index) => {
               // Brand logo mapping with MORE RELIABLE URLs
-              const brandLogos = {
-                'Audi': 'https://cdn.freebiesupply.com/logos/large/2x/audi-11-logo-black-and-white.png',
-                'BMW': 'https://cdn.freebiesupply.com/logos/large/2x/bmw-11-logo-black-and-white.png',
-                'Mercedes': 'https://cdn.freebiesupply.com/logos/large/2x/mercedes-benz-6-logo-black-and-white.png',
-                'Porsche': 'https://cdn.freebiesupply.com/logos/large/2x/porsche-9-logo-black-and-white.png',
-                'Volvo': 'https://cdn.freebiesupply.com/logos/large/2x/volvo-8-logo-black-and-white.png'
-              }
+                const brandLogos = {
+                  'Audi': 'https://1000logos.net/wp-content/uploads/2018/05/Audi-logo.png',
+                  'BMW': 'https://upload.wikimedia.org/wikipedia/commons/4/44/BMW.svg',
+                  'Mercedes': 'https://upload.wikimedia.org/wikipedia/commons/3/32/Mercedes-Benz_Star_2022.svg',
+                  'Volvo': 'https://upload.wikimedia.org/wikipedia/commons/e/ed/Volvo_iron_mark.svg',
+                  'Porsche': 'https://1000logos.net/wp-content/uploads/2018/02/Porsche-Logo.png'
+                    }
               
               // Brand-specific hover colors
               const hoverColor = {
@@ -127,7 +127,7 @@ export default function Home() {
                                   ${hoverColor}
                                   ${bgGlow}
                                   flex items-center justify-center
-                                  overflow-hidden border-4 border-[#004aad] p-6`}>
+                                  overflow-hidden border-8 border-[#004aad] p-6`}>
                       
                       {/* Hover shine effect */}
                       <div className="absolute inset-0 opacity-0 group-hover:opacity-100 
