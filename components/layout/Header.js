@@ -51,52 +51,49 @@ export default function Header() {
       {/* Main Header - Blue Background */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-20">
-          {/* Logo with Apple Mac Glass Animation */}
+          {/* Logo with Red & Black Stripes on Hover */}
           <button 
             onClick={() => window.location.href = '/'}
             onMouseEnter={() => setLogoHover(true)}
             onMouseLeave={() => setLogoHover(false)}
-            className="flex flex-col leading-none group relative"
+            className="flex flex-col leading-none group relative overflow-hidden"
           >
-            {/* Apple Mac-style glass effect container */}
-            <div className="relative">
-              {/* Base glass layer */}
-              <div className={`absolute inset-0 bg-white/0 rounded-lg transition-all duration-700 
-                            ${logoHover ? 'backdrop-blur-md bg-white/20 scale-110 -inset-2' : ''}`}>
-                {/* Inner glow effect */}
-                <div className={`absolute inset-0 bg-gradient-to-r from-white/40 via-white/60 to-white/40 
-                              rounded-lg opacity-0 transition-opacity duration-700 blur-sm
-                              ${logoHover ? 'opacity-100' : ''}`}></div>
-              </div>
+            {/* Background stripes that appear on hover */}
+            <div className={`absolute inset-0 transition-all duration-500 ${
+              logoHover ? 'opacity-100' : 'opacity-0'
+            }`}>
+              {/* Red and black diagonal stripes */}
+              <div className="absolute inset-0 bg-gradient-to-r from-red-600 via-red-600 to-red-600 
+                            transform -skew-y-12 scale-150"></div>
+              <div className="absolute inset-0 bg-gradient-to-r from-black via-black to-black 
+                            transform skew-y-12 scale-150"></div>
               
-              {/* Main Logo */}
-              <div className="relative z-10">
-                <span className={`text-4xl font-black text-white tracking-tighter font-['Racing_Sans_One'] 
-                               transition-all duration-700 block
-                               ${logoHover ? 'text-white/90 scale-105' : ''}`}>
-                  GAAR
-                </span>
-                <span className={`text-xs text-white/80 tracking-widest font-['Racing_Sans_One'] 
-                               transition-all duration-700 block
-                               ${logoHover ? 'text-white/90' : ''}`}>
-                  RÄDER UND REIFEN
-                </span>
-              </div>
-
-              {/* Apple-style shimmer effect */}
-              <div className={`absolute inset-0 overflow-hidden rounded-lg pointer-events-none
-                            ${logoHover ? 'opacity-100' : 'opacity-0'}`}>
-                <div className="absolute inset-0 translate-x-[-100%] animate-shimmer 
-                              bg-gradient-to-r from-transparent via-white/40 to-transparent"></div>
+              {/* Overlapping stripes for pattern */}
+              <div className="absolute inset-0 grid grid-cols-3 gap-1">
+                <div className="h-full bg-red-600"></div>
+                <div className="h-full bg-black"></div>
+                <div className="h-full bg-red-600"></div>
               </div>
             </div>
 
-            {/* Subtle bottom glow */}
-            <div className={`absolute -bottom-2 left-1/2 transform -translate-x-1/2 w-12 h-0.5 
-                          bg-gradient-to-r from-transparent via-white/60 to-transparent 
-                          transition-opacity duration-700 blur-sm
-                          ${logoHover ? 'opacity-100' : 'opacity-0'}`}>
-            </div>
+            {/* Logo text - changes color on hover */}
+            <span className={`relative z-10 text-4xl font-black tracking-tighter font-['Racing_Sans_One'] 
+                           transition-all duration-500 ${
+              logoHover ? 'text-white' : 'text-white'
+            }`}>
+              GAAR
+            </span>
+            <span className={`relative z-10 text-xs tracking-widest font-['Racing_Sans_One'] 
+                           transition-all duration-500 ${
+              logoHover ? 'text-white/90' : 'text-white/80'
+            }`}>
+              RÄDER UND REIFEN
+            </span>
+
+            {/* Subtle border effect on hover */}
+            <div className={`absolute inset-0 border-2 border-white/0 rounded-lg transition-all duration-500 ${
+              logoHover ? 'border-white/30' : ''
+            }`}></div>
           </button>
 
           {/* Search Bar */}
