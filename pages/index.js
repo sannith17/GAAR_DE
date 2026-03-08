@@ -18,7 +18,7 @@ const brandLogos = {
   'Mercedes': 'https://upload.wikimedia.org/wikipedia/commons/3/32/Mercedes-Benz_Star_2022.svg',
   'Porsche': 'https://upload.wikimedia.org/wikipedia/commons/3/3f/Porsche_logo.svg',
   'Volvo': 'https://upload.wikimedia.org/wikipedia/commons/e/ed/Volvo_iron_mark.svg'
-}
+
   }
 
   return (
