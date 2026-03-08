@@ -11,6 +11,17 @@
     color: #1f2937;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  }
+
+  /* Custom scrollbar hiding for dropdown */
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+  
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
   }
 }
 
@@ -35,6 +46,29 @@
       padding-left: 2rem;
       padding-right: 2rem;
     }
+  }
+
+  /* Button Styles */
+  .btn-primary {
+    @apply bg-[#004aad] text-white font-semibold py-2 px-4 rounded-lg 
+           hover:bg-[#003a8a] transition-colors duration-300;
+  }
+
+  .btn-secondary {
+    @apply bg-gray-600 text-white font-semibold py-2 px-4 rounded-lg 
+           hover:bg-gray-700 transition-colors duration-300;
+  }
+
+  /* Card Styles */
+  .card {
+    @apply bg-white rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300;
+  }
+
+  /* Input Styles */
+  .input-primary {
+    @apply bg-gray-50 border border-gray-300 rounded-lg px-4 py-2 
+           focus:outline-none focus:ring-2 focus:ring-[#004aad] focus:border-transparent
+           hover:border-[#004aad] transition-colors;
   }
 }
 
@@ -137,4 +171,100 @@
 
 .animate-pulse-slow {
   animation: pulse-slow 3s ease-in-out infinite;
+}
+
+/* Lift Animation */
+@keyframes lift {
+  0% {
+    transform: translateY(0);
+  }
+  100% {
+    transform: translateY(-5px);
+  }
+}
+
+.animate-lift {
+  animation: lift 0.3s ease-out forwards;
+}
+
+/* Shine Animation */
+@keyframes shine {
+  from {
+    transform: translateX(-100%);
+  }
+  to {
+    transform: translateX(100%);
+  }
+}
+
+.animate-shine {
+  animation: shine 1.5s ease-in-out infinite;
+}
+
+/* Spin Animation */
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.animate-spin {
+  animation: spin 1s linear infinite;
+}
+
+/* Bounce Animation */
+@keyframes bounce {
+  0%, 100% {
+    transform: translateY(-25%);
+    animation-timing-function: cubic-bezier(0.8, 0, 1, 1);
+  }
+  50% {
+    transform: translateY(0);
+    animation-timing-function: cubic-bezier(0, 0, 0.2, 1);
+  }
+}
+
+.animate-bounce {
+  animation: bounce 1s infinite;
+}
+
+/* Loading Spinner */
+.spinner {
+  border: 3px solid rgba(0, 74, 173, 0.1);
+  border-radius: 50%;
+  border-top: 3px solid #004aad;
+  width: 40px;
+  height: 40px;
+  animation: spin 1s linear infinite;
+}
+
+/* Glass Effect */
+.glass-effect {
+  background: rgba(255, 255, 255, 0.25);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+}
+
+/* Text Gradients */
+.text-gradient-blue {
+  background: linear-gradient(135deg, #004aad 0%, #60a5fa 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.text-gradient-gold {
+  background: linear-gradient(135deg, #FFD700 0%, #FFA500 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Racing Sans One Font Class */
+.font-racing {
+  font-family: 'Racing Sans One', cursive;
 }
