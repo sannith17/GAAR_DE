@@ -49,13 +49,3 @@ module.exports = {
 }
 
 
-/** @type {import('tailwindcss').NextConfig} */
-const nextConfig = {
-  reactStrictMode: true,
-  images: {
-    domains: ['images.unsplash.com', 'cdn.freebiesupply.com'],
-  },
-  trailingSlash: false,
-}
-
-module.exports = nextConfig
