@@ -9,15 +9,6 @@ const uniqueCarBrands = [...new Set(tyresData.map(item => item.brand))].sort()
 const uniqueTyreBrands = [...new Set(tyresData.map(item => item.tyreBrand))].sort()
 
 export default function Home() {
-  // Brand logo mapping with reliable working URLs
-  const brandLogos = {
-    'Audi': 'https://cdn.freebiesupply.com/logos/large/2x/audi-11-logo-black-and-white.png',
-    'BMW': 'https://cdn.freebiesupply.com/logos/large/2x/bmw-11-logo-black-and-white.png',
-    'Mercedes': 'https://cdn.freebiesupply.com/logos/large/2x/mercedes-benz-6-logo-black-and-white.png',
-    'Porsche': 'https://cdn.freebiesupply.com/logos/large/2x/porsche-9-logo-black-and-white.png',
-    'Volvo': 'https://cdn.freebiesupply.com/logos/large/2x/volvo-8-logo-black-and-white.png'
-  }
-
   return (
     <>
       <Head>
@@ -82,7 +73,7 @@ export default function Home() {
         </div>
       </div>
 
-      {/* Car Brand Selection with Logos - Bigger Buttons & Brand Colors */}
+      {/* Car Brand Selection - Symbols Only with German Colors */}
       <div id="models" className="py-20 bg-gradient-to-b from-white to-gray-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <h2 className="text-3xl md:text-4xl font-bold text-center mb-4">
@@ -92,30 +83,33 @@ export default function Home() {
             Find the perfect tires for your vehicle. All brands TÜV/ECE tested.
           </p>
           
-          <div className="flex flex-wrap justify-center gap-10">
+          <div className="flex flex-wrap justify-center gap-8 md:gap-12">
             {uniqueCarBrands.map((brand, index) => {
-              // Brand-specific hover colors
-              const getHoverColor = () => {
-                switch(brand) {
-                  case 'Audi': return 'group-hover:border-[#C0C0C0] group-hover:shadow-[#C0C0C0]/50'
-                  case 'BMW': return 'group-hover:border-blue-600 group-hover:shadow-blue-600/50'
-                  case 'Mercedes': return 'group-hover:border-gray-900 group-hover:shadow-gray-900/50'
-                  case 'Porsche': return 'group-hover:border-red-600 group-hover:shadow-red-600/50'
-                  case 'Volvo': return 'group-hover:border-green-600 group-hover:shadow-green-600/50'
-                  default: return 'group-hover:border-orange-500 group-hover:shadow-orange-500/50'
-                }
-              }
+              // Brand symbols (simple representations)
+              const brandSymbol = {
+                'Audi': 'A',
+                'BMW': 'B',
+                'Mercedes': 'M',
+                'Porsche': 'P',
+                'Volvo': 'V'
+              }[brand]
 
-              const getTextColor = () => {
-                switch(brand) {
-                  case 'Audi': return 'group-hover:text-[#C0C0C0]'
-                  case 'BMW': return 'group-hover:text-blue-600'
-                  case 'Mercedes': return 'group-hover:text-gray-900'
-                  case 'Porsche': return 'group-hover:text-red-600'
-                  case 'Volvo': return 'group-hover:text-green-600'
-                  default: return 'group-hover:text-orange-500'
-                }
-              }
+              // German flag colors for first three, Porsche red, Volvo green
+              const hoverColor = {
+                'Audi': 'group-hover:border-black group-hover:shadow-black/30',
+                'BMW': 'group-hover:border-red-600 group-hover:shadow-red-600/30',
+                'Mercedes': 'group-hover:border-yellow-400 group-hover:shadow-yellow-400/30',
+                'Porsche': 'group-hover:border-red-600 group-hover:shadow-red-600/30',
+                'Volvo': 'group-hover:border-green-600 group-hover:shadow-green-600/30'
+              }[brand]
+
+              const textHoverColor = {
+                'Audi': 'group-hover:text-black',
+                'BMW': 'group-hover:text-red-600',
+                'Mercedes': 'group-hover:text-yellow-400',
+                'Porsche': 'group-hover:text-red-600',
+                'Volvo': 'group-hover:text-green-600'
+              }[brand]
               
               return (
                 <div key={brand} className="animate-fadeInUp" style={{ animationDelay: `${index * 0.1}s` }}>
@@ -123,38 +117,29 @@ export default function Home() {
                     onClick={() => window.location.href = `/models/${encodeURIComponent(brand)}`}
                     className="group outline-none"
                   >
-                    <div className={`relative w-36 h-36 md:w-40 md:h-40 rounded-full bg-gradient-to-br from-white to-gray-50 
+                    {/* Bigger circle with symbol only - no text inside */}
+                    <div className={`relative w-36 h-36 md:w-44 md:h-44 rounded-full 
+                                  bg-gradient-to-br from-white to-gray-100 
                                   border-4 border-[#004aad] shadow-lg 
-                                  transition-all duration-300 
-                                  group-hover:-translate-y-2 group-hover:shadow-2xl
-                                  ${getHoverColor()}
+                                  transition-all duration-500 
+                                  group-hover:-translate-y-3 group-hover:shadow-2xl
+                                  ${hoverColor}
                                   flex items-center justify-center
-                                  overflow-hidden p-4`}>
+                                  overflow-hidden`}>
                       
                       {/* Hover shine effect */}
                       <div className="absolute inset-0 opacity-0 group-hover:opacity-100 
                                     bg-gradient-to-tr from-white/60 via-transparent to-transparent 
                                     transition-opacity duration-500"></div>
                       
-                      {/* Brand Logo */}
-                      <img 
-                        src={brandLogos[brand]} 
-                        alt={brand}
-                        className="w-full h-full object-contain group-hover:scale-110 transition-transform duration-300"
-                        onError={(e) => {
-                          e.target.style.display = 'none';
-                          // Show fallback text
-                          const parent = e.target.parentElement;
-                          const fallback = document.createElement('span');
-                          fallback.className = `text-xl font-bold text-[#004aad] ${getTextColor()} transition-colors duration-300`;
-                          fallback.textContent = brand;
-                          parent.appendChild(fallback);
-                        }}
-                      />
+                      {/* Brand Symbol - Large and bold */}
+                      <span className={`text-5xl md:text-7xl font-black text-[#004aad] ${textHoverColor} transition-colors duration-500`}>
+                        {brandSymbol}
+                      </span>
                     </div>
                     
-                    {/* Brand name below button */}
-                    <p className={`text-center mt-3 font-semibold text-gray-700 ${getTextColor()} transition-colors duration-300`}>
+                    {/* Brand name below button - small and subtle */}
+                    <p className={`text-center mt-3 text-sm font-medium text-gray-600 ${textHoverColor} transition-colors duration-500`}>
                       {brand}
                     </p>
                   </button>
