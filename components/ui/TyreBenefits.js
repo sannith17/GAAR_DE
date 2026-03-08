@@ -3,6 +3,11 @@ import { useState } from 'react'
 
 export default function TyreBenefits() {
   const [activeTab, setActiveTab] = useState('safety')
+  const [imageErrors, setImageErrors] = useState({})
+
+  const handleImageError = (imageName) => {
+    setImageErrors(prev => ({ ...prev, [imageName]: true }))
+  }
 
   return (
     <div className="py-16 bg-gradient-to-br from-blue-50 to-white">
@@ -55,46 +60,67 @@ export default function TyreBenefits() {
           </div>
         </div>
 
-        {/* Safety Tab Content - with your 3 Pexels images */}
+        {/* Safety Tab Content - with working images */}
         {activeTab === 'safety' && (
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             {/* Left side - Images */}
             <div className="relative">
               <div className="grid grid-cols-2 gap-4">
                 {/* First image - New tyre */}
-                <div className="relative h-48 rounded-2xl overflow-hidden shadow-xl transform hover:scale-105 transition-all">
-                  <Image
-                    src="https://images.pexels.com/photos/9846091/pexels-photo-9846091.jpeg?auto=compress&cs=tinysrgb&w=600"
-                    alt="New tyre with deep tread"
-                    fill
-                    className="object-cover"
-                  />
+                <div className="relative h-48 rounded-2xl overflow-hidden shadow-xl transform hover:scale-105 transition-all bg-gray-200">
+                  {!imageErrors['newTyre'] ? (
+                    <Image
+                      src="https://images.pexels.com/photos/8478/tyre-wheel-automobile-car.jpg?auto=compress&cs=tinysrgb&w=600"
+                      alt="New tyre with deep tread"
+                      fill
+                      className="object-cover"
+                      onError={() => handleImageError('newTyre')}
+                    />
+                  ) : (
+                    <div className="w-full h-full flex items-center justify-center bg-blue-100">
+                      <span className="text-blue-600 font-bold">New Tyre</span>
+                    </div>
+                  )}
                   <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent flex items-end p-4">
                     <span className="text-white font-bold">8 mm Profil</span>
                   </div>
                 </div>
                 
                 {/* Second image - Worn tyre */}
-                <div className="relative h-48 rounded-2xl overflow-hidden shadow-xl transform hover:scale-105 transition-all mt-8">
-                  <Image
-                    src="https://images.pexels.com/photos/1824270/pexels-photo-1824270.jpeg?auto=compress&cs=tinysrgb&w=600"
-                    alt="Worn tyre with low tread"
-                    fill
-                    className="object-cover grayscale"
-                  />
+                <div className="relative h-48 rounded-2xl overflow-hidden shadow-xl transform hover:scale-105 transition-all mt-8 bg-gray-200">
+                  {!imageErrors['wornTyre'] ? (
+                    <Image
+                      src="https://images.pexels.com/photos/561639/pexels-photo-561639.jpeg?auto=compress&cs=tinysrgb&w=600"
+                      alt="Worn tyre with low tread"
+                      fill
+                      className="object-cover grayscale"
+                      onError={() => handleImageError('wornTyre')}
+                    />
+                  ) : (
+                    <div className="w-full h-full flex items-center justify-center bg-gray-300">
+                      <span className="text-gray-700 font-bold">Worn Tyre</span>
+                    </div>
+                  )}
                   <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent flex items-end p-4">
                     <span className="text-white font-bold">1.6 mm Profil</span>
                   </div>
                 </div>
                 
                 {/* Third image - Braking distance */}
-                <div className="col-span-2 relative h-64 rounded-2xl overflow-hidden shadow-xl transform hover:scale-105 transition-all">
-                  <Image
-                    src="https://images.pexels.com/photos/770536/pexels-photo-770536.jpeg?auto=compress&cs=tinysrgb&w=600"
-                    alt="Car on road demonstrating braking distance"
-                    fill
-                    className="object-cover"
-                  />
+                <div className="col-span-2 relative h-64 rounded-2xl overflow-hidden shadow-xl transform hover:scale-105 transition-all bg-gray-200">
+                  {!imageErrors['braking'] ? (
+                    <Image
+                      src="https://images.pexels.com/photos/112460/pexels-photo-112460.jpeg?auto=compress&cs=tinysrgb&w=600"
+                      alt="Car on road demonstrating braking distance"
+                      fill
+                      className="object-cover"
+                      onError={() => handleImageError('braking')}
+                    />
+                  ) : (
+                    <div className="w-full h-full flex items-center justify-center bg-red-100">
+                      <span className="text-red-600 font-bold">Braking Distance</span>
+                    </div>
+                  )}
                   <div className="absolute inset-0 bg-gradient-to-r from-red-600/80 to-transparent flex items-center p-8">
                     <div>
                       <span className="text-white text-3xl font-bold block">18m</span>
@@ -145,7 +171,7 @@ export default function TyreBenefits() {
           </div>
         )}
 
-        {/* Economy Tab Content - with your Pexels image */}
+        {/* Economy Tab Content - with working image */}
         {activeTab === 'economy' && (
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <div className="space-y-6">
@@ -176,14 +202,20 @@ export default function TyreBenefits() {
             </div>
 
             {/* Image for Economy */}
-            <div className="relative">
-              <Image
-                src="https://images.pexels.com/photos/5975534/pexels-photo-5975534.jpeg?auto=compress&cs=tinysrgb&w=600"
-                alt="Fuel efficiency concept with modern car"
-                width={600}
-                height={400}
-                className="rounded-2xl shadow-2xl"
-              />
+            <div className="relative bg-gray-200 rounded-2xl overflow-hidden h-96">
+              {!imageErrors['economy'] ? (
+                <Image
+                  src="https://images.pexels.com/photos/116675/pexels-photo-116675.jpeg?auto=compress&cs=tinysrgb&w=600"
+                  alt="Fuel efficiency concept"
+                  fill
+                  className="object-cover"
+                  onError={() => handleImageError('economy')}
+                />
+              ) : (
+                <div className="w-full h-full flex items-center justify-center bg-green-100">
+                  <span className="text-green-600 font-bold">Fuel Efficiency</span>
+                </div>
+              )}
               <div className="absolute -bottom-6 -left-6 bg-yellow-400 rounded-xl p-4 shadow-xl">
                 <p className="text-2xl font-bold">€400</p>
                 <p className="text-sm">Ersparnis pro Jahr</p>
@@ -192,19 +224,26 @@ export default function TyreBenefits() {
           </div>
         )}
 
-        {/* Legal Tab Content - with your 3 Pexels images */}
+        {/* Legal Tab Content - with working images */}
         {activeTab === 'legal' && (
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
             {/* First card - Mindestprofiltiefe */}
-            <div className="bg-gray-800 text-white rounded-2xl p-8 shadow-xl relative overflow-hidden group hover:scale-105 transition-all">
+            <div className="bg-gray-800 text-white rounded-2xl p-8 shadow-xl relative overflow-hidden group hover:scale-105 transition-all min-h-[250px]">
               <div className="absolute top-0 right-0 w-32 h-32 opacity-20 group-hover:opacity-40 transition-opacity">
-                <Image
-                  src="https://images.pexels.com/photos/2922140/pexels-photo-2922140.jpeg?auto=compress&cs=tinysrgb&w=200"
-                  alt="Tyre tread closeup"
-                  width={128}
-                  height={128}
-                  className="object-cover rounded-full"
-                />
+                {!imageErrors['legal1'] ? (
+                  <Image
+                    src="https://images.pexels.com/photos/1311402/pexels-photo-1311402.jpeg?auto=compress&cs=tinysrgb&w=200"
+                    alt="Tyre tread"
+                    width={128}
+                    height={128}
+                    className="object-cover rounded-full"
+                    onError={() => handleImageError('legal1')}
+                  />
+                ) : (
+                  <div className="w-32 h-32 rounded-full bg-gray-600 flex items-center justify-center">
+                    <span className="text-white">⚖️</span>
+                  </div>
+                )}
               </div>
               <div className="text-4xl mb-4">⚖️</div>
               <h3 className="text-xl font-bold mb-3">Mindestprofiltiefe</h3>
@@ -213,15 +252,22 @@ export default function TyreBenefits() {
             </div>
 
             {/* Second card - Alpine-Symbol */}
-            <div className="bg-gray-800 text-white rounded-2xl p-8 shadow-xl relative overflow-hidden group hover:scale-105 transition-all">
+            <div className="bg-gray-800 text-white rounded-2xl p-8 shadow-xl relative overflow-hidden group hover:scale-105 transition-all min-h-[250px]">
               <div className="absolute top-0 right-0 w-32 h-32 opacity-20 group-hover:opacity-40 transition-opacity">
-                <Image
-                  src="https://images.pexels.com/photos/4435225/pexels-photo-4435225.jpeg?auto=compress&cs=tinysrgb&w=200"
-                  alt="AMG wheels"
-                  width={128}
-                  height={128}
-                  className="object-cover rounded-full"
-                />
+                {!imageErrors['legal2'] ? (
+                  <Image
+                    src="https://images.pexels.com/photos/111225/pexels-photo-111225.jpeg?auto=compress&cs=tinysrgb&w=200"
+                    alt="Winter tyres"
+                    width={128}
+                    height={128}
+                    className="object-cover rounded-full"
+                    onError={() => handleImageError('legal2')}
+                  />
+                ) : (
+                  <div className="w-32 h-32 rounded-full bg-gray-600 flex items-center justify-center">
+                    <span className="text-white">❄️</span>
+                  </div>
+                )}
               </div>
               <div className="text-4xl mb-4">❄️</div>
               <h3 className="text-xl font-bold mb-3">Alpine-Symbol (3PMSF)</h3>
@@ -230,15 +276,22 @@ export default function TyreBenefits() {
             </div>
 
             {/* Third card - Neue Reifen hinten */}
-            <div className="bg-gray-800 text-white rounded-2xl p-8 shadow-xl relative overflow-hidden group hover:scale-105 transition-all">
+            <div className="bg-gray-800 text-white rounded-2xl p-8 shadow-xl relative overflow-hidden group hover:scale-105 transition-all min-h-[250px]">
               <div className="absolute top-0 right-0 w-32 h-32 opacity-20 group-hover:opacity-40 transition-opacity">
-                <Image
-                  src="https://images.pexels.com/photos/30479131/pexels-photo-30479131.jpeg?auto=compress&cs=tinysrgb&w=200"
-                  alt="McLaren brake disc"
-                  width={128}
-                  height={128}
-                  className="object-cover rounded-full"
-                />
+                {!imageErrors['legal3'] ? (
+                  <Image
+                    src="https://images.pexels.com/photos/373543/pexels-photo-373543.jpeg?auto=compress&cs=tinysrgb&w=200"
+                    alt="Brake disc"
+                    width={128}
+                    height={128}
+                    className="object-cover rounded-full"
+                    onError={() => handleImageError('legal3')}
+                  />
+                ) : (
+                  <div className="w-32 h-32 rounded-full bg-gray-600 flex items-center justify-center">
+                    <span className="text-white">🔧</span>
+                  </div>
+                )}
               </div>
               <div className="text-4xl mb-4">🔧</div>
               <h3 className="text-xl font-bold mb-3">Neue Reifen hinten</h3>
