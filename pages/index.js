@@ -14,9 +14,9 @@ export default function Home() {
   'Audi': 'https://1000logos.net/wp-content/uploads/2018/05/Audi-logo.png',
   'BMW': 'https://upload.wikimedia.org/wikipedia/commons/4/44/BMW.svg',
   'Mercedes': 'https://upload.wikimedia.org/wikipedia/commons/3/32/Mercedes-Benz_Star_2022.svg',
-  'Porsche': 'https://1000logos.net/wp-content/uploads/2018/02/Porsche-Logo.png',
-  'Volvo': 'https://upload.wikimedia.org/wikipedia/commons/e/ed/Volvo_iron_mark.svg'
-}
+  'Volvo': 'https://upload.wikimedia.org/wikipedia/commons/e/ed/Volvo_iron_mark.svg',
+  'Porsche': 'https://1000logos.net/wp-content/uploads/2018/02/Porsche-Logo.png'
+    }
 
   return (
     <>
@@ -128,7 +128,7 @@ export default function Home() {
                                   ${hoverColor}
                                   ${bgGlow}
                                   flex items-center justify-center
-                                  overflow-hidden border-4 border-[#004aad] p-6`}>
+                                  overflow-hidden border-12 border-[#004aad] p-6`}>
                       
                       {/* Hover shine effect */}
                       <div className="absolute inset-0 opacity-0 group-hover:opacity-100 
