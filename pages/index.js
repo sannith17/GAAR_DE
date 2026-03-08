@@ -15,7 +15,7 @@ export default function Home() {
   'BMW': 'https://upload.wikimedia.org/wikipedia/commons/4/44/BMW.svg',
   'Mercedes': 'https://upload.wikimedia.org/wikipedia/commons/3/32/Mercedes-Benz_Star_2022.svg',
   'Porsche': 'https://1000logos.net/wp-content/uploads/2018/02/Porsche-Logo.png',
-  'Volvo': 'https://upload.wikimedia.org/wikipedia/commons/e/ed/Volvo_iron_mark.svg'
+  'Volvo': 'https://upload.wikimedia.org/wikipedia/commons/e/ed/Volvo_iron_mark.svg
 }
 
   return (
