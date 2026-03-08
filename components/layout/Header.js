@@ -12,6 +12,7 @@ export default function Header() {
   const router = useRouter()
   const [searchQuery, setSearchQuery] = useState('')
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
+  const [logoHover, setLogoHover] = useState(false)
 
   const handleSearch = (e) => {
     e.preventDefault()
@@ -24,8 +25,9 @@ export default function Header() {
     window.location.href = `/models/${encodeURIComponent(brand)}`
   }
 
-  const handleNavigation = (path) => {
-    window.location.href = path
+  const handleLogoHover = () => {
+    setLogoHover(true)
+    setTimeout(() => setLogoHover(false), 800)
   }
 
   return (
@@ -54,15 +56,49 @@ export default function Header() {
       {/* Main Header - Blue Background */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-20">
-          {/* Logo */}
+          {/* Logo with Animation */}
           <button 
             onClick={() => window.location.href = '/'}
-            className="flex flex-col leading-none group"
+            onMouseEnter={handleLogoHover}
+            className="flex flex-col leading-none group relative"
           >
-            <span className="text-4xl font-black text-white tracking-tighter font-['Racing_Sans_One'] group-hover:opacity-90 transition-opacity">
+            {/* Blast/Light Effect on Hover */}
+            {logoHover && (
+              <>
+                {/* Radial blast */}
+                <div className="absolute -inset-4 animate-ping">
+                  <div className="w-full h-full rounded-full bg-gradient-to-r from-red-500 via-red-400 to-red-500 opacity-75 blur-xl"></div>
+                </div>
+                
+                {/* Sparkle particles */}
+                <div className="absolute -inset-6 animate-pulse">
+                  {[...Array(8)].map((_, i) => (
+                    <div
+                      key={i}
+                      className="absolute w-1 h-1 bg-red-400 rounded-full animate-blast"
+                      style={{
+                        top: `${Math.random() * 100}%`,
+                        left: `${Math.random() * 100}%`,
+                        animationDelay: `${i * 0.1}s`,
+                        transform: `rotate(${i * 45}deg)`,
+                      }}
+                    />
+                  ))}
+                </div>
+              </>
+            )}
+
+            {/* Glowing effect ring on hover */}
+            <div className={`absolute -inset-3 rounded-full bg-gradient-to-r from-red-500/30 via-red-400/30 to-red-500/30 
+                          blur-md transition-all duration-500 animate-pulse-slow ${logoHover ? 'opacity-100' : 'opacity-0'}`}>
+            </div>
+
+            {/* Main Logo */}
+            <span className={`relative z-10 text-4xl font-black text-white tracking-tighter font-['Racing_Sans_One'] 
+                           transition-all duration-300 ${logoHover ? 'text-red-500 scale-110' : 'group-hover:opacity-90'}`}>
               GAAR
             </span>
-            <span className="text-xs text-white/80 tracking-widest font-['Racing_Sans_One'] group-hover:text-white/90 transition-colors">
+            <span className="relative z-10 text-xs text-white/80 tracking-widest font-['Racing_Sans_One'] group-hover:text-white/90 transition-colors">
               RÄDER UND REIFEN
             </span>
           </button>
