@@ -55,13 +55,13 @@ export default function TyreBenefits() {
           </div>
         </div>
 
-        {/* Safety Tab Content */}
+        {/* Safety Tab Content - Different images for each concept */}
         {activeTab === 'safety' && (
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             {/* Left side - Images */}
             <div className="relative">
               <div className="grid grid-cols-2 gap-4">
-                {/* First image - New tyre */}
+                {/* First image - New tyre with deep tread */}
                 <div className="relative h-48 rounded-2xl overflow-hidden shadow-xl transform hover:scale-105 transition-all">
                   <Image
                     src="https://images.unsplash.com/photo-1580273916550-e323be2ae537?w=600"
@@ -74,10 +74,10 @@ export default function TyreBenefits() {
                   </div>
                 </div>
                 
-                {/* Second image - Worn tyre */}
+                {/* Second image - Worn tyre / Bald tyre */}
                 <div className="relative h-48 rounded-2xl overflow-hidden shadow-xl transform hover:scale-105 transition-all mt-8">
                   <Image
-                    src="https://images.unsplash.com/photo-1580273916550-e323be2ae537?w=600"
+                    src="https://images.unsplash.com/photo-1580522154071-c6ca47a859ad?w=600"
                     alt="Worn tyre with low tread"
                     fill
                     className="object-cover grayscale"
@@ -87,11 +87,11 @@ export default function TyreBenefits() {
                   </div>
                 </div>
                 
-                {/* Third image - Braking distance */}
+                {/* Third image - Braking distance / Emergency stop */}
                 <div className="col-span-2 relative h-64 rounded-2xl overflow-hidden shadow-xl transform hover:scale-105 transition-all">
                   <Image
                     src="https://images.unsplash.com/photo-1580273916550-e323be2ae537?w=600"
-                    alt="Car on road demonstrating braking distance"
+                    alt="Car braking on wet road"
                     fill
                     className="object-cover"
                   />
@@ -145,7 +145,7 @@ export default function TyreBenefits() {
           </div>
         )}
 
-        {/* Economy Tab Content */}
+        {/* Economy Tab Content - Fuel/economic images */}
         {activeTab === 'economy' && (
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <div className="space-y-6">
@@ -175,11 +175,11 @@ export default function TyreBenefits() {
               </div>
             </div>
 
-            {/* Image for Economy */}
+            {/* Image for Economy - Fuel pump / gas station */}
             <div className="relative h-96 rounded-2xl overflow-hidden shadow-2xl">
               <Image
                 src="https://images.unsplash.com/photo-1580273916550-e323be2ae537?w=600"
-                alt="Fuel efficiency concept"
+                alt="Fuel pump showing savings"
                 fill
                 className="object-cover"
               />
@@ -191,15 +191,19 @@ export default function TyreBenefits() {
           </div>
         )}
 
-        {/* Legal Tab Content */}
+        {/* Legal Tab Content - Law/regulations images */}
         {activeTab === 'legal' && (
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-            {/* First card */}
+            {/* First card - Tread depth */}
             <div className="bg-gray-800 text-white rounded-2xl p-8 shadow-xl relative overflow-hidden group hover:scale-105 transition-all min-h-[250px]">
               <div className="absolute top-0 right-0 w-32 h-32 opacity-20">
-                <div className="w-32 h-32 bg-blue-500 rounded-full flex items-center justify-center text-4xl">
-                  ⚖️
-                </div>
+                <Image
+                  src="https://images.unsplash.com/photo-1580273916550-e323be2ae537?w=200"
+                  alt="Tyre tread measurement"
+                  width={128}
+                  height={128}
+                  className="object-cover rounded-full"
+                />
               </div>
               <div className="text-4xl mb-4">⚖️</div>
               <h3 className="text-xl font-bold mb-3">Mindestprofiltiefe</h3>
@@ -207,12 +211,16 @@ export default function TyreBenefits() {
               <p className="text-green-400 font-bold">Sicherheitsexperten: 4 mm für Winter</p>
             </div>
 
-            {/* Second card */}
+            {/* Second card - Winter tyres */}
             <div className="bg-gray-800 text-white rounded-2xl p-8 shadow-xl relative overflow-hidden group hover:scale-105 transition-all min-h-[250px]">
               <div className="absolute top-0 right-0 w-32 h-32 opacity-20">
-                <div className="w-32 h-32 bg-blue-500 rounded-full flex items-center justify-center text-4xl">
-                  ❄️
-                </div>
+                <Image
+                  src="https://images.unsplash.com/photo-1580273916550-e323be2ae537?w=200"
+                  alt="Winter tyres in snow"
+                  width={128}
+                  height={128}
+                  className="object-cover rounded-full"
+                />
               </div>
               <div className="text-4xl mb-4">❄️</div>
               <h3 className="text-xl font-bold mb-3">Alpine-Symbol (3PMSF)</h3>
@@ -220,12 +228,16 @@ export default function TyreBenefits() {
               <p className="text-yellow-400 font-bold">M+S verliert Zulassung</p>
             </div>
 
-            {/* Third card */}
+            {/* Third card - Brake disc / workshop */}
             <div className="bg-gray-800 text-white rounded-2xl p-8 shadow-xl relative overflow-hidden group hover:scale-105 transition-all min-h-[250px]">
               <div className="absolute top-0 right-0 w-32 h-32 opacity-20">
-                <div className="w-32 h-32 bg-blue-500 rounded-full flex items-center justify-center text-4xl">
-                  🔧
-                </div>
+                <Image
+                  src="https://images.unsplash.com/photo-1580273916550-e323be2ae537?w=200"
+                  alt="Car brake disc"
+                  width={128}
+                  height={128}
+                  className="object-cover rounded-full"
+                />
               </div>
               <div className="text-4xl mb-4">🔧</div>
               <h3 className="text-xl font-bold mb-3">Neue Reifen hinten</h3>
