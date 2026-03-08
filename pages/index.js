@@ -11,11 +11,14 @@ const uniqueTyreBrands = [...new Set(tyresData.map(item => item.tyreBrand))].sor
 export default function Home() {
   // Brand logo mapping with reliable working URLs
   const brandLogos = {
-    'Audi': 'https://1000logos.net/wp-content/uploads/2018/05/Audi-logo.png',
-    'BMW': 'https://1000logos.net/wp-content/uploads/2018/02/BMW-Logo.png',
-    'Mercedes': 'https://1000logos.net/wp-content/uploads/2018/02/Mercedes-Benz-Logo.png',
-    'Porsche': 'https://1000logos.net/wp-content/uploads/2018/02/Porsche-Logo.png',
-    'Volvo': 'https://1000logos.net/wp-content/uploads/2018/02/Volvo-Logo.png'
+// Most reliable - using Wikimedia Commons
+const brandLogos = {
+  'Audi': 'https://upload.wikimedia.org/wikipedia/commons/9/92/Audi-Logo_2016.svg',
+  'BMW': 'https://upload.wikimedia.org/wikipedia/commons/4/44/BMW.svg',
+  'Mercedes': 'https://upload.wikimedia.org/wikipedia/commons/3/32/Mercedes-Benz_Star_2022.svg',
+  'Porsche': 'https://upload.wikimedia.org/wikipedia/commons/3/3f/Porsche_logo.svg',
+  'Volvo': 'https://upload.wikimedia.org/wikipedia/commons/e/ed/Volvo_iron_mark.svg'
+}
   }
 
   return (
