@@ -25,11 +25,6 @@ export default function Header() {
     window.location.href = `/models/${encodeURIComponent(brand)}`
   }
 
-  const handleLogoHover = () => {
-    setLogoHover(true)
-    setTimeout(() => setLogoHover(false), 800)
-  }
-
   return (
     <header className="bg-[#004aad] shadow-lg sticky top-0 z-50">
       {/* Top Bar - Communication */}
@@ -56,51 +51,52 @@ export default function Header() {
       {/* Main Header - Blue Background */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-20">
-          {/* Logo with Animation */}
+          {/* Logo with Apple Mac Glass Animation */}
           <button 
             onClick={() => window.location.href = '/'}
-            onMouseEnter={handleLogoHover}
+            onMouseEnter={() => setLogoHover(true)}
+            onMouseLeave={() => setLogoHover(false)}
             className="flex flex-col leading-none group relative"
           >
-            {/* Blast/Light Effect on Hover */}
-            {logoHover && (
-              <>
-                {/* Radial blast */}
-                <div className="absolute -inset-4 animate-ping">
-                  <div className="w-full h-full rounded-full bg-gradient-to-r from-red-500 via-red-400 to-red-500 opacity-75 blur-xl"></div>
-                </div>
-                
-                {/* Sparkle particles */}
-                <div className="absolute -inset-6 animate-pulse">
-                  {[...Array(8)].map((_, i) => (
-                    <div
-                      key={i}
-                      className="absolute w-1 h-1 bg-red-400 rounded-full animate-blast"
-                      style={{
-                        top: `${Math.random() * 100}%`,
-                        left: `${Math.random() * 100}%`,
-                        animationDelay: `${i * 0.1}s`,
-                        transform: `rotate(${i * 45}deg)`,
-                      }}
-                    />
-                  ))}
-                </div>
-              </>
-            )}
+            {/* Apple Mac-style glass effect container */}
+            <div className="relative">
+              {/* Base glass layer */}
+              <div className={`absolute inset-0 bg-white/0 rounded-lg transition-all duration-700 
+                            ${logoHover ? 'backdrop-blur-md bg-white/20 scale-110 -inset-2' : ''}`}>
+                {/* Inner glow effect */}
+                <div className={`absolute inset-0 bg-gradient-to-r from-white/40 via-white/60 to-white/40 
+                              rounded-lg opacity-0 transition-opacity duration-700 blur-sm
+                              ${logoHover ? 'opacity-100' : ''}`}></div>
+              </div>
+              
+              {/* Main Logo */}
+              <div className="relative z-10">
+                <span className={`text-4xl font-black text-white tracking-tighter font-['Racing_Sans_One'] 
+                               transition-all duration-700 block
+                               ${logoHover ? 'text-white/90 scale-105' : ''}`}>
+                  GAAR
+                </span>
+                <span className={`text-xs text-white/80 tracking-widest font-['Racing_Sans_One'] 
+                               transition-all duration-700 block
+                               ${logoHover ? 'text-white/90' : ''}`}>
+                  RÄDER UND REIFEN
+                </span>
+              </div>
 
-            {/* Glowing effect ring on hover */}
-            <div className={`absolute -inset-3 rounded-full bg-gradient-to-r from-red-500/30 via-red-400/30 to-red-500/30 
-                          blur-md transition-all duration-500 animate-pulse-slow ${logoHover ? 'opacity-100' : 'opacity-0'}`}>
+              {/* Apple-style shimmer effect */}
+              <div className={`absolute inset-0 overflow-hidden rounded-lg pointer-events-none
+                            ${logoHover ? 'opacity-100' : 'opacity-0'}`}>
+                <div className="absolute inset-0 translate-x-[-100%] animate-shimmer 
+                              bg-gradient-to-r from-transparent via-white/40 to-transparent"></div>
+              </div>
             </div>
 
-            {/* Main Logo */}
-            <span className={`relative z-10 text-4xl font-black text-white tracking-tighter font-['Racing_Sans_One'] 
-                           transition-all duration-300 ${logoHover ? 'text-red-500 scale-110' : 'group-hover:opacity-90'}`}>
-              GAAR
-            </span>
-            <span className="relative z-10 text-xs text-white/80 tracking-widest font-['Racing_Sans_One'] group-hover:text-white/90 transition-colors">
-              RÄDER UND REIFEN
-            </span>
+            {/* Subtle bottom glow */}
+            <div className={`absolute -bottom-2 left-1/2 transform -translate-x-1/2 w-12 h-0.5 
+                          bg-gradient-to-r from-transparent via-white/60 to-transparent 
+                          transition-opacity duration-700 blur-sm
+                          ${logoHover ? 'opacity-100' : 'opacity-0'}`}>
+            </div>
           </button>
 
           {/* Search Bar */}
