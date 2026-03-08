@@ -51,49 +51,49 @@ export default function Header() {
       {/* Main Header - Blue Background */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-20">
-          {/* Logo with Red & Black Stripes on Hover */}
+          {/* Logo with Zebra Stripes Inside Text */}
           <button 
             onClick={() => window.location.href = '/'}
             onMouseEnter={() => setLogoHover(true)}
             onMouseLeave={() => setLogoHover(false)}
-            className="flex flex-col leading-none group relative overflow-hidden"
+            className="flex flex-col leading-none group relative"
           >
-            {/* Background stripes that appear on hover */}
-            <div className={`absolute inset-0 transition-all duration-500 ${
-              logoHover ? 'opacity-100' : 'opacity-0'
-            }`}>
-              {/* Red and black diagonal stripes */}
-              <div className="absolute inset-0 bg-gradient-to-r from-red-600 via-red-600 to-red-600 
-                            transform -skew-y-12 scale-150"></div>
-              <div className="absolute inset-0 bg-gradient-to-r from-black via-black to-black 
-                            transform skew-y-12 scale-150"></div>
+            {/* GAAR Text with Zebra Stripes */}
+            <span className="relative text-4xl font-black tracking-tighter font-['Racing_Sans_One']">
+              {/* White text background */}
+              <span className={`absolute inset-0 text-white transition-opacity duration-300 ${
+                logoHover ? 'opacity-0' : 'opacity-100'
+              }`}>
+                GAAR
+              </span>
               
-              {/* Overlapping stripes for pattern */}
-              <div className="absolute inset-0 grid grid-cols-3 gap-1">
-                <div className="h-full bg-red-600"></div>
-                <div className="h-full bg-black"></div>
-                <div className="h-full bg-red-600"></div>
-              </div>
-            </div>
-
-            {/* Logo text - changes color on hover */}
-            <span className={`relative z-10 text-4xl font-black tracking-tighter font-['Racing_Sans_One'] 
-                           transition-all duration-500 ${
-              logoHover ? 'text-white' : 'text-white'
-            }`}>
-              GAAR
+              {/* Zebra striped text (appears on hover) */}
+              <span className={`relative transition-opacity duration-300 ${
+                logoHover ? 'opacity-100' : 'opacity-0'
+              }`}>
+                {/* Create striped pattern by using individual letters with alternating colors */}
+                <span className="text-red-600">G</span>
+                <span className="text-black">A</span>
+                <span className="text-red-600">A</span>
+                <span className="text-black">R</span>
+                
+                {/* Additional stripe effect in background */}
+                <span className="absolute inset-0 flex pointer-events-none">
+                  <span className="w-1/4 h-full bg-red-600/20"></span>
+                  <span className="w-1/4 h-full bg-black/20"></span>
+                  <span className="w-1/4 h-full bg-red-600/20"></span>
+                  <span className="w-1/4 h-full bg-black/20"></span>
+                </span>
+              </span>
             </span>
+
+            {/* Subtitle - changes color on hover to match */}
             <span className={`relative z-10 text-xs tracking-widest font-['Racing_Sans_One'] 
-                           transition-all duration-500 ${
-              logoHover ? 'text-white/90' : 'text-white/80'
+                           transition-all duration-300 ${
+              logoHover ? 'text-red-600' : 'text-white/80'
             }`}>
               RÄDER UND REIFEN
             </span>
-
-            {/* Subtle border effect on hover */}
-            <div className={`absolute inset-0 border-2 border-white/0 rounded-lg transition-all duration-500 ${
-              logoHover ? 'border-white/30' : ''
-            }`}></div>
           </button>
 
           {/* Search Bar */}
