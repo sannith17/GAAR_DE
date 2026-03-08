@@ -9,6 +9,15 @@ const uniqueCarBrands = [...new Set(tyresData.map(item => item.brand))].sort()
 const uniqueTyreBrands = [...new Set(tyresData.map(item => item.tyreBrand))].sort()
 
 export default function Home() {
+  // Brand logo mapping with reliable working URLs
+  const brandLogos = {
+    'Audi': 'https://1000logos.net/wp-content/uploads/2018/05/Audi-logo.png',
+    'BMW': 'https://1000logos.net/wp-content/uploads/2018/02/BMW-Logo.png',
+    'Mercedes': 'https://1000logos.net/wp-content/uploads/2018/02/Mercedes-Benz-Logo.png',
+    'Porsche': 'https://1000logos.net/wp-content/uploads/2018/02/Porsche-Logo.png',
+    'Volvo': 'https://1000logos.net/wp-content/uploads/2018/02/Volvo-Logo.png'
+  }
+
   return (
     <>
       <Head>
@@ -73,7 +82,7 @@ export default function Home() {
         </div>
       </div>
 
-      {/* Car Brand Selection - Symbols Only with German Colors */}
+      {/* Car Brand Selection with Logos - German Flag Colors for First Three, Green/Orange for Last Two */}
       <div id="models" className="py-20 bg-gradient-to-b from-white to-gray-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <h2 className="text-3xl md:text-4xl font-bold text-center mb-4">
@@ -85,30 +94,24 @@ export default function Home() {
           
           <div className="flex flex-wrap justify-center gap-8 md:gap-12">
             {uniqueCarBrands.map((brand, index) => {
-              // Brand symbols (simple representations)
-              const brandSymbol = {
-                'Audi': 'A',
-                'BMW': 'B',
-                'Mercedes': 'M',
-                'Porsche': 'P',
-                'Volvo': 'V'
-              }[brand]
-
-              // German flag colors for first three, Porsche red, Volvo green
+              // Brand-specific hover colors
+              // First three: German flag colors (Black, Red, Gold)
+              // Last two: Green (Volvo) and Orange (Porsche)
               const hoverColor = {
-                'Audi': 'group-hover:border-black group-hover:shadow-black/30',
-                'BMW': 'group-hover:border-red-600 group-hover:shadow-red-600/30',
-                'Mercedes': 'group-hover:border-yellow-400 group-hover:shadow-yellow-400/30',
-                'Porsche': 'group-hover:border-red-600 group-hover:shadow-red-600/30',
-                'Volvo': 'group-hover:border-green-600 group-hover:shadow-green-600/30'
+                'Audi': 'group-hover:border-black group-hover:shadow-black/50',
+                'BMW': 'group-hover:border-red-600 group-hover:shadow-red-600/50',
+                'Mercedes': 'group-hover:border-yellow-500 group-hover:shadow-yellow-500/50',
+                'Porsche': 'group-hover:border-orange-500 group-hover:shadow-orange-500/50',
+                'Volvo': 'group-hover:border-green-600 group-hover:shadow-green-600/50'
               }[brand]
 
-              const textHoverColor = {
-                'Audi': 'group-hover:text-black',
-                'BMW': 'group-hover:text-red-600',
-                'Mercedes': 'group-hover:text-yellow-400',
-                'Porsche': 'group-hover:text-red-600',
-                'Volvo': 'group-hover:text-green-600'
+              // Background glow color on hover
+              const bgGlow = {
+                'Audi': 'group-hover:bg-black/5',
+                'BMW': 'group-hover:bg-red-600/5',
+                'Mercedes': 'group-hover:bg-yellow-500/5',
+                'Porsche': 'group-hover:bg-orange-500/5',
+                'Volvo': 'group-hover:bg-green-600/5'
               }[brand]
               
               return (
@@ -117,29 +120,46 @@ export default function Home() {
                     onClick={() => window.location.href = `/models/${encodeURIComponent(brand)}`}
                     className="group outline-none"
                   >
-                    {/* Bigger circle with symbol only - no text inside */}
-                    <div className={`relative w-36 h-36 md:w-44 md:h-44 rounded-full 
-                                  bg-gradient-to-br from-white to-gray-100 
-                                  border-4 border-[#004aad] shadow-lg 
+                    {/* Large circle with brand logo */}
+                    <div className={`relative w-40 h-40 md:w-48 md:h-48 rounded-full 
+                                  bg-white shadow-xl 
                                   transition-all duration-500 
                                   group-hover:-translate-y-3 group-hover:shadow-2xl
                                   ${hoverColor}
+                                  ${bgGlow}
                                   flex items-center justify-center
-                                  overflow-hidden`}>
+                                  overflow-hidden border-4 border-[#004aad] p-6`}>
                       
                       {/* Hover shine effect */}
                       <div className="absolute inset-0 opacity-0 group-hover:opacity-100 
                                     bg-gradient-to-tr from-white/60 via-transparent to-transparent 
                                     transition-opacity duration-500"></div>
                       
-                      {/* Brand Symbol - Large and bold */}
-                      <span className={`text-5xl md:text-7xl font-black text-[#004aad] ${textHoverColor} transition-colors duration-500`}>
-                        {brandSymbol}
-                      </span>
+                      {/* Brand Logo */}
+                      <img 
+                        src={brandLogos[brand]} 
+                        alt={`${brand} logo`}
+                        className="w-full h-full object-contain group-hover:scale-110 transition-transform duration-500"
+                        onError={(e) => {
+                          e.target.style.display = 'none';
+                          // Show fallback text if logo fails to load
+                          const parent = e.target.parentElement;
+                          const fallback = document.createElement('span');
+                          fallback.className = 'text-2xl md:text-3xl font-bold text-[#004aad]';
+                          fallback.textContent = brand.charAt(0);
+                          parent.appendChild(fallback);
+                        }}
+                      />
                     </div>
                     
-                    {/* Brand name below button - small and subtle */}
-                    <p className={`text-center mt-3 text-sm font-medium text-gray-600 ${textHoverColor} transition-colors duration-500`}>
+                    {/* Brand name below button */}
+                    <p className={`text-center mt-3 text-base font-medium text-gray-700 
+                                ${brand === 'Audi' ? 'group-hover:text-black' : 
+                                  brand === 'BMW' ? 'group-hover:text-red-600' :
+                                  brand === 'Mercedes' ? 'group-hover:text-yellow-500' :
+                                  brand === 'Porsche' ? 'group-hover:text-orange-500' :
+                                  'group-hover:text-green-600'} 
+                                transition-colors duration-500`}>
                       {brand}
                     </p>
                   </button>
@@ -233,104 +253,6 @@ export default function Home() {
                   <span className="text-green-300">✓</span> Kostenloser Rückversand
                 </li>
               </ul>
-            </div>
-          </div>
-
-          {/* Psychological Sales Section */}
-          <div className="mb-20 bg-gradient-to-r from-[#004aad]/5 via-white to-[#004aad]/5 rounded-3xl p-10">
-            <div className="max-w-4xl mx-auto">
-              <h2 className="text-3xl md:text-4xl font-bold text-center mb-6" style={{ color: '#004aad' }}>
-                Ihre Sicherheit beginnt mit dem richtigen Reifen
-              </h2>
-              
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
-                {/* Left Column - Emotional Triggers */}
-                <div className="space-y-4">
-                  <div className="flex items-start gap-4">
-                    <div className="w-12 h-12 rounded-full bg-red-100 flex items-center justify-center flex-shrink-0">
-                      <span className="text-2xl">⚠️</span>
-                    </div>
-                    <div>
-                      <h3 className="text-lg font-semibold text-gray-800">Bei Nässe doppelt so langer Bremsweg</h3>
-                      <p className="text-gray-600 text-sm">Abgefahrene Reifen verlieren bis zu 80% ihrer Haftung. Bei 100 km/h bedeutet das lebensentscheidende Meter.</p>
-                    </div>
-                  </div>
-                  
-                  <div className="flex items-start gap-4">
-                    <div className="w-12 h-12 rounded-full bg-orange-100 flex items-center justify-center flex-shrink-0">
-                      <span className="text-2xl">🛑</span>
-                    </div>
-                    <div>
-                      <h3 className="text-lg font-semibold text-gray-800">Aquaplaning-Risiko steigt dramatisch</h3>
-                      <p className="text-gray-600 text-sm">Bereits ab 3 mm Profiltiefe verdoppelt sich die Aquaplaning-Gefahr. Neue Reifen retten Sie in kritischen Situationen.</p>
-                    </div>
-                  </div>
-                  
-                  <div className="flex items-start gap-4">
-                    <div className="w-12 h-12 rounded-full bg-yellow-100 flex items-center justify-center flex-shrink-0">
-                      <span className="text-2xl">💰</span>
-                    </div>
-                    <div>
-                      <h3 className="text-lg font-semibold text-gray-800">Bis zu 15% Spritersparnis</h3>
-                      <p className="text-gray-600 text-sm">Moderne Reifen reduzieren den Rollwiderstand. Sie sparen nicht nur Geld, sondern schonen auch die Umwelt.</p>
-                    </div>
-                  </div>
-                </div>
-
-                {/* Right Column - Trust Building */}
-                <div className="space-y-4">
-                  <div className="flex items-start gap-4">
-                    <div className="w-12 h-12 rounded-full bg-green-100 flex items-center justify-center flex-shrink-0">
-                      <span className="text-2xl">🇩🇪</span>
-                    </div>
-                    <div>
-                      <h3 className="text-lg font-semibold text-gray-800">Made für deutsche Straßen</h3>
-                      <p className="text-gray-600 text-sm">TÜV/ECE geprüft. Entwickelt für Autobahnen, Landstraßen und das wechselhafte deutsche Wetter.</p>
-                    </div>
-                  </div>
-                  
-                  <div className="flex items-start gap-4">
-                    <div className="w-12 h-12 rounded-full bg-blue-100 flex items-center justify-center flex-shrink-0">
-                      <span className="text-2xl">🔇</span>
-                    </div>
-                    <div>
-                      <h3 className="text-lg font-semibold text-gray-800">Bis zu 30% leiser</h3>
-                      <p className="text-gray-600 text-sm">Genießen Sie die Ruhe im Innenraum. Neue Reifen reduzieren das Abrollgeräusch deutlich.</p>
-                    </div>
-                  </div>
-                  
-                  <div className="flex items-start gap-4">
-                    <div className="w-12 h-12 rounded-full bg-purple-100 flex items-center justify-center flex-shrink-0">
-                      <span className="text-2xl">🛡️</span>
-                    </div>
-                    <div>
-                      <h3 className="text-lg font-semibold text-gray-800">Ihre Familie verdient das Beste</h3>
-                      <p className="text-gray-600 text-sm">Investieren Sie in Sicherheit. 80% aller Pannen durch Reifenschäden wären mit neuen Reifen vermeidbar gewesen.</p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              {/* Call to Action */}
-              <div className="text-center bg-white/80 backdrop-blur-sm rounded-xl p-6 shadow-lg">
-                <p className="text-lg text-gray-700 mb-3">
-                  <span className="font-bold">Handeln Sie jetzt:</span> Ihre aktuellen Reifen sind im Durchschnitt <span className="text-[#004aad] font-bold">3,2 Jahre</span> alt.
-                </p>
-                <p className="text-md text-gray-600 mb-4">
-                  Ab 6 Jahren steigt das Risiko für Risse und Materialermüdung exponentiell. 
-                  <span className="font-semibold"> Schützen Sie sich und Ihre Familie.</span>
-                </p>
-                <button 
-                  onClick={() => window.location.href = '/models'}
-                  className="inline-block bg-gradient-to-r from-[#004aad] to-orange-500 
-                           text-white px-8 py-3 rounded-lg font-semibold
-                           hover:from-[#003a8a] hover:to-orange-600 
-                           transition-all transform hover:scale-105 
-                           shadow-lg hover:shadow-xl"
-                >
-                  Jetzt Sicherheit sichern →
-                </button>
-              </div>
             </div>
           </div>
 
