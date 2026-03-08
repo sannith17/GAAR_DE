@@ -55,17 +55,16 @@ export default function TyreBenefits() {
           </div>
         </div>
 
-        {/* Safety Tab Content - Different images for each concept */}
+        {/* Safety Tab Content */}
         {activeTab === 'safety' && (
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             {/* Left side - Images */}
             <div className="relative">
               <div className="grid grid-cols-2 gap-4">
-                {/* First image - New tyre with deep tread */}
                 <div className="relative h-48 rounded-2xl overflow-hidden shadow-xl transform hover:scale-105 transition-all">
                   <Image
-                    src="https://images.unsplash.com/photo-1580273916550-e323be2ae537?w=600"
-                    alt="New tyre with deep tread"
+                    src="https://images.unsplash.com/photo-1580273916550-e323be2ae537?w=500"
+                    alt="New tyre"
                     fill
                     className="object-cover"
                   />
@@ -73,12 +72,10 @@ export default function TyreBenefits() {
                     <span className="text-white font-bold">8 mm Profil</span>
                   </div>
                 </div>
-                
-                {/* Second image - Worn tyre / Bald tyre */}
                 <div className="relative h-48 rounded-2xl overflow-hidden shadow-xl transform hover:scale-105 transition-all mt-8">
                   <Image
-                    src="https://images.unsplash.com/photo-1580522154071-c6ca47a859ad?w=600"
-                    alt="Worn tyre with low tread"
+                    src="https://images.unsplash.com/photo-1580273916550-e323be2ae537?w=500"
+                    alt="Worn tyre"
                     fill
                     className="object-cover grayscale"
                   />
@@ -86,12 +83,10 @@ export default function TyreBenefits() {
                     <span className="text-white font-bold">1.6 mm Profil</span>
                   </div>
                 </div>
-                
-                {/* Third image - Braking distance / Emergency stop */}
                 <div className="col-span-2 relative h-64 rounded-2xl overflow-hidden shadow-xl transform hover:scale-105 transition-all">
                   <Image
-                    src="https://images.unsplash.com/photo-1580273916550-e323be2ae537?w=600"
-                    alt="Car braking on wet road"
+                    src="https://images.unsplash.com/photo-1580273916550-e323be2ae537?w=500"
+                    alt="Braking distance comparison"
                     fill
                     className="object-cover"
                   />
@@ -145,7 +140,7 @@ export default function TyreBenefits() {
           </div>
         )}
 
-        {/* Economy Tab Content - Fuel/economic images */}
+        {/* Economy Tab Content */}
         {activeTab === 'economy' && (
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <div className="space-y-6">
@@ -175,13 +170,13 @@ export default function TyreBenefits() {
               </div>
             </div>
 
-            {/* Image for Economy - Fuel pump / gas station */}
-            <div className="relative h-96 rounded-2xl overflow-hidden shadow-2xl">
+            <div className="relative">
               <Image
-                src="https://images.unsplash.com/photo-1580273916550-e323be2ae537?w=600"
-                alt="Fuel pump showing savings"
-                fill
-                className="object-cover"
+                src="https://images.unsplash.com/photo-1580273916550-e323be2ae537?w=800"
+                alt="Fuel efficiency"
+                width={600}
+                height={400}
+                className="rounded-2xl shadow-2xl"
               />
               <div className="absolute -bottom-6 -left-6 bg-yellow-400 rounded-xl p-4 shadow-xl">
                 <p className="text-2xl font-bold">€400</p>
@@ -191,59 +186,27 @@ export default function TyreBenefits() {
           </div>
         )}
 
-        {/* Legal Tab Content - Law/regulations images */}
+        {/* Legal Tab Content */}
         {activeTab === 'legal' && (
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-            {/* First card - Tread depth */}
-            <div className="bg-gray-800 text-white rounded-2xl p-8 shadow-xl relative overflow-hidden group hover:scale-105 transition-all min-h-[250px]">
-              <div className="absolute top-0 right-0 w-32 h-32 opacity-20">
-                <Image
-                  src="https://images.unsplash.com/photo-1580273916550-e323be2ae537?w=200"
-                  alt="Tyre tread measurement"
-                  width={128}
-                  height={128}
-                  className="object-cover rounded-full"
-                />
-              </div>
+            <div className="bg-gray-800 text-white rounded-2xl p-8 shadow-xl">
               <div className="text-4xl mb-4">⚖️</div>
               <h3 className="text-xl font-bold mb-3">Mindestprofiltiefe</h3>
-              <p className="text-gray-300 mb-2">Gesetzlich: <span className="text-white font-bold">1,6 mm</span></p>
+              <p className="text-gray-300 mb-2">Gesetzlich: 1,6 mm</p>
               <p className="text-green-400 font-bold">Sicherheitsexperten: 4 mm für Winter</p>
             </div>
 
-            {/* Second card - Winter tyres */}
-            <div className="bg-gray-800 text-white rounded-2xl p-8 shadow-xl relative overflow-hidden group hover:scale-105 transition-all min-h-[250px]">
-              <div className="absolute top-0 right-0 w-32 h-32 opacity-20">
-                <Image
-                  src="https://images.unsplash.com/photo-1580273916550-e323be2ae537?w=200"
-                  alt="Winter tyres in snow"
-                  width={128}
-                  height={128}
-                  className="object-cover rounded-full"
-                />
-              </div>
+            <div className="bg-gray-800 text-white rounded-2xl p-8 shadow-xl">
               <div className="text-4xl mb-4">❄️</div>
-              <h3 className="text-xl font-bold mb-3">Alpine-Symbol (3PMSF)</h3>
+              <h3 className="text-xl font-bold mb-3">Alpine-Symbol</h3>
               <p className="text-gray-300 mb-2">Seit Oktober 2024 Pflicht</p>
-              <p className="text-yellow-400 font-bold">M+S verliert Zulassung</p>
+              <p className="text-yellow-400">M+S verliert Zulassung</p>
             </div>
 
-            {/* Third card - Brake disc / workshop */}
-            <div className="bg-gray-800 text-white rounded-2xl p-8 shadow-xl relative overflow-hidden group hover:scale-105 transition-all min-h-[250px]">
-              <div className="absolute top-0 right-0 w-32 h-32 opacity-20">
-                <Image
-                  src="https://images.unsplash.com/photo-1580273916550-e323be2ae537?w=200"
-                  alt="Car brake disc"
-                  width={128}
-                  height={128}
-                  className="object-cover rounded-full"
-                />
-              </div>
+            <div className="bg-gray-800 text-white rounded-2xl p-8 shadow-xl">
               <div className="text-4xl mb-4">🔧</div>
               <h3 className="text-xl font-bold mb-3">Neue Reifen hinten</h3>
-              <p className="text-gray-300">Beim paarweisen Wechsel:</p>
-              <p className="text-blue-400 font-bold">Neue Reifen gehören auf die Hinterachse</p>
-              <p className="text-sm text-gray-400 mt-2">Verhindert Übersteuern bei Aquaplaning</p>
+              <p className="text-gray-300">Verhindert Übersteuern bei Aquaplaning</p>
             </div>
           </div>
         )}
@@ -259,26 +222,6 @@ export default function TyreBenefits() {
             <span className="relative z-10">Jetzt Sicherheit sichern →</span>
             <div className="absolute inset-0 bg-gradient-to-r from-red-600 to-orange-500 opacity-0 group-hover:opacity-100 transition-opacity"></div>
           </button>
-        </div>
-
-        {/* Trust Badges */}
-        <div className="flex flex-wrap justify-center gap-8 mt-12">
-          <div className="flex items-center gap-2">
-            <span className="text-green-500 text-2xl">✓</span>
-            <span className="text-gray-600">TÜV/ECE geprüft</span>
-          </div>
-          <div className="flex items-center gap-2">
-            <span className="text-green-500 text-2xl">✓</span>
-            <span className="text-gray-600">100 Tage Rückgaberecht</span>
-          </div>
-          <div className="flex items-center gap-2">
-            <span className="text-green-500 text-2xl">✓</span>
-            <span className="text-gray-600">5 Jahre Garantie</span>
-          </div>
-          <div className="flex items-center gap-2">
-            <span className="text-green-500 text-2xl">✓</span>
-            <span className="text-gray-600">Montage deutschlandweit</span>
-          </div>
         </div>
       </div>
     </div>
